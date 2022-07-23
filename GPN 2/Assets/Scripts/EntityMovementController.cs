@@ -11,6 +11,8 @@ public class EntityMovementController : MonoBehaviour
 
     private EntityMovement controls;
     private Vector3 destination; 
+    private Vector3 start;
+    private BaseGoblin entity;
 
     private void Awake()
     {
@@ -30,7 +32,10 @@ public class EntityMovementController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        entity = GetComponent<BaseGoblin>();
         destination = transform.position;
+        start = transform.position;
+        start.y -= 0.16f;
         controls.Main.Movement.performed += _ => Move();
     }
 
@@ -47,13 +52,19 @@ public class EntityMovementController : MonoBehaviour
         Vector3Int gridPos = gameTilemap.WorldToCell((Vector3) mousePos);
         if(!canMove(gridPos)) return;
         destination = gameTilemap.CellToWorld(gridPos);
+        start = destination;
         destination.y += 0.16f;
     }
 
     private bool canMove(Vector3Int pos)
     {  
-        if (!gameTilemap.HasTile(pos)) return false;
-        return true;
+        int dist = (int) Vector3.Distance(gameTilemap.WorldToCell(start), pos);
+        bool hasTile = gameTilemap.HasTile(pos);
+        bool inRange = dist <= entity.MovementRange;
+
+        if(!inRange) Debug.Log("Out of range");
+
+        return hasTile && inRange;
     }
 }
 
