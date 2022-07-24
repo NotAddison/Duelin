@@ -15,14 +15,13 @@ public class BaseGoblin : MonoBehaviour, IClickable
     private int Range;
     [SerializeField]
     public int MovementRange;
-    [SerializeField]
-
     public EntityMovementController movementController;
 
     public bool isSelected = false;
 
     void Start()
     {
+        movementController = GetComponent<EntityMovementController>();
     }
 
     void Update()

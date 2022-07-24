@@ -11,7 +11,6 @@ public class EntityMovementController : MonoBehaviour
     private Tilemap renderMap;
     [SerializeField]
     private Tile movementHighlight;
-    [SerializeField]
     private BaseGoblin entity;
 
     private EntityMovement controls;
@@ -35,6 +34,7 @@ public class EntityMovementController : MonoBehaviour
 
     void Start()
     {
+        entity = GetComponent<BaseGoblin>();
         destination = entity.transform.position;
     }
 
