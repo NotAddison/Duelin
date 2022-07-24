@@ -43,7 +43,7 @@ public class SelectionManager : MonoBehaviour
 
         if(hit.collider == null) return;
         currentEntity = hit.collider.gameObject.GetComponent<BaseGoblin>();
-        if(prevEntity != null && prevEntity != currentEntity) prevEntity.Deselect();
+        if(prevEntity != null && prevEntity != currentEntity) prevEntity.movementController.Deselect();
         currentEntity.OnClick();
     }
 }

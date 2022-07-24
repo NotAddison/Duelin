@@ -1,18 +1,22 @@
+using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.InputSystem;
 
 public class EntityMovementController : MonoBehaviour
 {
     [SerializeField]
     private Tilemap gameTilemap;
-
-    // [SerializeField]
-    // private Tilemap collTilemap;
+    [SerializeField]
+    private Tilemap renderMap;
+    [SerializeField]
+    private Tile movementHighlight;
+    [SerializeField]
+    private BaseGoblin entity;
 
     private EntityMovement controls;
     private Vector3 destination; 
-    private Vector3 start;
-    private BaseGoblin entity;
+    private int clicks;
 
     private void Awake()
     {
@@ -29,44 +33,67 @@ public class EntityMovementController : MonoBehaviour
         controls.Disable();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        entity = GetComponent<BaseGoblin>();
-        destination = transform.position;
-        start = transform.position;
-        start.y -= 0.16f;
-        controls.Main.Click.performed += _ => Move();
+        destination = entity.transform.position;
     }
 
     void Update()
     {
-        if (!entity) return; 
-        // transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime);
+        if (entity.transform.position == destination) return;
+        Debug.Log("Move");
         entity.transform.position = destination;
+        Deselect();
     }
 
-    private void Move()
+    public bool onSelect()
     {
+        displayMovableTiles();
+        clicks = 0;
+        controls.Main.Click.performed += HandleMovement;
+        return true;
+    }
+
+    public bool Deselect()
+    {
+        Debug.Log("Deselect");
+        renderMap.ClearAllTiles();
+        controls.Main.Click.performed -= HandleMovement;
+        entity.isSelected = false;
+        return false;
+    }
+
+    private void displayMovableTiles()
+    {
+        for(int x = gameTilemap.cellBounds.min.x; x <= gameTilemap.cellBounds.max.x; x++) {
+            for(int y = gameTilemap.cellBounds.min.y; y <= gameTilemap.cellBounds.max.y; y++) {
+                if (!canMove(new Vector3Int(x,y,0))) continue;
+                renderMap.SetTile(new Vector3Int(x,y,0), movementHighlight);
+            }
+        }
+    }
+
+    private void HandleMovement(InputAction.CallbackContext context)
+    {
+        clicks++;
+
+        if (clicks == 1) return;
+
         Vector2 mousePos = controls.Main.Pos.ReadValue<Vector2>();
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         Vector3Int gridPos = gameTilemap.WorldToCell((Vector3) mousePos);
 
-        Debug.Log(gridPos);
-
         if(!canMove(gridPos)) return;
+
         destination = gameTilemap.CellToWorld(gridPos);
-        start = destination;
         destination.y += 0.16f;
     }
 
-    private bool canMove(Vector3Int pos)
+    private bool canMove(Vector3Int targetPos)
     {  
-        int dist = (int) Vector3.Distance(gameTilemap.WorldToCell(start), pos);
-        bool hasTile = gameTilemap.HasTile(pos);
-        bool inRange = dist <= 3;
-
-        if(!inRange) Debug.Log("Out of range");
+        int dist = (int) Math.Ceiling(Vector3.Distance(gameTilemap.WorldToCell(entity.getCurrentPos()), targetPos));
+        bool hasTile = gameTilemap.HasTile(targetPos);
+        bool inRange = dist <= entity.MovementRange;
 
         return hasTile && inRange;
     }
