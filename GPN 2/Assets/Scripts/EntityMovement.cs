@@ -28,7 +28,7 @@ public partial class @EntityMovement : IInputActionCollection2, IDisposable
             ""id"": ""f5980c1f-73e4-4032-88bd-09073a7f9438"",
             ""actions"": [
                 {
-                    ""name"": ""Movement"",
+                    ""name"": ""Click"",
                     ""type"": ""Button"",
                     ""id"": ""bc75af0c-ec84-45ee-a4cc-b3e98916d9ba"",
                     ""expectedControlType"": ""Button"",
@@ -54,7 +54,7 @@ public partial class @EntityMovement : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -76,7 +76,7 @@ public partial class @EntityMovement : IInputActionCollection2, IDisposable
 }");
         // Main
         m_Main = asset.FindActionMap("Main", throwIfNotFound: true);
-        m_Main_Movement = m_Main.FindAction("Movement", throwIfNotFound: true);
+        m_Main_Click = m_Main.FindAction("Click", throwIfNotFound: true);
         m_Main_Pos = m_Main.FindAction("Pos", throwIfNotFound: true);
     }
 
@@ -137,13 +137,13 @@ public partial class @EntityMovement : IInputActionCollection2, IDisposable
     // Main
     private readonly InputActionMap m_Main;
     private IMainActions m_MainActionsCallbackInterface;
-    private readonly InputAction m_Main_Movement;
+    private readonly InputAction m_Main_Click;
     private readonly InputAction m_Main_Pos;
     public struct MainActions
     {
         private @EntityMovement m_Wrapper;
         public MainActions(@EntityMovement wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_Main_Movement;
+        public InputAction @Click => m_Wrapper.m_Main_Click;
         public InputAction @Pos => m_Wrapper.m_Main_Pos;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
@@ -154,9 +154,9 @@ public partial class @EntityMovement : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_MainActionsCallbackInterface != null)
             {
-                @Movement.started -= m_Wrapper.m_MainActionsCallbackInterface.OnMovement;
-                @Movement.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnMovement;
-                @Movement.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnMovement;
+                @Click.started -= m_Wrapper.m_MainActionsCallbackInterface.OnClick;
+                @Click.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnClick;
+                @Click.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnClick;
                 @Pos.started -= m_Wrapper.m_MainActionsCallbackInterface.OnPos;
                 @Pos.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnPos;
                 @Pos.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnPos;
@@ -164,9 +164,9 @@ public partial class @EntityMovement : IInputActionCollection2, IDisposable
             m_Wrapper.m_MainActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Movement.started += instance.OnMovement;
-                @Movement.performed += instance.OnMovement;
-                @Movement.canceled += instance.OnMovement;
+                @Click.started += instance.OnClick;
+                @Click.performed += instance.OnClick;
+                @Click.canceled += instance.OnClick;
                 @Pos.started += instance.OnPos;
                 @Pos.performed += instance.OnPos;
                 @Pos.canceled += instance.OnPos;
@@ -176,7 +176,7 @@ public partial class @EntityMovement : IInputActionCollection2, IDisposable
     public MainActions @Main => new MainActions(this);
     public interface IMainActions
     {
-        void OnMovement(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
         void OnPos(InputAction.CallbackContext context);
     }
 }

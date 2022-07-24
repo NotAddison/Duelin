@@ -6,7 +6,7 @@
             "id": "f5980c1f-73e4-4032-88bd-09073a7f9438",
             "actions": [
                 {
-                    "name": "Movement",
+                    "name": "Click",
                     "type": "Button",
                     "id": "bc75af0c-ec84-45ee-a4cc-b3e98916d9ba",
                     "expectedControlType": "Button",
@@ -32,7 +32,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

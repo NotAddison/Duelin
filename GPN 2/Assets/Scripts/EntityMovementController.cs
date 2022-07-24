@@ -36,13 +36,14 @@ public class EntityMovementController : MonoBehaviour
         destination = transform.position;
         start = transform.position;
         start.y -= 0.16f;
-        controls.Main.Movement.performed += _ => Move();
+        controls.Main.Click.performed += _ => Move();
     }
 
     void Update()
     {
+        if (!entity) return; 
         // transform.position = Vector3.MoveTowards(transform.position, destination, Time.deltaTime);
-        transform.position = destination;
+        entity.transform.position = destination;
     }
 
     private void Move()
@@ -50,6 +51,9 @@ public class EntityMovementController : MonoBehaviour
         Vector2 mousePos = controls.Main.Pos.ReadValue<Vector2>();
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         Vector3Int gridPos = gameTilemap.WorldToCell((Vector3) mousePos);
+
+        Debug.Log(gridPos);
+
         if(!canMove(gridPos)) return;
         destination = gameTilemap.CellToWorld(gridPos);
         start = destination;
@@ -60,7 +64,7 @@ public class EntityMovementController : MonoBehaviour
     {  
         int dist = (int) Vector3.Distance(gameTilemap.WorldToCell(start), pos);
         bool hasTile = gameTilemap.HasTile(pos);
-        bool inRange = dist <= entity.MovementRange;
+        bool inRange = dist <= 3;
 
         if(!inRange) Debug.Log("Out of range");
 
