@@ -14,13 +14,14 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
     {
         Status.text = ("Connecting...");
         Debug.Log("Connecting to Server");
+        PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()
     {
         Status.SetText("Connected!");
-        Debug.Log("Connected to Master");
+        Debug.LogError("Connected to Master");
         PhotonNetwork.JoinLobby();
     }
 
