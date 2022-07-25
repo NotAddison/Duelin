@@ -44,6 +44,7 @@ public class EntityMovementController : MonoBehaviour
         Debug.Log("Move");
         entity.transform.position = destination;
         Deselect();
+        TurnManager.getInstance().EndTurn();
     }
 
     public bool onSelect()
@@ -91,11 +92,15 @@ public class EntityMovementController : MonoBehaviour
 
     private bool canMove(Vector3Int targetPos)
     {  
+        Vector3 worldPos = gameTilemap.CellToWorld(targetPos);
         int dist = (int) Math.Ceiling(Vector3.Distance(gameTilemap.WorldToCell(entity.getCurrentPos()), targetPos));
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(worldPos.x, worldPos.y += 0.16f), Vector2.zero);
+        
         bool hasTile = gameTilemap.HasTile(targetPos);
         bool inRange = dist <= entity.MovementRange;
+        bool isOccupied = hit.collider != null;
 
-        return hasTile && inRange;
+        return hasTile && inRange && !isOccupied;
     }
 }
 
