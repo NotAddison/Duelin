@@ -45,12 +45,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.LogError($"[Photon] Joined Room: {PhotonNetwork.CurrentRoom.Name} | Server: {PhotonNetwork.CloudRegion}");
         Debug.LogError($"[Photon] Players in Room: {PhotonNetwork.CurrentRoom.PlayerCount}");
 
-        if (PhotonNetwork.IsMasterClient)
-        {
-            PhotonNetwork.LoadLevel("Test");
-        }
+        // PhotonNetwork.LoadLevel("Test"); << To FIX {}
 
-        // PhotonNetwork.LoadLevel("Test"); << To FIX
         // Only for Local Player
         // Debug.LogError($"Player {PhotonNetwork.LocalPlayer.ActorNumber} joined room {PhotonNetwork.CurrentRoom.Name}");
     }
@@ -68,5 +64,9 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.LogError("Player entered room: " + newPlayer.ActorNumber);
+    }
+
+    public void StartGame(){
+        PhotonNetwork.LoadLevel("Test");
     }
 }
