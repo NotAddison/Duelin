@@ -29,7 +29,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
-        Debug.LogError($"Room creation failed: {message}");
+        Debug.LogError($"[Photon]: Room creation failed: {message}");
     }
 
     public void JoinRoom()
@@ -53,7 +53,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        Debug.LogError($"Room join failed: {message}");
+        Debug.LogError($"[Photon]: Room join failed: {message}");
     }
 
     public void LeaveRoom()
@@ -63,10 +63,18 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        Debug.LogError("Player entered room: " + newPlayer.ActorNumber);
+        Debug.LogError("[Photon]: Player entered room: " + newPlayer.ActorNumber);
     }
 
     public void StartGame(){
-        PhotonNetwork.LoadLevel("Test");
+        if (PhotonNetwork.IsMasterClient)
+        {
+            if (PhotonNetwork.CurrentRoom.PlayerCount > 1){ PhotonNetwork.LoadLevel("Test");} 
+            else { Debug.LogError("[Photon]: Not enough players!"); }
+        }
+        else
+        {
+            Debug.LogError("[Photon]: Only the Host Client can start the game");
+        }
     }
 }
