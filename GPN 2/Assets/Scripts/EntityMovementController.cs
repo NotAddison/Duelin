@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
+using Photon.Pun;
 
 public class EntityMovementController : MonoBehaviour
 {
@@ -40,11 +41,28 @@ public class EntityMovementController : MonoBehaviour
 
     void Update()
     {
+        
+    }
+
+    [PunRPC]
+    public void MoveEntity(Vector3 destination){
         if (entity.transform.position == destination) return;
-        Debug.Log("Move");
+        Debug.LogError("[MoveEntity]: Moved Entity to " + destination);
         entity.transform.position = destination;
+        DesyncCheck(destination);
         Deselect();
         TurnManager.getInstance().EndTurn();
+    }
+
+    public void DesyncCheck(Vector3 destination){
+        destination.y -= 0.16f; // Offset for the tilemap
+        Debug.LogError($"[DesyncCheck] isDesync: {entity.getCurrentPos() != destination}");
+
+        if (entity.getCurrentPos() != destination) // If current entity postion is not the same as destination position
+        {
+            Debug.LogError("[DesyncCheck] Syncing Entity");
+            entity.GetComponent<PhotonView>().RPC("MoveEntity", RpcTarget.All, destination);
+        }
     }
 
     public bool onSelect()
@@ -88,6 +106,9 @@ public class EntityMovementController : MonoBehaviour
 
         destination = gameTilemap.CellToWorld(gridPos);
         destination.y += 0.16f;
+
+        // Sync Movement (Calls the MoveEntity Method instead of Using Update(only for local))
+        PhotonView.Get(this).RPC($"MoveEntity", RpcTarget.All, destination);
     }
 
     private bool canMove(Vector3Int targetPos)
