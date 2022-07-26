@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
+using Photon.Pun;
 
 public class BaseGoblin : MonoBehaviour, IClickable
 {
@@ -29,7 +30,17 @@ public class BaseGoblin : MonoBehaviour, IClickable
     }
 
     public void OnClick() {
-        isSelected = isSelected ? movementController.Deselect() : movementController.onSelect();
+        PhotonView photonView = GetComponent<PhotonView>();
+
+        if (photonView.IsMine)
+        {
+            isSelected = isSelected ? movementController.Deselect() : movementController.onSelect();
+        }
+        else {
+            Debug.LogError($"[OnClick] Ownership: {PhotonNetwork.LocalPlayer.ActorNumber} does not own this entity ; Belongs to {photonView.Owner.ActorNumber}");
+            // Insert Function Attack Here 
+        }
+
     }
 
     public Vector3 getCurrentPos()
