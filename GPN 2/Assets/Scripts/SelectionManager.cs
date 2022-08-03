@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -43,7 +41,8 @@ public class SelectionManager : MonoBehaviour
 
         if(hit.collider == null) return;
         currentEntity = hit.collider.gameObject.GetComponent<BaseGoblin>();
-        if(prevEntity != null && prevEntity != currentEntity) prevEntity.movementController.Deselect();
+        if(prevEntity != null && prevEntity != currentEntity) prevEntity.actionManager.Deselect();
+        if(!(currentEntity is BaseGoblin)) return;
         currentEntity.OnClick();
     }
 }

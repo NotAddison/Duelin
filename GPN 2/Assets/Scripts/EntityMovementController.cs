@@ -4,54 +4,40 @@ using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
 using Photon.Pun;
 
-public class EntityMovementController : MonoBehaviour
+public class EntityMovementController : EntityController
 {
-    [SerializeField]
     private Tilemap gameTilemap;
-    [SerializeField]
-    private Tilemap renderMap;
-    [SerializeField]
+    private Tilemap movementHighlightMap;   
     private Tile movementHighlight;
     private BaseGoblin entity;
-
-    private EntityMovement controls;
     private Vector3 destination; 
-    private int clicks;
+    private EntityActionManager actionManager;
+    public int clicks;
 
-    private void Awake()
+    public static EntityMovementController Create(GameObject parent, BaseGoblin entity, EntityActionManager actionManager)
     {
-        controls = new EntityMovement();
+        EntityMovementController _movementController = parent.AddComponent<EntityMovementController>();
+        _movementController.entity = entity;
+        _movementController.actionManager = actionManager;
+
+        return _movementController;
     }
 
-    private void OnEnable() 
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable() 
-    {
-        controls.Disable();
-    }
-
-    void Start()
-    {
-        entity = GetComponent<BaseGoblin>();
+    private void Start() {
+        gameTilemap = GameObject.Find("Tilemap - GameMap").GetComponent<Tilemap>();
+        movementHighlightMap = GameObject.Find("Tilemap - UI").GetComponent<Tilemap>();
+        movementHighlight = Resources.Load<Tile>("Levels/Tiles/highlight");
         destination = entity.transform.position;
-    }
-
-    void Update()
-    {
-        
     }
 
     [PunRPC]
     public void MoveEntity(Vector3 destination){
         if (entity.transform.position == destination) return;
-        Debug.LogError("[MoveEntity]: Moved Entity to " + destination);
+        Debug.Log("[MoveEntity]: Moved Entity to " + destination);
         entity.transform.position = destination;
         DesyncCheck(destination);
-        Deselect();
         TurnManager.getInstance().EndTurn();
+        actionManager.Deselect();
     }
 
     public void DesyncCheck(Vector3 destination){
@@ -65,40 +51,28 @@ public class EntityMovementController : MonoBehaviour
         }
     }
 
-    public bool onSelect()
+    public void Clear()
     {
-        displayMovableTiles();
-        clicks = 0;
-        controls.Main.Click.performed += HandleMovement;
-        return true;
+        movementHighlightMap.ClearAllTiles();
     }
 
-    public bool Deselect()
-    {
-        Debug.Log("Deselect");
-        renderMap.ClearAllTiles();
-        controls.Main.Click.performed -= HandleMovement;
-        entity.isSelected = false;
-        return false;
-    }
-
-    private void displayMovableTiles()
+    public void displayMovableTiles()
     {
         for(int x = gameTilemap.cellBounds.min.x; x <= gameTilemap.cellBounds.max.x; x++) {
             for(int y = gameTilemap.cellBounds.min.y; y <= gameTilemap.cellBounds.max.y; y++) {
                 if (!canMove(new Vector3Int(x,y,0))) continue;
-                renderMap.SetTile(new Vector3Int(x,y,0), movementHighlight);
+                movementHighlightMap.SetTile(new Vector3Int(x,y,0), movementHighlight);
             }
         }
     }
 
-    private void HandleMovement(InputAction.CallbackContext context)
+    public void HandleMovement(InputAction.CallbackContext context)
     {
         clicks++;
 
-        if (clicks == 1) return;
+        if (clicks <= 1) return;
 
-        Vector2 mousePos = controls.Main.Pos.ReadValue<Vector2>();
+        Vector2 mousePos = context.action.actionMap.FindAction("Pos").ReadValue<Vector2>();
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         Vector3Int gridPos = gameTilemap.WorldToCell((Vector3) mousePos);
 
@@ -106,6 +80,7 @@ public class EntityMovementController : MonoBehaviour
 
         destination = gameTilemap.CellToWorld(gridPos);
         destination.y += 0.16f;
+        Debug.Log("Move");
 
         // Sync Movement (Calls the MoveEntity Method instead of Using Update(only for local))
         PhotonView.Get(this).RPC($"MoveEntity", RpcTarget.All, destination);

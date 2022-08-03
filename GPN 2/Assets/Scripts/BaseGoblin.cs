@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Tilemaps;
 using Photon.Pun;
 
 public class BaseGoblin : MonoBehaviour, IClickable
@@ -13,18 +11,18 @@ public class BaseGoblin : MonoBehaviour, IClickable
     [SerializeField]
     private int Damage;
     [SerializeField]
-    private int Range;
+    public int Range;
     [SerializeField]
     public int MovementRange;
     [SerializeField]
     private int Cooldown;
-    public EntityMovementController movementController;
+    public EntityActionManager actionManager;
 
     public bool isSelected = false;
 
     void Start()
     {
-        movementController = GetComponent<EntityMovementController>();
+        actionManager = GetComponent<EntityActionManager>();
     }
 
     void Update()
@@ -36,11 +34,10 @@ public class BaseGoblin : MonoBehaviour, IClickable
 
         if (photonView.IsMine)
         {
-            isSelected = isSelected ? movementController.Deselect() : movementController.onSelect();
+            isSelected = isSelected ? actionManager.Deselect() : actionManager.Select();
         }
         else {
             Debug.LogError($"[OnClick] Ownership: {PhotonNetwork.LocalPlayer.ActorNumber} does not own this entity ; Belongs to {photonView.Owner.ActorNumber}");
-            // Insert Function Attack Here 
         }
 
     }

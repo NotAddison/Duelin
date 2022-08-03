@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -47,6 +48,12 @@ TagManager:
   - name: Highlight
     uniqueID: 2390773953
     locked: 0
+  - name: Highlight 2
+    uniqueID: 3761628825
+    locked: 0
   - name: Entities
     uniqueID: 4081543479
+    locked: 0
+  - name: Walls
+    uniqueID: 1275787747
     locked: 0
