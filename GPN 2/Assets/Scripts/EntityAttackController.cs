@@ -11,7 +11,7 @@ public class EntityAttackController : EntityController
     private Tile attackHighlight;
     private BaseGoblin entity;
     private EntityActionManager actionManager;
-    private readonly string ATTACK_MAP = "Tilemap - UI [Attack]";
+    private readonly string ATTACK_MAP = "Tilemap - Highlight [Attack]";
     private readonly string ATTACK_HIGHLIGHT = "Levels/Tiles/highlight_1";
 
     public static EntityAttackController Create(GameObject parent, BaseGoblin entity, EntityActionManager actionManager)
@@ -37,7 +37,10 @@ public class EntityAttackController : EntityController
         GameObject targetEntity = Physics2D.Raycast(new Vector2(worldPos.x, worldPos.y += 0.16f), Vector2.zero).collider.gameObject;
         Entity target = targetEntity.GetComponent<Entity>();
 
-        if (target != null) target.OnDamage(entity, targetPos);
+        if (target != null) {
+            target.OnDamage(entity, targetPos);
+            // entity.UsePassive();
+        }
 
         // TODO: DesyncCheck
         DesyncCheck(targetPos);
@@ -53,8 +56,8 @@ public class EntityAttackController : EntityController
     public void HandleAttack(InputAction.CallbackContext context)
     {
         clicks++;
-        if (clicks <= 1) return;
-        
+        if (clicks <= 2) return;
+
         Vector2 mousePos = context.action.actionMap.FindAction(MOUSE_POS).ReadValue<Vector2>();
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         Vector3Int gridPos = gameTilemap.WorldToCell((Vector3) mousePos);

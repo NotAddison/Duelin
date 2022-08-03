@@ -1,6 +1,7 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
 
 
@@ -19,10 +20,13 @@ public class EntityAbilityController : EntityController
     }
 
     void Start() {
+
     }
 
     public void HandleAbility(InputAction.CallbackContext context)
     {
         entity.UseAbility();
     }
+
+    public delegate bool renderCondition(Vector3Int targetPos);
 }

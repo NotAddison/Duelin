@@ -12,7 +12,7 @@ public class EntityMovementController : EntityController
     private BaseGoblin entity;
     private Vector3 destination; 
     private EntityActionManager actionManager;
-    private readonly string MOVEMENT_MAP = "Tilemap - UI";
+    private readonly string MOVEMENT_MAP = "Tilemap - Highlight [Movement]";
     private readonly string MOVEMENT_HIGHLIGHT = "Levels/Tiles/highlight";
 
     public static EntityMovementController Create(GameObject parent, BaseGoblin entity, EntityActionManager actionManager)
@@ -36,6 +36,7 @@ public class EntityMovementController : EntityController
         if (entity.transform.position == destination) return;
         Debug.Log("[MoveEntity]: Moved Entity to " + destination);
         entity.transform.position = destination;
+        entity.UsePassive();
         DesyncCheck(destination);
         TurnManager.getInstance().EndTurn();
         actionManager.Deselect();
@@ -70,7 +71,7 @@ public class EntityMovementController : EntityController
     public void HandleMovement(InputAction.CallbackContext context)
     {
         clicks++;
-        if (clicks <= 1) return;
+        if (clicks <= 2) return;
 
         Vector2 mousePos = context.action.actionMap.FindAction(MOUSE_POS).ReadValue<Vector2>();
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);

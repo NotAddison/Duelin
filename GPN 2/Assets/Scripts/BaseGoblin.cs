@@ -4,11 +4,10 @@ using Photon.Pun;
 
 public class BaseGoblin : Entity, IClickable
 {
-    public int Health;
     public int Damage;
+    public int Health;
     public int Range;
     public int MovementRange;
-    public int Cooldown;
     public List<Entity> entitiesInRange;
     public EntityActionManager actionManager;
     public bool isSelected;
@@ -40,6 +39,8 @@ public class BaseGoblin : Entity, IClickable
         pos.y -= 0.16f; 
         return pos;
     }
+
+    public virtual void UsePassive() {}
 
     public virtual void UseAbility() {}
 
