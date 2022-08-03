@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Marauder : BaseGoblin
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string code;
+    public string skillName;
+    public string description;
+    public float cooldown;
 
-    // Update is called once per frame
-    void Update()
+    public void OnAbilityClick(PointerEventData eventData)
     {
-        
+        Debug.Log("Marauder Clicked");
+        if (eventData.button == PointerEventData.InputButton.Right){
+            Debug.Log("Right Clicked");
+            if (cooldown == 0){
+                // Cast Skill (Buff friendly units by +1/+1)
+                cooldown +=3
+            }
+        }
     }
 }
