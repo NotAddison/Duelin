@@ -12,7 +12,8 @@ public class EntityMovementController : EntityController
     private BaseGoblin entity;
     private Vector3 destination; 
     private EntityActionManager actionManager;
-    public int clicks;
+    private readonly string MOVEMENT_MAP = "Tilemap - UI";
+    private readonly string MOVEMENT_HIGHLIGHT = "Levels/Tiles/highlight";
 
     public static EntityMovementController Create(GameObject parent, BaseGoblin entity, EntityActionManager actionManager)
     {
@@ -24,9 +25,9 @@ public class EntityMovementController : EntityController
     }
 
     private void Start() {
-        gameTilemap = GameObject.Find("Tilemap - GameMap").GetComponent<Tilemap>();
-        movementHighlightMap = GameObject.Find("Tilemap - UI").GetComponent<Tilemap>();
-        movementHighlight = Resources.Load<Tile>("Levels/Tiles/highlight");
+        gameTilemap = GameObject.Find(GAME_MAP).GetComponent<Tilemap>();
+        movementHighlightMap = GameObject.Find(MOVEMENT_MAP).GetComponent<Tilemap>();
+        movementHighlight = Resources.Load<Tile>(MOVEMENT_HIGHLIGHT);
         destination = entity.transform.position;
     }
 
@@ -69,10 +70,9 @@ public class EntityMovementController : EntityController
     public void HandleMovement(InputAction.CallbackContext context)
     {
         clicks++;
-
         if (clicks <= 1) return;
 
-        Vector2 mousePos = context.action.actionMap.FindAction("Pos").ReadValue<Vector2>();
+        Vector2 mousePos = context.action.actionMap.FindAction(MOUSE_POS).ReadValue<Vector2>();
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         Vector3Int gridPos = gameTilemap.WorldToCell((Vector3) mousePos);
 
@@ -82,7 +82,6 @@ public class EntityMovementController : EntityController
         destination.y += 0.16f;
         Debug.Log("Move");
 
-        // Sync Movement (Calls the MoveEntity Method instead of Using Update(only for local))
         PhotonView.Get(this).RPC($"MoveEntity", RpcTarget.All, destination);
     }
 
@@ -96,16 +95,6 @@ public class EntityMovementController : EntityController
         bool inRange = dist <= entity.MovementRange;
         bool isOccupied = hit.collider != null;
 
-        return hasTile && inRange && !isOccupied;
+        return hasTile && inRange && !isOccupied && !entity.isMovementBlocked;
     }
 }
-
-// (x,y,z)
-
-// (5,7,0) : .1, .94, .0
-// (4,7,0) : -.06, .86, .0
-// (3,7,0) : -.22, .78, .0
-// (3,6,0) : -.06, .7, .0 
-
-// (0,+1,0) : -.16, -.08
-// (+1,0,0) : +.16, +.08

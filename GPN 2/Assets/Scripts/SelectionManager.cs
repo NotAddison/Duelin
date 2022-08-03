@@ -7,9 +7,8 @@ public class SelectionManager : MonoBehaviour
     private Tilemap gameTilemap;
     UnitSelection _input;
     Camera _camera;
-
-    BaseGoblin currentEntity;
-    BaseGoblin prevEntity;
+    Entity currentEntity;
+    Entity prevEntity;
 
     private void Awake()
     {
@@ -36,13 +35,22 @@ public class SelectionManager : MonoBehaviour
     {
         prevEntity = currentEntity;
         Vector2 mousePos = _input.Input.Pos.ReadValue<Vector2>();
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        mousePos = _camera.ScreenToWorldPoint(mousePos);
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
-        if(hit.collider == null) return;
+        bool hitFound = hit.collider != null;
+        bool isGoblin() => currentEntity is BaseGoblin;
+        bool isTargetable() => prevEntity != null && ((BaseGoblin)prevEntity).entitiesInRange.Contains(currentEntity);
+        bool canDeselect() => prevEntity != null && prevEntity != currentEntity && isGoblin();
+
+        if(!hitFound) return;
         currentEntity = hit.collider.gameObject.GetComponent<BaseGoblin>();
-        if(prevEntity != null && prevEntity != currentEntity) prevEntity.actionManager.Deselect();
-        if(!(currentEntity is BaseGoblin)) return;
-        currentEntity.OnClick();
+
+        if(isGoblin() && isTargetable()) return;
+
+        if(canDeselect()) ((BaseGoblin)prevEntity).actionManager.Deselect();
+        
+        if(!isGoblin()) return;
+        ((BaseGoblin)currentEntity).OnClick();
     }
 }
