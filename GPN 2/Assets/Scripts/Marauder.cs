@@ -11,6 +11,9 @@ public class Marauder : BaseGoblin
 
     public override void UseAbility()
     {
-        
+        if (cooldown == 0){
+            cooldown += 4;
+            // [TODO] Buff player's whole team +1/+1
+        }
     }
 }
