@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Barrel : MonoBehaviour
+public class Barrel : BaseGoblin
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string code;
+    public string skillName;
+    public string description;
+    public float cooldown;
 
-    // Update is called once per frame
-    void Update()
+    public override void UseAbility()
     {
         
     }
