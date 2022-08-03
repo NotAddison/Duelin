@@ -16,6 +16,8 @@ public class BaseGoblin : MonoBehaviour, IClickable
     private int Range;
     [SerializeField]
     public int MovementRange;
+    [SerializeField]
+    private int Cooldown;
     public EntityMovementController movementController;
 
     public bool isSelected = false;
