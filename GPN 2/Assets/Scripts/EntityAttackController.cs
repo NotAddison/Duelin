@@ -12,7 +12,7 @@ public class EntityAttackController : EntityController
     private BaseGoblin entity;
     private EntityActionManager actionManager;
     private readonly string ATTACK_MAP = "Tilemap - Highlight [Attack]";
-    private readonly string ATTACK_HIGHLIGHT = "Levels/Tiles/highlight_1";
+    private readonly string ATTACK_HIGHLIGHT = "Levels/Tiles/attack_highlight";
 
     public static EntityAttackController Create(GameObject parent, BaseGoblin entity, EntityActionManager actionManager)
     {

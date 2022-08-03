@@ -13,7 +13,7 @@ public class EntityMovementController : EntityController
     private Vector3 destination; 
     private EntityActionManager actionManager;
     private readonly string MOVEMENT_MAP = "Tilemap - Highlight [Movement]";
-    private readonly string MOVEMENT_HIGHLIGHT = "Levels/Tiles/highlight";
+    private readonly string MOVEMENT_HIGHLIGHT = "Levels/Tiles/movement_highlight";
 
     public static EntityMovementController Create(GameObject parent, BaseGoblin entity, EntityActionManager actionManager)
     {

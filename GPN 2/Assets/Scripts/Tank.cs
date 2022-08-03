@@ -10,7 +10,7 @@ public class Tank : BaseGoblin
     private Tile tauntHighlight;
     private readonly string GAME_MAP = "Tilemap - GameMap";
     private readonly string TAUNT_MAP = "Tilemap - Highlight [Taunt]";
-    private readonly string TAUNT_HIGHLIGHT = "Levels/Tiles/highlight_1";
+    private readonly string TAUNT_HIGHLIGHT = "Levels/Tiles/taunt_highlight";
 
     public string code;
     public string skillName;

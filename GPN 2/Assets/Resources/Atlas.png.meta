@@ -729,7 +729,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: highlight
+      name: movement_highlight
       rect:
         serializedVersion: 2
         x: 32
@@ -834,7 +834,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: highlight_1
+      name: attack_highlight
       rect:
         serializedVersion: 2
         x: 32
@@ -850,6 +850,27 @@ TextureImporter:
       bones: []
       spriteID: 9d7bdb824edca8c43b2b02e446abcea0
       internalID: -1692345310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: taunt_highlight
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a5c3255499374a428c1a668b6dcec6f
+      internalID: 343575484
       vertices: []
       indices: 
       edges: []
@@ -872,12 +893,13 @@ TextureImporter:
       barrel: 1288579164
       archer: -1334303356
       stone_0: -2147071191
+      attack_highlight: -1692345310
       Atlas_3: 1483851517
       disguise: 56609217
+      taunt_highlight: 343575484
       Atlas_2: 1664289674
       stone_4: 1402577718
       sapper: 25987414
-      highlight: -269626333
       water_0: -1930180091
       stone_wall: 1724306877
       rogue: -605117969
@@ -892,11 +914,11 @@ TextureImporter:
       builder: 478664579
       scout: 678689944
       javelin_warrior: -1537865992
+      movement_highlight: -269626333
       Atlas_0: 1728432593
       stone_2: -1543545181
       assassin: 2070326924
       marauder: -1437180695
-      highlight_1: -1692345310
       war_drummer: -689138694
       spear_warrior: 66282519
       armored: -1722343050

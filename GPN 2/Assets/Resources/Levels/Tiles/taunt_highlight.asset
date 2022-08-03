@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: highlight_1
+  m_Name: taunt_highlight
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -1692345310, guid: 72975a7118f979946a56f2a42a6f1ccb, type: 3}
+  m_Sprite: {fileID: 343575484, guid: 72975a7118f979946a56f2a42a6f1ccb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
