@@ -8,6 +8,7 @@ public class EntityActionManager : MonoBehaviour
     private EntityActions _actions;
     public EntityMovementController _movementController;
     private EntityAttackController _attackController;
+    private EntityAbilityController _abilityController;
 
     private void Awake() {
         _actions = new EntityActions();
@@ -26,6 +27,7 @@ public class EntityActionManager : MonoBehaviour
         entity = GetComponent<BaseGoblin>();
         _movementController = EntityMovementController.Create(gameObject, entity, this);
         _attackController = EntityAttackController.Create(gameObject, entity, this);
+        _abilityController = EntityAbilityController.Create(gameObject, entity, this);
     }
 
     public bool Select()
@@ -36,6 +38,7 @@ public class EntityActionManager : MonoBehaviour
         _actions.Main.Click.performed += _attackController.HandleAttack;
         _movementController.displayMovableTiles();
         _actions.Main.Click.performed += _movementController.HandleMovement;
+        _actions.Main.Ability.performed += _abilityController.HandleAbility;
 
         return true;
     }
@@ -47,6 +50,7 @@ public class EntityActionManager : MonoBehaviour
         _movementController.Clear();
         _actions.Main.Click.performed -= _attackController.HandleAttack;
         _actions.Main.Click.performed -= _movementController.HandleMovement;
+        _actions.Main.Ability.performed -= _abilityController.HandleAbility;
 
         entity.isSelected = false;
 

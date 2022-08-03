@@ -9,15 +9,8 @@ public class Marauder : BaseGoblin
     public string description;
     public float cooldown;
 
-    public void OnAbilityClick(PointerEventData eventData)
+    public override void UseAbility()
     {
-        Debug.Log("Marauder Clicked");
-        if (eventData.button == PointerEventData.InputButton.Right){
-            Debug.Log("Right Clicked");
-            if (cooldown == 0){
-                // Cast Skill (Buff friendly units by +1/+1)
-                cooldown +=3
-            }
-        }
+        
     }
 }

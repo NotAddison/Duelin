@@ -49,4 +49,5 @@ public class BaseGoblin : MonoBehaviour, IClickable
         return pos;
     }
 
+    public virtual void UseAbility() {}
 }

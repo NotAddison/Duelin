@@ -44,6 +44,15 @@ public partial class @EntityActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Ability"",
+                    ""type"": ""Button"",
+                    ""id"": ""0d6d69d5-9482-41bc-ba11-0d5c7cab52e5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -68,6 +77,17 @@ public partial class @EntityActions : IInputActionCollection2, IDisposable
                     ""action"": ""Pos"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""08db62a4-db8e-4e7f-b5b2-d94aef2d1348"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ability"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -78,6 +98,7 @@ public partial class @EntityActions : IInputActionCollection2, IDisposable
         m_Main = asset.FindActionMap("Main", throwIfNotFound: true);
         m_Main_Click = m_Main.FindAction("Click", throwIfNotFound: true);
         m_Main_Pos = m_Main.FindAction("Pos", throwIfNotFound: true);
+        m_Main_Ability = m_Main.FindAction("Ability", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -139,12 +160,14 @@ public partial class @EntityActions : IInputActionCollection2, IDisposable
     private IMainActions m_MainActionsCallbackInterface;
     private readonly InputAction m_Main_Click;
     private readonly InputAction m_Main_Pos;
+    private readonly InputAction m_Main_Ability;
     public struct MainActions
     {
         private @EntityActions m_Wrapper;
         public MainActions(@EntityActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Click => m_Wrapper.m_Main_Click;
         public InputAction @Pos => m_Wrapper.m_Main_Pos;
+        public InputAction @Ability => m_Wrapper.m_Main_Ability;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -160,6 +183,9 @@ public partial class @EntityActions : IInputActionCollection2, IDisposable
                 @Pos.started -= m_Wrapper.m_MainActionsCallbackInterface.OnPos;
                 @Pos.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnPos;
                 @Pos.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnPos;
+                @Ability.started -= m_Wrapper.m_MainActionsCallbackInterface.OnAbility;
+                @Ability.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnAbility;
+                @Ability.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnAbility;
             }
             m_Wrapper.m_MainActionsCallbackInterface = instance;
             if (instance != null)
@@ -170,6 +196,9 @@ public partial class @EntityActions : IInputActionCollection2, IDisposable
                 @Pos.started += instance.OnPos;
                 @Pos.performed += instance.OnPos;
                 @Pos.canceled += instance.OnPos;
+                @Ability.started += instance.OnAbility;
+                @Ability.performed += instance.OnAbility;
+                @Ability.canceled += instance.OnAbility;
             }
         }
     }
@@ -178,5 +207,6 @@ public partial class @EntityActions : IInputActionCollection2, IDisposable
     {
         void OnClick(InputAction.CallbackContext context);
         void OnPos(InputAction.CallbackContext context);
+        void OnAbility(InputAction.CallbackContext context);
     }
 }
