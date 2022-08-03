@@ -18,6 +18,11 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
+    void Awake(){
+        PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.ConnectUsingSettings();
+    }
+
     public void CreateRoom()
     {
         string code = createInput.GetComponent<TMP_InputField>().text;
