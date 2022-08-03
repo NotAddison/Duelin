@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EntityActionManager : MonoBehaviour
 {
     private BaseGoblin entity;
     private EntityActions _actions;
-    public EntityMovementController _movementController;
+    private EntityMovementController _movementController;
     private EntityAttackController _attackController;
     private EntityAbilityController _abilityController;
 
@@ -26,18 +24,20 @@ public class EntityActionManager : MonoBehaviour
     {
         entity = GetComponent<BaseGoblin>();
         _movementController = EntityMovementController.Create(gameObject, entity, this);
-        _attackController = EntityAttackController.Create(gameObject, entity, this);
-        _abilityController = EntityAbilityController.Create(gameObject, entity, this);
+        _attackController   = EntityAttackController.Create(gameObject, entity, this);
+        _abilityController  = EntityAbilityController.Create(gameObject, entity, this);
     }
 
     public bool Select()
     {
-        _movementController.clicks = 0;
+        EntityController.clicks = 0;
+        entity.isMovementBlocked = false;
 
-        _attackController.displayAttackableTiles();
-        _actions.Main.Click.performed += _attackController.HandleAttack;
         _movementController.displayMovableTiles();
-        _actions.Main.Click.performed += _movementController.HandleMovement;
+        _attackController.displayAttackableTiles();
+
+        _actions.Main.Click.performed   += _attackController.HandleAttack;
+        _actions.Main.Click.performed   += _movementController.HandleMovement;
         _actions.Main.Ability.performed += _abilityController.HandleAbility;
 
         return true;
@@ -45,11 +45,12 @@ public class EntityActionManager : MonoBehaviour
 
     public bool Deselect()
     {
-        Debug.Log("Deselect");
         _attackController.Clear();
         _movementController.Clear();
-        _actions.Main.Click.performed -= _attackController.HandleAttack;
-        _actions.Main.Click.performed -= _movementController.HandleMovement;
+        entity.entitiesInRange.Clear();
+        
+        _actions.Main.Click.performed   -= _attackController.HandleAttack;
+        _actions.Main.Click.performed   -= _movementController.HandleMovement;
         _actions.Main.Ability.performed -= _abilityController.HandleAbility;
 
         entity.isSelected = false;

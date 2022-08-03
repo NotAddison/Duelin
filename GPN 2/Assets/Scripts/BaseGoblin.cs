@@ -1,32 +1,25 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class BaseGoblin : MonoBehaviour, IClickable
+public class BaseGoblin : Entity, IClickable
 {
-
-    [SerializeField]
-    private int Health;
-    [SerializeField]
-    private int Damage;
-    [SerializeField]
+    public int Health;
+    public int Damage;
     public int Range;
-    [SerializeField]
     public int MovementRange;
-    [SerializeField]
-    private int Cooldown;
+    public int Cooldown;
+    public List<Entity> entitiesInRange;
     public EntityActionManager actionManager;
-
-    public bool isSelected = false;
+    public bool isSelected;
+    public bool isMovementBlocked;
 
     void Start()
     {
         actionManager = GetComponent<EntityActionManager>();
-    }
-
-    void Update()
-    {   
+        entitiesInRange = new List<Entity>();
+        isSelected = false;
+        isMovementBlocked = false;
     }
 
     public void OnClick() {
@@ -39,7 +32,6 @@ public class BaseGoblin : MonoBehaviour, IClickable
         else {
             Debug.LogError($"[OnClick] Ownership: {PhotonNetwork.LocalPlayer.ActorNumber} does not own this entity ; Belongs to {photonView.Owner.ActorNumber}");
         }
-
     }
 
     public Vector3 getCurrentPos()
@@ -50,4 +42,13 @@ public class BaseGoblin : MonoBehaviour, IClickable
     }
 
     public virtual void UseAbility() {}
+
+    public override void OnDamage(BaseGoblin attackingEntity, Vector3 targetPos)
+    {
+        Health -= attackingEntity.Damage;
+        if (Health <= 0) {
+            Destroy(this.gameObject);
+            if (attackingEntity.Range > 1) attackingEntity.isMovementBlocked = true;
+        }
+    }
 }
