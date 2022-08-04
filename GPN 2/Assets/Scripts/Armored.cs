@@ -8,10 +8,10 @@ public class Armored : Tank
     {
 
     }
-    public override void UsePassive()
+
+    public override void OnDamage(BaseGoblin attackingEntity, Vector3 targetPos)
     {
-        base.UsePassive();
-        Debug.Log("Armored reduces attacker damage");
-        attackingEntity.Damage -=1;
+        base.OnDamage(attackingEntity, targetPos);
+        Health += 1;
     }
 }
