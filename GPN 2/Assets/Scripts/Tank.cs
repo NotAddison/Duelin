@@ -23,6 +23,11 @@ public class Tank : BaseGoblin
         tauntHighlight = Resources.Load<Tile>(TAUNT_HIGHLIGHT);
     }
 
+    public override void OnDeath(BaseGoblin attackingEntity, Vector3? targetPos = null)
+    {
+        base.OnDeath(attackingEntity, targetPos);
+        Clear();
+    }
     public override void UsePassive()
     {
         Clear();

@@ -47,9 +47,12 @@ public class BaseGoblin : Entity, IClickable
     public override void OnDamage(BaseGoblin attackingEntity, Vector3 targetPos)
     {
         Health -= attackingEntity.Damage;
-        if (Health <= 0) {
-            Destroy(this.gameObject);
-            if (attackingEntity.Range > 1) attackingEntity.isMovementBlocked = true;
-        }
+        if (Health <= 0) OnDeath(attackingEntity);
+    }
+
+    public override void OnDeath(BaseGoblin attackingEntity, Vector3? targetPos = null)
+    {
+        Destroy(this.gameObject);
+        if (attackingEntity.Range > 1) attackingEntity.isMovementBlocked = true;
     }
 }
