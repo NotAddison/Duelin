@@ -8,4 +8,10 @@ public class Armored : Tank
     {
 
     }
+    public override void UsePassive()
+    {
+        base.UsePassive();
+        Debug.Log("Armored reduces attacker damage");
+        attackingEntity.Damage -=1;
+    }
 }

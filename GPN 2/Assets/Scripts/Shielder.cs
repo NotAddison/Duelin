@@ -8,4 +8,9 @@ public class Shielder : Tank
     {
         
     }
+    public override void UsePassive()
+    {
+        base.UsePassive();
+        // [TODO] Implement knockback of attacked entity
+    }
 }
