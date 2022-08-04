@@ -90,9 +90,8 @@ public class EntityAttackController : EntityController
         
         bool inRange = dist <= entity.Range && dist != 0;
         bool isOccupied = hit.collider != null;
-        // bool isSameTeam = isOccupied && hit.collider.gameObject.GetComponent<PhotonView>() != null && hit.collider.gameObject.GetComponent<PhotonView>().IsMine;
-        // Debug.Log(isSameTeam);
-        bool canAttack = inRange && isOccupied;
+        bool isSameTeam = isOccupied && (hit.collider.gameObject.GetComponent<PhotonView>()?.IsMine ?? false);
+        bool canAttack = inRange && isOccupied && !isSameTeam;
 
         if(canAttack) Debug.Log($"Attackable {hit.collider.name} at {targetPos.x}, {targetPos.y}");
         if(canAttack) entity.entitiesInRange.Add(hit.collider.gameObject.GetComponent<Entity>());
