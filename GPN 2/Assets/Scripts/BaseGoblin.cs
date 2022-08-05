@@ -13,24 +13,29 @@ public class BaseGoblin : Entity, IClickable
     public bool isSelected;
     public bool isMovementBlocked;
 
+    private PhotonView photonView;
+
     void Start()
     {
         actionManager = GetComponent<EntityActionManager>();
+        photonView = GetComponent<PhotonView>();
         entitiesInRange = new List<Entity>();
         isSelected = false;
         isMovementBlocked = false;
     }
 
-    public void OnClick() {
-        PhotonView photonView = GetComponent<PhotonView>();
+    public void OnClick(Entity prevEntity) {
 
-        if (photonView.IsMine)
-        {
-            isSelected = isSelected ? actionManager.Deselect() : actionManager.Select();
-        }
-        else {
-            Debug.LogError($"[OnClick] Ownership: {PhotonNetwork.LocalPlayer.ActorNumber} does not own this entity ; Belongs to {photonView.Owner.ActorNumber}");
-        }
+        if(!photonView.IsMine) return;
+        bool isEntityGoblin = BaseGoblin.IsEntityGoblin(prevEntity);
+        BaseGoblin prevGoblin = isEntityGoblin ? (BaseGoblin) prevEntity : null;
+        bool canDeselect() => isEntityGoblin && prevEntity != this;
+        bool isTargetable() => isEntityGoblin && prevGoblin.entitiesInRange.Contains(this);
+
+        if(isTargetable()) return;
+        if(canDeselect()) prevGoblin.actionManager.Deselect();
+
+        isSelected = isSelected ? actionManager.Deselect() : actionManager.Select();
     }
 
     public Vector3 getCurrentPos()
@@ -55,4 +60,6 @@ public class BaseGoblin : Entity, IClickable
         Destroy(this.gameObject);
         if (attackingEntity.Range > 1) attackingEntity.isMovementBlocked = true;
     }
+
+    public static bool IsEntityGoblin(Entity entity) => entity is BaseGoblin;
 }

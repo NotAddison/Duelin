@@ -39,18 +39,12 @@ public class SelectionManager : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
         bool hitFound = hit.collider != null;
-        bool isGoblin() => currentEntity is BaseGoblin;
-        bool isTargetable() => prevEntity != null && ((BaseGoblin)prevEntity).entitiesInRange.Contains(currentEntity);
-        bool canDeselect() => prevEntity != null && prevEntity != currentEntity && isGoblin();
+        bool isClickable() => currentEntity is IClickable;
 
         if(!hitFound) return;
-        currentEntity = hit.collider.gameObject.GetComponent<BaseGoblin>();
-
-        if(isGoblin() && isTargetable()) return;
-
-        if(canDeselect()) ((BaseGoblin)prevEntity).actionManager.Deselect();
+        currentEntity = hit.collider.gameObject.GetComponent<Entity>();
         
-        if(!isGoblin()) return;
-        ((BaseGoblin)currentEntity).OnClick();
+        if(!isClickable()) return;
+        ((IClickable)currentEntity).OnClick(prevEntity);
     }
 }
