@@ -19,6 +19,7 @@ public class EntityAttackController : EntityController
         EntityAttackController _attackController = parent.AddComponent<EntityAttackController>();
         _attackController.entity = entity;
         _attackController.actionManager = actionManager;
+        _attackController.ACTION_NAME = "CLICK";
         return _attackController;
     }
 
@@ -53,7 +54,7 @@ public class EntityAttackController : EntityController
         // if () entity.GetComponent<PhotonView>().RPC("AttackEntity", RpcTarget.All, targetEntity, targetPos);
     }
 
-    public void HandleAttack(InputAction.CallbackContext context)
+    public override void HandleAction(InputAction.CallbackContext context)
     {
         clicks++;
         if (clicks <= 2) return;
@@ -67,7 +68,7 @@ public class EntityAttackController : EntityController
         PhotonView.Get(this).RPC($"AttackEntity", RpcTarget.All, (Vector3) mousePos);
     }
 
-    public void Clear()
+    public override void Clear()
     {
         attackHighlightMap.ClearAllTiles();
     }

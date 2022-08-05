@@ -15,7 +15,7 @@ public class EntityAbilityController : EntityController
         EntityAbilityController _abilityController = parent.AddComponent<EntityAbilityController>();
         _abilityController.entity = entity;
         _abilityController.actionManager = actionManager;
-
+        _abilityController.ACTION_NAME = "ABILITY";
         return _abilityController;
     }
 
@@ -23,7 +23,7 @@ public class EntityAbilityController : EntityController
 
     }
 
-    public void HandleAbility(InputAction.CallbackContext context)
+    public override void HandleAction(InputAction.CallbackContext context)
     {
         entity.UseAbility();
     }

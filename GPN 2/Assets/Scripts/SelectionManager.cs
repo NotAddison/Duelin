@@ -3,9 +3,8 @@ using UnityEngine.Tilemaps;
 
 public class SelectionManager : MonoBehaviour
 {
-    [SerializeField]
-    private Tilemap gameTilemap;
     UnitSelection _input;
+    UnitSelection.InputActions _inputAction;
     Camera _camera;
     Entity currentEntity;
     Entity prevEntity;
@@ -13,6 +12,7 @@ public class SelectionManager : MonoBehaviour
     private void Awake()
     {
         _input = new UnitSelection();
+        _inputAction = _input.Input;
         _camera = Camera.main;
     }
 
@@ -28,13 +28,13 @@ public class SelectionManager : MonoBehaviour
 
     void Start()
     {
-        _input.Input.Select.performed += _ => SelectUnit();
+        _inputAction.Select.performed += _ => Select();
     }
 
-    void SelectUnit()
+    void Select()
     {
         prevEntity = currentEntity;
-        Vector2 mousePos = _input.Input.Pos.ReadValue<Vector2>();
+        Vector2 mousePos = _inputAction.Pos.ReadValue<Vector2>();
         mousePos = _camera.ScreenToWorldPoint(mousePos);
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 

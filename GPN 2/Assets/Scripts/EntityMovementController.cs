@@ -20,7 +20,7 @@ public class EntityMovementController : EntityController
         EntityMovementController _movementController = parent.AddComponent<EntityMovementController>();
         _movementController.entity = entity;
         _movementController.actionManager = actionManager;
-
+        _movementController.ACTION_NAME = "CLICK";
         return _movementController;
     }
 
@@ -52,7 +52,7 @@ public class EntityMovementController : EntityController
         }
     }
 
-    public void Clear()
+    public override void Clear()
     {
         movementHighlightMap.ClearAllTiles();
     }
@@ -67,7 +67,7 @@ public class EntityMovementController : EntityController
         }
     }
 
-    public void HandleMovement(InputAction.CallbackContext context)
+    public override void HandleAction(InputAction.CallbackContext context)
     {
         clicks++;
         if (clicks <= 2) return;
