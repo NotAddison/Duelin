@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < Entities.Count; i++)
         {
             Debug.LogError($"[GameManager]: Spawning {Entities[i]} at {spawnPositions[PhotonNetwork.LocalPlayer.ActorNumber - 1][i]}");
+            PhotonNetwork.Instantiate(Entities[i], spawnPositions[PhotonNetwork.LocalPlayer.ActorNumber-1][i], Quaternion.identity);
         }
     }
 
