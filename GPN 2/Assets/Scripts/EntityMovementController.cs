@@ -34,7 +34,6 @@ public class EntityMovementController : EntityController
     [PunRPC]
     public void MoveEntity(Vector3 destination){
         if (entity.transform.position == destination) return;
-        Debug.Log("[MoveEntity]: Moved Entity to " + destination);
         entity.transform.position = destination;
         entity.UsePassive();
         DesyncCheck(destination);
@@ -81,7 +80,6 @@ public class EntityMovementController : EntityController
 
         destination = gameTilemap.CellToWorld(gridPos);
         destination.y += 0.16f;
-        Debug.Log("Move");
 
         PhotonView.Get(this).RPC($"MoveEntity", RpcTarget.All, destination);
     }

@@ -43,7 +43,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -123,7 +123,7 @@ TextureImporter:
         y: 480
         width: 32
         height: 32
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -186,7 +186,7 @@ TextureImporter:
         y: 448
         width: 32
         height: 32
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -494,35 +494,14 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: water_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 480
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e035880d16fe8340be4b663d3b506ae
-      internalID: -1930180091
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: dirt_0
       rect:
         serializedVersion: 2
-        x: 32
+        x: 33
         y: 448
         width: 32
         height: 32
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -539,7 +518,7 @@ TextureImporter:
       name: stone_0
       rect:
         serializedVersion: 2
-        x: 64
+        x: 66
         y: 480
         width: 32
         height: 32
@@ -560,7 +539,7 @@ TextureImporter:
       name: crystal_mine
       rect:
         serializedVersion: 2
-        x: 96
+        x: 99
         y: 480
         width: 32
         height: 32
@@ -581,7 +560,7 @@ TextureImporter:
       name: gold_mine
       rect:
         serializedVersion: 2
-        x: 128
+        x: 132
         y: 480
         width: 32
         height: 32
@@ -602,7 +581,7 @@ TextureImporter:
       name: stone_wall
       rect:
         serializedVersion: 2
-        x: 160
+        x: 165
         y: 480
         width: 32
         height: 32
@@ -627,7 +606,7 @@ TextureImporter:
       name: spawn
       rect:
         serializedVersion: 2
-        x: 96
+        x: 99
         y: 448
         width: 32
         height: 32
@@ -645,31 +624,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 448
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e00683a9331dee94fa692b227ccd7334
-      internalID: 1728432593
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: stone_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 66
         y: 448
         width: 32
         height: 32
@@ -687,56 +645,14 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 416
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8cdb345516ec537479501f9a0b1bf60a
-      internalID: 1664289674
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atlas_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 384
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d6305bef098c5254783abf3672cb33df
-      internalID: 1483851517
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: movement_highlight
       rect:
         serializedVersion: 2
-        x: 32
+        x: 33
         y: 416
         width: 32
         height: 32
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -753,7 +669,7 @@ TextureImporter:
       name: stone_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 66
         y: 416
         width: 32
         height: 32
@@ -774,7 +690,7 @@ TextureImporter:
       name: stone_3
       rect:
         serializedVersion: 2
-        x: 64
+        x: 66
         y: 384
         width: 32
         height: 32
@@ -795,7 +711,7 @@ TextureImporter:
       name: stone_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 66
         y: 352
         width: 32
         height: 32
@@ -816,7 +732,7 @@ TextureImporter:
       name: stone_5
       rect:
         serializedVersion: 2
-        x: 64
+        x: 66
         y: 320
         width: 32
         height: 32
@@ -837,11 +753,11 @@ TextureImporter:
       name: attack_highlight
       rect:
         serializedVersion: 2
-        x: 32
+        x: 33
         y: 384
         width: 32
         height: 32
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -858,12 +774,12 @@ TextureImporter:
       name: taunt_highlight
       rect:
         serializedVersion: 2
-        x: 32
+        x: 33
         y: 352
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

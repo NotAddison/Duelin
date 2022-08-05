@@ -77,11 +77,11 @@ public class EntityAttackController : EntityController
         for(int x = gameTilemap.cellBounds.min.x; x <= gameTilemap.cellBounds.max.x; x++) {
             for(int y = gameTilemap.cellBounds.min.y; y <= gameTilemap.cellBounds.max.y; y++) {
                 if (!canAttack(new Vector3Int(x,y,0))) continue;
+                Debug.Log($"{x}{y}");
                 attackHighlightMap.SetTile(new Vector3Int(x,y,0), attackHighlight);
             }
         }
     }
-
     private bool canAttack(Vector3Int targetPos)
     {  
         Vector3 worldPos = gameTilemap.CellToWorld(targetPos);
@@ -93,7 +93,6 @@ public class EntityAttackController : EntityController
         bool isSameTeam = isOccupied && (hit.collider.gameObject.GetComponent<PhotonView>()?.IsMine ?? false);
         bool canAttack = inRange && isOccupied && !isSameTeam;
 
-        if(canAttack) Debug.Log($"Attackable {hit.collider.name} at {targetPos.x}, {targetPos.y}");
         if(canAttack) entity.entitiesInRange.Add(hit.collider.gameObject.GetComponent<Entity>());
 
         return canAttack;
