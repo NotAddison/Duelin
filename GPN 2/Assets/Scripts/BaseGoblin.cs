@@ -32,6 +32,7 @@ public class BaseGoblin : Entity, IClickable
     public void OnClick(Entity prevEntity) {
 
         if(!photonView.IsMine) return;
+        if (!TurnManager.getInstance().CheckTurn()) return;
         bool isEntityGoblin = BaseGoblin.IsEntityGoblin(prevEntity);
         BaseGoblin prevGoblin = isEntityGoblin ? (BaseGoblin) prevEntity : null;
         bool canDeselect() => isEntityGoblin && prevEntity != this;
