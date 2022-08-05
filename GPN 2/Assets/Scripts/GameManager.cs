@@ -16,36 +16,14 @@ public class GameManager : MonoBehaviour
     public void SpawnCharacters(){
         // [TO-DO]: Get players selected characters ; Spawn characters based on selected characters
         List<List<Vector3>> spawnPositions = InitSpawnPos();
-        int NumChar = 1;
-        string CharacterName = "";
+        LocalInventory localInventory = new LocalInventory();
 
-        // Getting Player Character Loadout Info
-        // [TO-DO]: Get Player's Number of Characters & Spawning Characters
-        if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
-        {
-            NumChar = 1;
-            CharacterName = "Prefabs/rogue";
-        }
-        else if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
-        {
-            NumChar = 2;
-            CharacterName = "Prefabs/archer";
-        }
-        else if (PhotonNetwork.LocalPlayer.ActorNumber == 3)
-        {
-            NumChar = 1;
-            CharacterName = "Prefabs/scout";
-        }
-        else if (PhotonNetwork.LocalPlayer.ActorNumber == 4)
-        {
-            NumChar = 1;
-            CharacterName = "Prefabs/rogue";
-        }
-        
+        List<string> Entities = localInventory.RandomizeEntities();
+        Debug.LogError($"[GameManager]: Spawning {Entities.Count} Entities");
         // ---- Spawn Characters ----
-        for (int i = 0; i < NumChar; i++)
+        for (int i = 0; i < Entities.Count; i++)
         {
-            PhotonNetwork.Instantiate(CharacterName, spawnPositions[PhotonNetwork.LocalPlayer.ActorNumber-1][i], Quaternion.identity);
+            Debug.LogError($"[GameManager]: Spawning {Entities[i]} at {spawnPositions[PhotonNetwork.LocalPlayer.ActorNumber - 1][i]}");
         }
     }
 
