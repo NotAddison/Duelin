@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Photon.Pun;
 
@@ -14,14 +15,18 @@ public class BaseGoblin : Entity, IClickable
     public bool isMovementBlocked;
 
     private PhotonView photonView;
+    private Transform parent;
 
     void Start()
     {
         actionManager = GetComponent<EntityActionManager>();
         photonView = GetComponent<PhotonView>();
+        parent = transform.parent;
         entitiesInRange = new List<Entity>();
         isSelected = false;
         isMovementBlocked = false;
+
+        RenderHealth();
     }
 
     public void OnClick(Entity prevEntity) {
@@ -47,14 +52,25 @@ public class BaseGoblin : Entity, IClickable
     public override void OnDamage(BaseGoblin attackingEntity, Vector3 targetPos)
     {
         Health -= attackingEntity.Damage;
-        if (Health <= 0) OnDeath(attackingEntity);
+        if (Health <= 0) {
+            OnDeath(attackingEntity);
+            return;
+        }
+        RenderHealth();
     }
 
     public override void OnDeath(BaseGoblin attackingEntity, Vector3? targetPos = null)
     {
-        Destroy(this.gameObject);
+        Destroy(parent.gameObject);
         if (attackingEntity.Range > 1) attackingEntity.isMovementBlocked = true;
     }
 
     public static bool IsEntityGoblin(Entity entity) => entity is BaseGoblin;
+
+    private void RenderHealth()
+    {
+        Sprite healthSprite = Resources.LoadAll<Sprite>("UI_Atlas").Single(sprite => sprite.name.Equals($"{(photonView.IsMine ? "friendly" : "enemy")}_healthbar_{Health}"));
+        SpriteRenderer healthbarComponent = parent.Find("healthbar").gameObject.GetComponent<SpriteRenderer>();
+        healthbarComponent.sprite = healthSprite;
+    }
 }

@@ -1,16 +1,11 @@
-using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Scene Objects")]
-    [SerializeField] private GameObject Scout;
-    [SerializeField] private GameObject Tank;
-
-    [Header("Spawn Position")]
-    [SerializeField] private Vector3 SpawnPosition;
+    private Vector3 SpawnPosition;
 
     void Start()
     {
@@ -18,48 +13,39 @@ public class GameManager : MonoBehaviour
         SpawnCharacters();
     }
 
-    // void Update()
-    // {
-    //     if(Input.GetKeyDown(KeyCode.F10)){
-    //         Debug.LogError("[GameManager]: Spawning Object for Player: " + PhotonNetwork.LocalPlayer.ActorNumber);
-    //         PhotonNetwork.Instantiate(Tank.name, new Vector3(0.19f,0.24f,0), Quaternion.identity);
-    //     }
-    // }
-
     public void SpawnCharacters(){
         // [TO-DO]: Get players selected characters ; Spawn characters based on selected characters
-
         List<List<Vector3>> spawnPositions = InitSpawnPos();
         int NumChar = 1;
-        string ChracterName = "";
+        string CharacterName = "";
 
         // Getting Player Character Loadout Info
         // [TO-DO]: Get Player's Number of Characters & Spawning Characters
         if (PhotonNetwork.LocalPlayer.ActorNumber == 1)
         {
-            NumChar = 3;
-            ChracterName = Scout.name;
+            NumChar = 1;
+            CharacterName = "Prefabs/rogue";
         }
         else if (PhotonNetwork.LocalPlayer.ActorNumber == 2)
         {
             NumChar = 2;
-            ChracterName = Tank.name;
+            CharacterName = "Prefabs/archer";
         }
         else if (PhotonNetwork.LocalPlayer.ActorNumber == 3)
         {
             NumChar = 1;
-            ChracterName = Scout.name;
+            CharacterName = "Prefabs/scout";
         }
         else if (PhotonNetwork.LocalPlayer.ActorNumber == 4)
         {
             NumChar = 1;
-            ChracterName = Tank.name;
+            CharacterName = "Prefabs/rogue";
         }
         
         // ---- Spawn Characters ----
         for (int i = 0; i < NumChar; i++)
         {
-            PhotonNetwork.Instantiate(ChracterName, spawnPositions[PhotonNetwork.LocalPlayer.ActorNumber-1][i], Quaternion.identity);
+            PhotonNetwork.Instantiate(CharacterName, spawnPositions[PhotonNetwork.LocalPlayer.ActorNumber-1][i], Quaternion.identity);
         }
     }
 

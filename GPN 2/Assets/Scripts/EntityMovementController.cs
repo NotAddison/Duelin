@@ -34,7 +34,7 @@ public class EntityMovementController : EntityController
     [PunRPC]
     public void MoveEntity(Vector3 destination){
         if (entity.transform.position == destination) return;
-        entity.transform.position = destination;
+        entity.transform.parent.position = destination;
         entity.UsePassive();
         DesyncCheck(destination);
         TurnManager.getInstance().EndTurn();

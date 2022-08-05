@@ -43,7 +43,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: friendly_healthbar_1
+      name: friendly_healthbar_5
       rect:
         serializedVersion: 2
         x: 0
@@ -137,7 +137,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: friendly_healthbar_2
+      name: friendly_healthbar_4
       rect:
         serializedVersion: 2
         x: 18
@@ -179,7 +179,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: friendly_healthbar_4
+      name: friendly_healthbar_2
       rect:
         serializedVersion: 2
         x: 54
@@ -200,7 +200,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: friendly_healthbar_5
+      name: friendly_healthbar_1
       rect:
         serializedVersion: 2
         x: 72
@@ -221,7 +221,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: friendly_healthbar_6
+      name: friendly_healthbar_10
       rect:
         serializedVersion: 2
         x: 0
@@ -242,7 +242,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: friendly_healthbar_7
+      name: friendly_healthbar_9
       rect:
         serializedVersion: 2
         x: 18
@@ -271,7 +271,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -284,7 +284,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: friendly_healthbar_9
+      name: friendly_healthbar_7
       rect:
         serializedVersion: 2
         x: 54
@@ -292,7 +292,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -305,7 +305,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: friendly_healthbar_10
+      name: friendly_healthbar_6
       rect:
         serializedVersion: 2
         x: 72
@@ -313,7 +313,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -326,7 +326,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: friendly_healthbar_11
+      name: friendly_healthbar_15
       rect:
         serializedVersion: 2
         x: 0
@@ -334,7 +334,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -347,7 +347,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: friendly_healthbar_12
+      name: friendly_healthbar_14
       rect:
         serializedVersion: 2
         x: 18
@@ -355,7 +355,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -376,7 +376,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -389,7 +389,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: friendly_healthbar_14
+      name: friendly_healthbar_12
       rect:
         serializedVersion: 2
         x: 54
@@ -397,7 +397,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -410,7 +410,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: friendly_healthbar_15
+      name: friendly_healthbar_11
       rect:
         serializedVersion: 2
         x: 72
@@ -418,7 +418,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -431,7 +431,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_healthbar_1
+      name: enemy_healthbar_5
       rect:
         serializedVersion: 2
         x: 0
@@ -439,7 +439,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -452,7 +452,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_healthbar_2
+      name: enemy_healthbar_4
       rect:
         serializedVersion: 2
         x: 18
@@ -460,7 +460,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -481,7 +481,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -494,7 +494,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_healthbar_4
+      name: enemy_healthbar_2
       rect:
         serializedVersion: 2
         x: 54
@@ -502,7 +502,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -515,7 +515,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_healthbar_5
+      name: enemy_healthbar_1
       rect:
         serializedVersion: 2
         x: 72
@@ -523,7 +523,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -536,7 +536,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_healthbar_6
+      name: enemy_healthbar_10
       rect:
         serializedVersion: 2
         x: 0
@@ -544,7 +544,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -557,7 +557,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_healthbar_7
+      name: enemy_healthbar_9
       rect:
         serializedVersion: 2
         x: 18
@@ -565,7 +565,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -586,7 +586,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -599,7 +599,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_healthbar_9
+      name: enemy_healthbar_7
       rect:
         serializedVersion: 2
         x: 54
@@ -607,7 +607,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -620,7 +620,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_healthbar_10
+      name: enemy_healthbar_6
       rect:
         serializedVersion: 2
         x: 72
@@ -628,7 +628,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -641,7 +641,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_healthbar_11
+      name: enemy_healthbar_15
       rect:
         serializedVersion: 2
         x: 0
@@ -649,7 +649,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -662,7 +662,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_healthbar_12
+      name: enemy_healthbar_14
       rect:
         serializedVersion: 2
         x: 18
@@ -670,7 +670,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -691,7 +691,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -704,7 +704,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_healthbar_14
+      name: enemy_healthbar_12
       rect:
         serializedVersion: 2
         x: 54
@@ -712,7 +712,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -725,7 +725,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: enemy_healthbar_15
+      name: enemy_healthbar_11
       rect:
         serializedVersion: 2
         x: 72
@@ -733,7 +733,7 @@ TextureImporter:
         width: 17
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -757,35 +757,35 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       friendly_healthbar_3: 230340702
-      friendly_healthbar_1: 1094091137
+      friendly_healthbar_1: -2008757515
       enemy_healthbar_3: -265749006
-      friendly_healthbar_10: -31717461
+      friendly_healthbar_10: -2000537275
       friendly_healthbar_8: -199148038
-      friendly_healthbar_14: 1398279150
-      friendly_healthbar_7: -18604749
-      enemy_healthbar_7: 1283816696
-      friendly_healthbar_11: 1764202443
-      friendly_healthbar_5: -2008757515
-      enemy_healthbar_6: 1009423984
-      friendly_healthbar_4: 1509765867
-      friendly_healthbar_15: -544046312
+      friendly_healthbar_14: 1237880873
+      friendly_healthbar_7: -88532450
       enemy_healthbar_8: 633239096
-      friendly_healthbar_2: -1854794921
-      enemy_healthbar_9: -1323701392
-      enemy_healthbar_10: 509877090
+      friendly_healthbar_11: -544046312
+      friendly_healthbar_5: 1094091137
+      enemy_healthbar_7: -1323701392
+      enemy_healthbar_6: 509877090
+      friendly_healthbar_4: -1854794921
+      friendly_healthbar_15: 1764202443
+      friendly_healthbar_2: 1509765867
+      enemy_healthbar_10: 1009423984
+      enemy_healthbar_9: 1283816696
       friendly_healthbar_13: 1028508075
-      friendly_healthbar_12: 1237880873
-      enemy_healthbar_15: 2131623071
-      enemy_healthbar_11: -216602017
-      enemy_healthbar_12: -1914652417
+      friendly_healthbar_12: 1398279150
+      enemy_healthbar_15: -216602017
+      enemy_healthbar_11: 2131623071
       enemy_healthbar_13: -1991305672
-      enemy_healthbar_5: 31008297
-      enemy_healthbar_4: -2022132479
-      friendly_healthbar_6: -2000537275
-      friendly_healthbar_9: -88532450
-      enemy_healthbar_1: -1371276820
-      enemy_healthbar_14: -519268582
-      enemy_healthbar_2: -1325817498
+      enemy_healthbar_12: -519268582
+      enemy_healthbar_5: -1371276820
+      enemy_healthbar_4: -1325817498
+      friendly_healthbar_6: -31717461
+      friendly_healthbar_9: -18604749
+      enemy_healthbar_1: 31008297
+      enemy_healthbar_14: -1914652417
+      enemy_healthbar_2: -2022132479
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
