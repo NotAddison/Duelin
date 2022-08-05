@@ -19,7 +19,7 @@ public class EntityAttackController : EntityController
         EntityAttackController _attackController = parent.AddComponent<EntityAttackController>();
         _attackController.entity = entity;
         _attackController.actionManager = actionManager;
-        _attackController.ACTION_TYPE = ACTION.CLICK;
+        _attackController.ACTION_TYPE = ACTION.LEFT_CLICK;
         return _attackController;
     }
 
@@ -27,6 +27,20 @@ public class EntityAttackController : EntityController
         gameTilemap = GameObject.Find(GAME_MAP).GetComponent<Tilemap>();
         attackHighlightMap = GameObject.Find(ATTACK_MAP).GetComponent<Tilemap>();
         attackHighlight = Resources.Load<Tile>(ATTACK_HIGHLIGHT);
+    }
+    
+    public override void HandleAction(InputAction.CallbackContext context)
+    {
+        clicks++;
+        if (clicks <= 2) return;
+
+        Vector2 mousePos = context.action.actionMap.FindAction(MOUSE_POS).ReadValue<Vector2>();
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        Vector3Int gridPos = gameTilemap.WorldToCell((Vector3) mousePos);
+
+        if(!canAttack(gridPos)) return;
+
+        PhotonView.Get(this).RPC($"AttackEntity", RpcTarget.All, (Vector3) mousePos);
     }
 
     [PunRPC]
@@ -52,20 +66,6 @@ public class EntityAttackController : EntityController
 
     public void DesyncCheck(Vector3 targetPos){
         // if () entity.GetComponent<PhotonView>().RPC("AttackEntity", RpcTarget.All, targetEntity, targetPos);
-    }
-
-    public override void HandleAction(InputAction.CallbackContext context)
-    {
-        clicks++;
-        if (clicks <= 2) return;
-
-        Vector2 mousePos = context.action.actionMap.FindAction(MOUSE_POS).ReadValue<Vector2>();
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-        Vector3Int gridPos = gameTilemap.WorldToCell((Vector3) mousePos);
-
-        if(!canAttack(gridPos)) return;
-
-        PhotonView.Get(this).RPC($"AttackEntity", RpcTarget.All, (Vector3) mousePos);
     }
 
     public override void Clear()

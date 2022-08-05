@@ -20,7 +20,7 @@ public class EntityMovementController : EntityController
         EntityMovementController _movementController = parent.AddComponent<EntityMovementController>();
         _movementController.entity = entity;
         _movementController.actionManager = actionManager;
-        _movementController.ACTION_TYPE = ACTION.CLICK;
+        _movementController.ACTION_TYPE = ACTION.LEFT_CLICK;
         return _movementController;
     }
 
@@ -29,6 +29,23 @@ public class EntityMovementController : EntityController
         movementHighlightMap = GameObject.Find(MOVEMENT_MAP).GetComponent<Tilemap>();
         movementHighlight = Resources.Load<Tile>(MOVEMENT_HIGHLIGHT);
         destination = entity.transform.position;
+    }
+
+    public override void HandleAction(InputAction.CallbackContext context)
+    {
+        clicks++;
+        if (clicks <= 2) return;
+
+        Vector2 mousePos = context.action.actionMap.FindAction(MOUSE_POS).ReadValue<Vector2>();
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        Vector3Int gridPos = gameTilemap.WorldToCell((Vector3) mousePos);
+
+        if(!canMove(gridPos)) return;
+
+        destination = gameTilemap.CellToWorld(gridPos);
+        destination.y += 0.16f;
+
+        PhotonView.Get(this).RPC($"MoveEntity", RpcTarget.All, destination);
     }
 
     [PunRPC]
@@ -65,23 +82,6 @@ public class EntityMovementController : EntityController
                 movementHighlightMap.SetTile(new Vector3Int(x,y,0), movementHighlight);
             }
         }
-    }
-
-    public override void HandleAction(InputAction.CallbackContext context)
-    {
-        clicks++;
-        if (clicks <= 2) return;
-
-        Vector2 mousePos = context.action.actionMap.FindAction(MOUSE_POS).ReadValue<Vector2>();
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-        Vector3Int gridPos = gameTilemap.WorldToCell((Vector3) mousePos);
-
-        if(!canMove(gridPos)) return;
-
-        destination = gameTilemap.CellToWorld(gridPos);
-        destination.y += 0.16f;
-
-        PhotonView.Get(this).RPC($"MoveEntity", RpcTarget.All, destination);
     }
 
     private bool canMove(Vector3Int targetPos)

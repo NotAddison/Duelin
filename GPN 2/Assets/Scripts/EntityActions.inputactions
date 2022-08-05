@@ -6,7 +6,7 @@
             "id": "f5980c1f-73e4-4032-88bd-09073a7f9438",
             "actions": [
                 {
-                    "name": "Click",
+                    "name": "LEFT_CLICK",
                     "type": "Button",
                     "id": "bc75af0c-ec84-45ee-a4cc-b3e98916d9ba",
                     "expectedControlType": "Button",
@@ -15,7 +15,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pos",
+                    "name": "POS",
                     "type": "Value",
                     "id": "6e140c60-ced3-40f2-9608-30bc04489cca",
                     "expectedControlType": "Vector2",
@@ -24,7 +24,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Ability",
+                    "name": "RIGHT_CLICK",
                     "type": "Button",
                     "id": "0d6d69d5-9482-41bc-ba11-0d5c7cab52e5",
                     "expectedControlType": "Button",
@@ -41,7 +41,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Click",
+                    "action": "LEFT_CLICK",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -52,7 +52,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pos",
+                    "action": "POS",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -63,7 +63,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ability",
+                    "action": "RIGHT_CLICK",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -28,7 +28,7 @@ public partial class @EntityActions : IInputActionCollection2, IDisposable
             ""id"": ""f5980c1f-73e4-4032-88bd-09073a7f9438"",
             ""actions"": [
                 {
-                    ""name"": ""Click"",
+                    ""name"": ""LEFT_CLICK"",
                     ""type"": ""Button"",
                     ""id"": ""bc75af0c-ec84-45ee-a4cc-b3e98916d9ba"",
                     ""expectedControlType"": ""Button"",
@@ -37,7 +37,7 @@ public partial class @EntityActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Pos"",
+                    ""name"": ""POS"",
                     ""type"": ""Value"",
                     ""id"": ""6e140c60-ced3-40f2-9608-30bc04489cca"",
                     ""expectedControlType"": ""Vector2"",
@@ -46,7 +46,7 @@ public partial class @EntityActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Ability"",
+                    ""name"": ""RIGHT_CLICK"",
                     ""type"": ""Button"",
                     ""id"": ""0d6d69d5-9482-41bc-ba11-0d5c7cab52e5"",
                     ""expectedControlType"": ""Button"",
@@ -63,7 +63,7 @@ public partial class @EntityActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Click"",
+                    ""action"": ""LEFT_CLICK"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -74,7 +74,7 @@ public partial class @EntityActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pos"",
+                    ""action"": ""POS"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -85,7 +85,7 @@ public partial class @EntityActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Ability"",
+                    ""action"": ""RIGHT_CLICK"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -96,9 +96,9 @@ public partial class @EntityActions : IInputActionCollection2, IDisposable
 }");
         // Main
         m_Main = asset.FindActionMap("Main", throwIfNotFound: true);
-        m_Main_Click = m_Main.FindAction("Click", throwIfNotFound: true);
-        m_Main_Pos = m_Main.FindAction("Pos", throwIfNotFound: true);
-        m_Main_Ability = m_Main.FindAction("Ability", throwIfNotFound: true);
+        m_Main_LEFT_CLICK = m_Main.FindAction("LEFT_CLICK", throwIfNotFound: true);
+        m_Main_POS = m_Main.FindAction("POS", throwIfNotFound: true);
+        m_Main_RIGHT_CLICK = m_Main.FindAction("RIGHT_CLICK", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -158,16 +158,16 @@ public partial class @EntityActions : IInputActionCollection2, IDisposable
     // Main
     private readonly InputActionMap m_Main;
     private IMainActions m_MainActionsCallbackInterface;
-    private readonly InputAction m_Main_Click;
-    private readonly InputAction m_Main_Pos;
-    private readonly InputAction m_Main_Ability;
+    private readonly InputAction m_Main_LEFT_CLICK;
+    private readonly InputAction m_Main_POS;
+    private readonly InputAction m_Main_RIGHT_CLICK;
     public struct MainActions
     {
         private @EntityActions m_Wrapper;
         public MainActions(@EntityActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Click => m_Wrapper.m_Main_Click;
-        public InputAction @Pos => m_Wrapper.m_Main_Pos;
-        public InputAction @Ability => m_Wrapper.m_Main_Ability;
+        public InputAction @LEFT_CLICK => m_Wrapper.m_Main_LEFT_CLICK;
+        public InputAction @POS => m_Wrapper.m_Main_POS;
+        public InputAction @RIGHT_CLICK => m_Wrapper.m_Main_RIGHT_CLICK;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -177,36 +177,36 @@ public partial class @EntityActions : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_MainActionsCallbackInterface != null)
             {
-                @Click.started -= m_Wrapper.m_MainActionsCallbackInterface.OnClick;
-                @Click.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnClick;
-                @Click.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnClick;
-                @Pos.started -= m_Wrapper.m_MainActionsCallbackInterface.OnPos;
-                @Pos.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnPos;
-                @Pos.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnPos;
-                @Ability.started -= m_Wrapper.m_MainActionsCallbackInterface.OnAbility;
-                @Ability.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnAbility;
-                @Ability.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnAbility;
+                @LEFT_CLICK.started -= m_Wrapper.m_MainActionsCallbackInterface.OnLEFT_CLICK;
+                @LEFT_CLICK.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnLEFT_CLICK;
+                @LEFT_CLICK.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnLEFT_CLICK;
+                @POS.started -= m_Wrapper.m_MainActionsCallbackInterface.OnPOS;
+                @POS.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnPOS;
+                @POS.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnPOS;
+                @RIGHT_CLICK.started -= m_Wrapper.m_MainActionsCallbackInterface.OnRIGHT_CLICK;
+                @RIGHT_CLICK.performed -= m_Wrapper.m_MainActionsCallbackInterface.OnRIGHT_CLICK;
+                @RIGHT_CLICK.canceled -= m_Wrapper.m_MainActionsCallbackInterface.OnRIGHT_CLICK;
             }
             m_Wrapper.m_MainActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Click.started += instance.OnClick;
-                @Click.performed += instance.OnClick;
-                @Click.canceled += instance.OnClick;
-                @Pos.started += instance.OnPos;
-                @Pos.performed += instance.OnPos;
-                @Pos.canceled += instance.OnPos;
-                @Ability.started += instance.OnAbility;
-                @Ability.performed += instance.OnAbility;
-                @Ability.canceled += instance.OnAbility;
+                @LEFT_CLICK.started += instance.OnLEFT_CLICK;
+                @LEFT_CLICK.performed += instance.OnLEFT_CLICK;
+                @LEFT_CLICK.canceled += instance.OnLEFT_CLICK;
+                @POS.started += instance.OnPOS;
+                @POS.performed += instance.OnPOS;
+                @POS.canceled += instance.OnPOS;
+                @RIGHT_CLICK.started += instance.OnRIGHT_CLICK;
+                @RIGHT_CLICK.performed += instance.OnRIGHT_CLICK;
+                @RIGHT_CLICK.canceled += instance.OnRIGHT_CLICK;
             }
         }
     }
     public MainActions @Main => new MainActions(this);
     public interface IMainActions
     {
-        void OnClick(InputAction.CallbackContext context);
-        void OnPos(InputAction.CallbackContext context);
-        void OnAbility(InputAction.CallbackContext context);
+        void OnLEFT_CLICK(InputAction.CallbackContext context);
+        void OnPOS(InputAction.CallbackContext context);
+        void OnRIGHT_CLICK(InputAction.CallbackContext context);
     }
 }

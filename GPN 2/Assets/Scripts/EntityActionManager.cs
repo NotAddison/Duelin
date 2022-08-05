@@ -1,3 +1,5 @@
+using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,8 +49,8 @@ public class EntityActionManager : MonoBehaviour
         _attackController.displayAttackableTiles();
 
         _controllerList.ForEach(controller => {
-            if(controller.ACTION_TYPE == EntityController.ACTION.CLICK) _mainAction.Click.performed += controller.HandleAction;
-            if(controller.ACTION_TYPE == EntityController.ACTION.ABILITY) _mainAction.Ability.performed += controller.HandleAction;
+            string ACTION = ExtensionMethods.GetEnumDescription(controller.ACTION_TYPE);
+            _mainAction.Get().FindAction(ACTION).performed += controller.HandleAction;
         });
 
         return true;
@@ -59,8 +61,8 @@ public class EntityActionManager : MonoBehaviour
         entity.entitiesInRange.Clear();
         
         _controllerList.ForEach(controller => {
-            if(controller.ACTION_TYPE == EntityController.ACTION.CLICK) _mainAction.Click.performed -= controller.HandleAction;
-            if(controller.ACTION_TYPE == EntityController.ACTION.ABILITY) _mainAction.Ability.performed -= controller.HandleAction;
+            string ACTION = ExtensionMethods.GetEnumDescription(controller.ACTION_TYPE);
+            _mainAction.Get().FindAction(ACTION).performed -= controller.HandleAction;
             controller.Clear();
         });
 
