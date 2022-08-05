@@ -38,12 +38,7 @@ public class BaseGoblin : Entity, IClickable
         isSelected = isSelected ? actionManager.Deselect() : actionManager.Select();
     }
 
-    public Vector3 getCurrentPos()
-    {
-        Vector3 pos = transform.position;
-        pos.y -= 0.16f; 
-        return pos;
-    }
+    public Vector3 getCurrentPos() => new Vector3(transform.position.x, transform.position.y - 0.16f, transform.position.z);
 
     public virtual void UsePassive() {}
 

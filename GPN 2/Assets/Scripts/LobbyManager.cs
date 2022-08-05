@@ -74,7 +74,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void StartGame(){
         if (PhotonNetwork.IsMasterClient)
         {
-            if (PhotonNetwork.CurrentRoom.PlayerCount > 0){ PhotonNetwork.LoadLevel("Test");} 
+            if (PhotonNetwork.CurrentRoom.PlayerCount > 0){ PhotonNetwork.LoadLevel("Game");} 
             else { Debug.LogError("[Photon]: Not enough players!"); }
         }
         else
