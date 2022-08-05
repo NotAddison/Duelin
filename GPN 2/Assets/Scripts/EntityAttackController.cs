@@ -19,7 +19,7 @@ public class EntityAttackController : EntityController
         EntityAttackController _attackController = parent.AddComponent<EntityAttackController>();
         _attackController.entity = entity;
         _attackController.actionManager = actionManager;
-        _attackController.ACTION_NAME = "CLICK";
+        _attackController.ACTION_TYPE = ACTION.CLICK;
         return _attackController;
     }
 

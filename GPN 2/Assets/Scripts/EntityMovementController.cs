@@ -20,7 +20,7 @@ public class EntityMovementController : EntityController
         EntityMovementController _movementController = parent.AddComponent<EntityMovementController>();
         _movementController.entity = entity;
         _movementController.actionManager = actionManager;
-        _movementController.ACTION_NAME = "CLICK";
+        _movementController.ACTION_TYPE = ACTION.CLICK;
         return _movementController;
     }
 

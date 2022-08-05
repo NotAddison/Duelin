@@ -9,10 +9,11 @@ public class EntityActionManager : MonoBehaviour
     private EntityMovementController _movementController;
     private EntityAttackController _attackController;
     private EntityAbilityController _abilityController;
-    private List<EntityController> _controllerList;
+    private List<EntityController> _controllerList = new List<EntityController>();
 
     private void Awake() {
         _actions = new EntityActions();
+        _mainAction = _actions.Main;
     }
 
     private void OnEnable() {
@@ -46,8 +47,8 @@ public class EntityActionManager : MonoBehaviour
         _attackController.displayAttackableTiles();
 
         _controllerList.ForEach(controller => {
-            if(controller.ACTION_NAME == "CLICK") _mainAction.Click.performed += controller.HandleAction;
-            if(controller.ACTION_NAME == "ABILITY") _mainAction.Ability.performed += controller.HandleAction;
+            if(controller.ACTION_TYPE == EntityController.ACTION.CLICK) _mainAction.Click.performed += controller.HandleAction;
+            if(controller.ACTION_TYPE == EntityController.ACTION.ABILITY) _mainAction.Ability.performed += controller.HandleAction;
         });
 
         return true;
@@ -58,8 +59,8 @@ public class EntityActionManager : MonoBehaviour
         entity.entitiesInRange.Clear();
         
         _controllerList.ForEach(controller => {
-            if(controller.ACTION_NAME == "CLICK") _mainAction.Click.performed -= controller.HandleAction;
-            if(controller.ACTION_NAME == "ABILITY") _mainAction.Ability.performed -= controller.HandleAction;
+            if(controller.ACTION_TYPE == EntityController.ACTION.CLICK) _mainAction.Click.performed -= controller.HandleAction;
+            if(controller.ACTION_TYPE == EntityController.ACTION.ABILITY) _mainAction.Ability.performed -= controller.HandleAction;
             controller.Clear();
         });
 

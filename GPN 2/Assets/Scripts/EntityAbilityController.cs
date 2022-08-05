@@ -15,7 +15,7 @@ public class EntityAbilityController : EntityController
         EntityAbilityController _abilityController = parent.AddComponent<EntityAbilityController>();
         _abilityController.entity = entity;
         _abilityController.actionManager = actionManager;
-        _abilityController.ACTION_NAME = "ABILITY";
+        _abilityController.ACTION_TYPE = ACTION.ABILITY;
         return _abilityController;
     }
 
