@@ -791,6 +791,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: stone_6
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 288
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a9277a3c36eab041a10820e11726852
+      internalID: 692517456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stone_7
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0672758c30588e439ae688a6987b02f
+      internalID: 1378683938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stone_8
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 224
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9fafec6482217f47bc9ac3f8153ad59
+      internalID: -1668747504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stone_9
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 192
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2218dbaa873fae646b455dc5bfc2fb0e
+      internalID: -1108701817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -810,12 +894,15 @@ TextureImporter:
       archer: -1334303356
       stone_0: -2147071191
       attack_highlight: -1692345310
+      stone_7: 1378683938
       Atlas_3: 1483851517
       disguise: 56609217
       taunt_highlight: 343575484
       Atlas_2: 1664289674
       stone_4: 1402577718
+      stone_6: 1728432593
       sapper: 25987414
+      stone_9: -1108701817
       water_0: -1930180091
       stone_wall: 1724306877
       rogue: -605117969
@@ -831,12 +918,12 @@ TextureImporter:
       scout: 678689944
       javelin_warrior: -1537865992
       movement_highlight: -269626333
-      Atlas_0: 1728432593
       stone_2: -1543545181
       assassin: 2070326924
       marauder: -1437180695
       war_drummer: -689138694
       spear_warrior: 66282519
+      stone_8: -1668747504
       armored: -1722343050
       dirt_0: 1412616925
   spritePackingTag: 
