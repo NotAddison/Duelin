@@ -745,6 +745,132 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: unit_card
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 42
+        width: 69
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89776824b8b115f47956ff1a5ce81421
+      internalID: -2076782267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_down_bar_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 36
+        width: 17
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e05e6475c258cdc4b9d7cbedd0341653
+      internalID: 711543352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_down_bar_4
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 36
+        width: 17
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34ccf6cf529c2ea4d8d463e08e10cef5
+      internalID: -459305981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_down_bar_3
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 36
+        width: 17
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22448395640569b4cace340ef51af74c
+      internalID: 271744959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_down_bar_2
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 36
+        width: 17
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89b05e101e8fff54f86e2b806ed88cd9
+      internalID: -572146204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cool_down_bar_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 36
+        width: 17
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b5a2168a580a814c88d7a58211e97cb
+      internalID: 90372336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -758,6 +884,7 @@ TextureImporter:
     nameFileIdTable:
       friendly_healthbar_3: 230340702
       friendly_healthbar_1: -2008757515
+      cool_down_bar_1: 90372336
       enemy_healthbar_3: -265749006
       friendly_healthbar_10: -2000537275
       friendly_healthbar_8: -199148038
@@ -770,13 +897,18 @@ TextureImporter:
       enemy_healthbar_6: 509877090
       friendly_healthbar_4: -1854794921
       friendly_healthbar_15: 1764202443
+      cool_down_bar_5: 711543352
       friendly_healthbar_2: 1509765867
+      cool_down_bar_3: 271744959
       enemy_healthbar_10: 1009423984
       enemy_healthbar_9: 1283816696
+      cool_down_bar_2: -572146204
+      cool_down_bar_4: -459305981
       friendly_healthbar_13: 1028508075
       friendly_healthbar_12: 1398279150
       enemy_healthbar_15: -216602017
       enemy_healthbar_11: 2131623071
+      unit_card: -2076782267
       enemy_healthbar_13: -1991305672
       enemy_healthbar_12: -519268582
       enemy_healthbar_5: -1371276820
