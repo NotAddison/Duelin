@@ -41,6 +41,7 @@ MonoBehaviour:
   - RespawnSpaceship
   - MoveEntity
   - AttackEntity
+  - AnnounceLeft
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

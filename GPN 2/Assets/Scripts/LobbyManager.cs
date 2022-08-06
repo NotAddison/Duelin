@@ -50,8 +50,6 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.LogError($"[Photon] Joined Room: {PhotonNetwork.CurrentRoom.Name} | Server: {PhotonNetwork.CloudRegion}");
         Debug.LogError($"[Photon] Players in Room: {PhotonNetwork.CurrentRoom.PlayerCount}");
 
-        // PhotonNetwork.LoadLevel("Test"); << To FIX {}
-
         // Only for Local Player
         // Debug.LogError($"Player {PhotonNetwork.LocalPlayer.ActorNumber} joined room {PhotonNetwork.CurrentRoom.Name}");
     }
@@ -74,7 +72,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void StartGame(){
         if (PhotonNetwork.IsMasterClient)
         {
-            if (PhotonNetwork.CurrentRoom.PlayerCount > 0){ PhotonNetwork.LoadLevel("Game");} 
+            if (PhotonNetwork.CurrentRoom.PlayerCount > 0){ PhotonNetwork.LoadLevel("Game"); PhotonNetwork.CurrentRoom.IsOpen = false;} 
             else { Debug.LogError("[Photon]: Not enough players!"); }
         }
         else
