@@ -1506,11 +1506,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 469
+        y: 456
         width: 90
-        height: 43
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 56
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1527,11 +1527,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 438
+        y: 425
         width: 294
         height: 31
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1552,7 +1552,7 @@ TextureImporter:
         width: 12
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1568,12 +1568,12 @@ TextureImporter:
       name: count_mine
       rect:
         serializedVersion: 2
-        x: 473
+        x: 414
         y: 0
-        width: 26
+        width: 27
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1589,12 +1589,12 @@ TextureImporter:
       name: count_gold
       rect:
         serializedVersion: 2
-        x: 447
+        x: 443
         y: 0
-        width: 25
+        width: 27
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1602,6 +1602,174 @@ TextureImporter:
       bones: []
       spriteID: 2c60c5aae0ff05a41ac4c6deabdb4517
       internalID: 1021026331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: empty_bar
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 36
+        width: 17
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44314a9015025c643a98798c27409e25
+      internalID: -1926637400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: unit_card_collapsed
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 42
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a57586a044c984b449f679ce63c39e36
+      internalID: -1717571340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: unit_card_collapsed_selected
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 74
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f4b47a8900b6514bbc195aad47b396d
+      internalID: -1391482911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: end_turn_true
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 138
+        width: 68
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d8903f3ed8c6874d8619ad171fdc0d2
+      internalID: 1904181749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: end_turn_false
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 169
+        width: 68
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 608cbfe9ada654a4aa3051827aa016e2
+      internalID: 840640753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_panel
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 294
+        width: 82
+        height: 131
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88cf181199f2ca345ad3ebff5782137e
+      internalID: -1176674099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ability_card
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 294
+        width: 52
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 182faa521e0eea4489dcd3e40c6791c9
+      internalID: 108248020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shop_button
+      rect:
+        serializedVersion: 2
+        x: 472
+        y: 0
+        width: 27
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cae366ff85d1e2469c41e3352bb96ec
+      internalID: -1130324304
       vertices: []
       indices: 
       edges: []
@@ -1630,6 +1798,7 @@ TextureImporter:
       enemy_healthbar_8: 633239096
       enemy_healthbar_6: 509877090
       right_panel: 130098722
+      shop_panel: -1176674099
       gold_5: -991538556
       cool_down_bar_5: 711543352
       gold_24: 421652455
@@ -1644,6 +1813,7 @@ TextureImporter:
       unit_card: -2076782267
       unit_card_selected: -472594550
       gold_9: -1586521071
+      empty_bar: -1926637400
       gold_20: -2041807866
       friendly_healthbar_6: -31717461
       friendly_healthbar_9: -18604749
@@ -1658,12 +1828,15 @@ TextureImporter:
       gold_22: 95377835
       cool_down_bar_1: 90372336
       gold_15: 1775143154
+      end_turn_true: 1904181749
       enemy_healthbar_3: -265749006
       gold_17: -1201038843
       gold_12: -1130044467
+      end_turn_false: 840640753
       gold_19: 74106666
       friendly_healthbar_10: -2000537275
       count_gold: 1021026331
+      ability_card: 108248020
       friendly_healthbar_11: -544046312
       friendly_healthbar_5: 1094091137
       cool_down_bar_3: 271744959
@@ -1672,6 +1845,7 @@ TextureImporter:
       gold_3: -1437224816
       friendly_healthbar_4: -1854794921
       friendly_healthbar_15: 1764202443
+      unit_card_collapsed: -1717571340
       gold_11: -1071065240
       enemy_healthbar_10: 1009423984
       gold_25_complete: 1793500069
@@ -1683,8 +1857,10 @@ TextureImporter:
       enemy_healthbar_12: -519268582
       enemy_healthbar_5: -1371276820
       enemy_healthbar_4: -1325817498
+      unit_card_collapsed_selected: -1391482911
       gold_4: -1218212120
       gold_8: 52808043
+      shop_button: -1130324304
       count_mine: 1823502859
       gold_bar_15: 319662385
       enemy_healthbar_2: -2022132479

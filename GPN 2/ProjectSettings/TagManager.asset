@@ -60,3 +60,9 @@ TagManager:
   - name: Walls
     uniqueID: 1275787747
     locked: 0
+  - name: Panels
+    uniqueID: 3168082797
+    locked: 0
+  - name: Buttons
+    uniqueID: 282977395
+    locked: 0
