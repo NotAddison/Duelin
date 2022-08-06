@@ -17,7 +17,7 @@ public class BaseGoblin : Entity, IClickable
     public bool isMovementBlocked;
     public OCCUPATION_STATE occupationState;
 
-    private PhotonView photonView;
+    public PhotonView photonView;
     private Transform parent;
     private static int entityIndex = 0;
 
@@ -39,7 +39,7 @@ public class BaseGoblin : Entity, IClickable
         unit_card = Instantiate(Resources.Load<GameObject>("Prefabs/UI/unit_card"), cardPosition, Quaternion.identity);
         LocalInventory.getInstance().UpdateEntityListItem(parent.gameObject, entityIndex);
         entityIndex += 1;
-        RenderCard();
+        unit_card.GetComponent<UnitCard>().RenderCard(this);
     }
 
     public void OnClick(GameObject prevSelection = null)
@@ -71,7 +71,7 @@ public class BaseGoblin : Entity, IClickable
             return;
         }
         RenderHealth(parent);
-        RenderCard();
+        unit_card.GetComponent<UnitCard>().RenderCard(this);
     }
 
     public override void OnDeath(BaseGoblin attackingEntity, Vector3? targetPos = null)
@@ -92,21 +92,6 @@ public class BaseGoblin : Entity, IClickable
         Sprite healthSprite = Resources.LoadAll<Sprite>("UI_Atlas").Single(sprite => sprite.name.Equals($"{(photonView.IsMine ? "friendly" : "enemy")}_healthbar_{Health}"));
         SpriteRenderer healthbarComponent = parent.Find("healthbar").gameObject.GetComponent<SpriteRenderer>();
         healthbarComponent.sprite = healthSprite;
-    }
-
-    private void RenderCooldown(Transform parent) {
-        Sprite healthSprite = Resources.LoadAll<Sprite>("UI_Atlas").Single(sprite => sprite.name.Equals(cooldown > 0 ? $"cool_down_bar_{cooldown}" : "empty_bar"));
-        SpriteRenderer cooldownComponent = parent.Find("cooldown").gameObject.GetComponent<SpriteRenderer>();
-        cooldownComponent.sprite = healthSprite;
-    }
-
-    private void RenderCard()
-    {
-        RenderHealth(unit_card.transform);
-        RenderCooldown(unit_card.transform);
-
-        Sprite unitSprite = gameObject.GetComponent<SpriteRenderer>().sprite;
-        unit_card.transform.Find("unit").GetComponent<SpriteRenderer>().sprite = unitSprite;
     }
 
     public enum OCCUPATION_STATE

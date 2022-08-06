@@ -46,8 +46,6 @@ public class SelectionManager : MonoBehaviour
 
         if(!hitFound) return;
         currentSelection = hit.collider.gameObject;
-
-        Debug.Log($"Clicked on {currentSelection.name}");
         
         if(!isClickable()) return;
         if (!TurnManager.getInstance().CheckTurn()) return;

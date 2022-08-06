@@ -47,6 +47,7 @@ public class EntityActionManager : MonoBehaviour
 
         _movementController.displayMovableTiles();
         _attackController.displayAttackableTiles();
+        entity.unit_card.GetComponent<UnitCard>().RenderCard(entity, true);
 
         _controllerList.ForEach(controller => {
             string ACTION = ExtensionMethods.GetEnumDescription(controller.ACTION_TYPE);
@@ -59,6 +60,7 @@ public class EntityActionManager : MonoBehaviour
     public bool Deselect()
     {
         entity.entitiesInRange.Clear();
+        entity.unit_card.GetComponent<UnitCard>().RenderCard(entity);
         
         _controllerList.ForEach(controller => {
             string ACTION = ExtensionMethods.GetEnumDescription(controller.ACTION_TYPE);

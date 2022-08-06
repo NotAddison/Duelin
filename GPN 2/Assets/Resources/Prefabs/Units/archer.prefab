@@ -228,6 +228,7 @@ MonoBehaviour:
   isSelected: 0
   isMovementBlocked: 0
   occupationState: 0
+  photonView: {fileID: 0}
 --- !u!61 &4761766402914203513
 BoxCollider2D:
   m_ObjectHideFlags: 0
