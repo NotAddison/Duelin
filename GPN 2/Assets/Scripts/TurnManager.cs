@@ -1,4 +1,3 @@
-using System.Linq;
 using System.ComponentModel;
 using UnityEngine;
 using Photon.Pun;
@@ -25,7 +24,7 @@ public class TurnManager : MonoBehaviour
         if (turnNumber <= 1) FirstTurn();
 
         LocalInventory.getInstance().UpdateGoldAmount();
-        // GameObject.Find("gold_bar").GetComponent<GoldBar>().RenderAmount();
+        GameObject.FindWithTag("GoldAmount").GetComponent<GoldBar>().RenderAmount();
     }
 
     [PunRPC]
