@@ -12,6 +12,10 @@ public class Armored : Tank
     public override void OnDamage(BaseGoblin attackingEntity, Vector3 targetPos)
     {
         base.OnDamage(attackingEntity, targetPos);
-        Health += 1;
+        if (attackingEntity.Damage > 0)
+        {
+            // Lower attacker's damage by 1 when attacked
+            attackingEntity.Damage -= 1;
+        }
     }
 }
