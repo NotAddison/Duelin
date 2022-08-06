@@ -15,7 +15,6 @@ public class Tank : BaseGoblin
     public string code;
     public string skillName;
     public string description;
-    public float cooldown;
 
     void Start() {
         gameTilemap = GameObject.Find(GAME_MAP).GetComponent<Tilemap>();

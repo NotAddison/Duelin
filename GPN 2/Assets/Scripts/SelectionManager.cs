@@ -6,6 +6,7 @@ public class SelectionManager : MonoBehaviour
     UnitSelection _input;
     UnitSelection.InputActions _inputAction;
     Camera _camera;
+    // TODO: Generalize selection handler
     Entity currentEntity;
     Entity prevEntity;
 

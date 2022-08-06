@@ -1,46 +1,69 @@
-using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using Photon.Pun;
 
 public class LocalInventory
 {
-    private int Currency = 20;
-    private List<string> Entities = new List<string>();
+    private int Gold = 5;
+    private List<GameObject> Entities = new List<GameObject>();
     private List<GameObject> Cards = new List<GameObject>();
+    private Tilemap mineTilemap;
+    private static LocalInventory _instance = null;
+    private readonly string MINE_MAP = "Tilemap - Mines";
+    public static LocalInventory getInstance() => _instance == null ? _instance = new LocalInventory() : _instance;
 
-    void Awake(){
-        // [TO-DO]: Load Inventory from Database
-        RandomizeEntities();
-
-        // Setting Up Entities (Add to player entity list when purchased) [For 1st round]
-        // Entities.Add(GameObject.Find("Prefabs/rogue"));
-        // Entities.Add(GameObject.Find("Prefabs/archer"));
-        // Entities.Add(GameObject.Find("Prefabs/scout"));
+    LocalInventory()
+    {
+        mineTilemap = GameObject.Find(MINE_MAP).GetComponent<Tilemap>();
     }
 
-    public List<string> RandomizeEntities(){ // Temporary function, to be removed later (after shop is implemented)
-        List<string> AllEntities = GetAllEntities();
+    public List<GameObject> RandomizeEntities(){ // Temporary function, to be removed later (after shop is implemented)
+        List<GameObject> AllUnits = new List<GameObject>(Resources.LoadAll<GameObject>("Prefabs/Units"));
         var rand = new System.Random();
         for (int i = 0; i < 3; i++)
         {
-            int num = rand.Next(AllEntities.Count);
-            Entities.Add(AllEntities[num]);
+            int num = rand.Next(AllUnits.Count);
+            Entities.Add(AllUnits[num]);
         }
-        return AllEntities;
+
+        return Entities;
     }
 
-    public List<string> GetAllEntities(){
-        // Get all possible entities from prefab
-        List<string> AllEntities = new List<string>();
-        AllEntities.Add("Prefabs/rogue");
-        AllEntities.Add("Prefabs/archer");
-        AllEntities.Add("Prefabs/scout");
-        return AllEntities;
+    public void UpdateEntityListItem(GameObject entity, int index) 
+    {
+        Entities[index] = entity;
     }
 
+    public void UpdateGoldAmount(){
+        GetGoblins().ForEach(entity => {
+            Vector3Int currentCellPos = mineTilemap.WorldToCell(entity.getCurrentPos());
+            bool isOnMine = mineTilemap.HasTile(new Vector3Int(currentCellPos.x, currentCellPos.y, 2));
+            bool hasCaptured = entity.occupationState == BaseGoblin.OCCUPATION_STATE.CAPTURED;
 
+            if(isOnMine && !hasCaptured) entity.occupationState = (BaseGoblin.OCCUPATION_STATE) ((int) entity.occupationState + 1);
+            if(!isOnMine) entity.occupationState = BaseGoblin.OCCUPATION_STATE.FREE;
+            if(isOnMine && hasCaptured) AddGold();
+        });
+    }
 
-
+    public void DestroyEntity(GameObject entity)
+    {
+        int entityIndex = GetPositionOfEntity(entity);
+        for (int i = entityIndex + 1; i < Entities.Count; i++)
+        {
+            GameObject targetEntity = Entities[i];
+            GameObject targetEntityUnitCard = targetEntity.transform.Find("entity").GetComponent<BaseGoblin>().unit_card;
+            Vector3 targetEntityUnitCardPos = targetEntityUnitCard.transform.position;
+            targetEntityUnitCard.transform.position = new Vector3(targetEntityUnitCardPos.x, targetEntityUnitCardPos.y += 0.28f, targetEntityUnitCardPos.z); 
+        }
+        Entities.RemoveAt(entityIndex);
+    }
+    
+    public int GetPositionOfEntity(GameObject entity) => Entities.FindIndex(e => e == entity);
+    public int GetEntityListSize() => Entities.Count; 
+    public List<BaseGoblin> GetGoblins() => Entities.Select(entity => entity.transform.Find("entity").GetComponent<BaseGoblin>()).ToList();
 
     // --------------- Other Inventory Functions ---------------
 
@@ -68,22 +91,22 @@ public class LocalInventory
 
 
     // ==== Currency ====
-    public int GetCurrency(){
-        return Currency;
+    public int GetGold(){
+        return Gold;
     }
 
     ///<summary>
     ///Adds currency to the player's inventory (e.g: When farm captured / when enemy killed)
     ///</summary>
-    public void AddCurrency(int amount){
-        Currency += amount;
+    private void AddGold(){
+        Gold += 2;
     }
 
     ///<summary>
     ///Remove currency to the player's inventory (e.g: When Card/Entities purchased from shop)
     ///</summary>
-    public void RemoveCurrency(int amount){
-        Currency -= amount;
+    public void RemoveGold(int amount){
+        Gold -= amount;
     }
 
 }

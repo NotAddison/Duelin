@@ -104,10 +104,13 @@ MonoBehaviour:
   Health: 4
   Range: 0
   MovementRange: 2
+  cooldown: 0
   entitiesInRange: []
   actionManager: {fileID: 0}
+  unit_card: {fileID: 0}
   isSelected: 0
   isMovementBlocked: 0
+  occupationState: 0
 --- !u!61 &4085577520735030401
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -179,7 +182,7 @@ GameObject:
   - component: {fileID: 10921160720159354}
   m_Layer: 0
   m_Name: rogue
-  m_TagString: Untagged
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
