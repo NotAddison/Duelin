@@ -2,16 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Disguised : MonoBehaviour
+public class Disguised : BaseGoblin
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void UseAbility()
     {
-        
+        // [TODO] Implement copying other units' abilities
     }
-
-    // Update is called once per frame
-    void Update()
+    public override void UsePassive()
     {
         
     }
