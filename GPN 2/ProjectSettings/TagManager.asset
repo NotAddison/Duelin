@@ -9,6 +9,7 @@ TagManager:
   - TurnManager
   - GoldBar
   - GoldAmount
+  - ShopPanel
   layers:
   - Default
   - TransparentFX
@@ -70,9 +71,9 @@ TagManager:
   - name: Panels
     uniqueID: 3168082797
     locked: 0
-  - name: Buttons
-    uniqueID: 282977395
-    locked: 0
   - name: UI Hints
     uniqueID: 3456566813
+    locked: 0
+  - name: Buttons
+    uniqueID: 282977395
     locked: 0

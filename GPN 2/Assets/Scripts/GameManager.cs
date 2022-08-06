@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
     void Start()
     {
-        Debug.LogError($"[GameManager]: Spawning Object for Player: {PhotonNetwork.LocalPlayer.ActorNumber}");
         SpawnCharacters();
         TurnManager.getInstance().StartTurn();
     }
@@ -17,11 +16,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         List<List<Vector3>> spawnPositions = InitSpawnPos();
 
         List<GameObject> Entities = LocalInventory.getInstance().RandomizeEntities();
-        Debug.LogError($"[GameManager]: Spawning {Entities.Count} Entities");
         // ---- Spawn Characters ----
         for (int i = 0; i < Entities.Count; i++)
         {
-            Debug.LogError($"[GameManager]: Spawning {Entities[i]} at {spawnPositions[PhotonNetwork.LocalPlayer.ActorNumber - 1][i]}");
             GameObject entityInstance = PhotonNetwork.Instantiate($"Prefabs/Units/{Entities[i].name}", spawnPositions[PhotonNetwork.LocalPlayer.ActorNumber-1][i], Quaternion.identity);
         }
     }
