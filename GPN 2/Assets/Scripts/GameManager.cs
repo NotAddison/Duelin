@@ -2,11 +2,10 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
-    private Vector3 SpawnPosition;
-
     void Start()
     {
         Debug.LogError($"[GameManager]: Spawning Object for Player: {PhotonNetwork.LocalPlayer.ActorNumber}");
@@ -60,5 +59,15 @@ public class GameManager : MonoBehaviour
         spawnPositions.Add(P3);
         spawnPositions.Add(P4);
         return spawnPositions;
+    }
+
+    void OnApplicationQuit()
+    {
+        PhotonNetwork.LeaveRoom();
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer){
+        Debug.LogError($"[GameManager]: Player {otherPlayer.ActorNumber} has left the room");
+        // [TO-DO]: Remove Player Entities (Health cards as well)
     }
 }

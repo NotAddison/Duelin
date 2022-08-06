@@ -41,6 +41,7 @@ MonoBehaviour:
   - RespawnSpaceship
   - MoveEntity
   - AttackEntity
+  - AnnounceLeft
   - EndTurn
   - StartTurn
   DisableAutoOpenWizard: 1
