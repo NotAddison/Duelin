@@ -42,10 +42,10 @@ public class BaseGoblin : Entity, IClickable
         RenderCard();
     }
 
-    public void OnClick(Entity prevEntity)
+    public void OnClick(GameObject prevSelection = null)
     {
         if(!photonView.IsMine) return;
-        if (!TurnManager.getInstance().CheckTurn()) return;
+        Entity prevEntity = prevSelection?.GetComponent<Entity>(); 
         bool isEntityGoblin = BaseGoblin.IsEntityGoblin(prevEntity);
         BaseGoblin prevGoblin = isEntityGoblin ? (BaseGoblin) prevEntity : null;
         bool canDeselect() => isEntityGoblin && prevEntity != this;

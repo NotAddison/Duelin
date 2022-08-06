@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IClickable
 {
-        void OnClick(Entity prevEntity = null);
+        void OnClick(GameObject prevSelection = null);
 }

@@ -45,8 +45,6 @@ public class EntityMovementController : EntityController
         destination = gameTilemap.CellToWorld(gridPos);
         destination.y += 0.16f;
 
-        Debug.Log(this);
-
         PhotonView.Get(this).RPC($"MoveEntity", RpcTarget.All, destination);
     }
 
@@ -56,17 +54,15 @@ public class EntityMovementController : EntityController
         entity.transform.parent.position = destination;
         entity.UsePassive();
         DesyncCheck(destination);
-        TurnManager.getInstance().HandleTurnAction(TurnManager.ACTION.END);
+        TurnManager.getInstance().EndTurn();
         actionManager.Deselect();
     }
 
     public void DesyncCheck(Vector3 destination){
         destination.y -= 0.16f; // Offset for the tilemap
-        Debug.LogError($"[DesyncCheck] isDesync: {entity.getCurrentPos() != destination}");
 
         if (entity.getCurrentPos() != destination) // If current entity postion is not the same as destination position
         {
-            Debug.LogError("[DesyncCheck] Syncing Entity");
             PhotonView.Get(this).RPC("MoveEntity", RpcTarget.All, destination);
         }
     }

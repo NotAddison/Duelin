@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         Debug.LogError($"[GameManager]: Spawning Object for Player: {PhotonNetwork.LocalPlayer.ActorNumber}");
         SpawnCharacters();
-        TurnManager.getInstance().HandleTurnAction(TurnManager.ACTION.START);
+        TurnManager.getInstance().StartTurn();
     }
 
     public void SpawnCharacters(){

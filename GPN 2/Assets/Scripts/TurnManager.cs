@@ -11,13 +11,13 @@ public class TurnManager : MonoBehaviour
 
     public bool CheckTurn()
     {
+        Debug.LogError($"It is currently {CurrentPlayer.ActorNumber}'s turn.");
         bool status = GetCurrentPlayer() == PhotonNetwork.LocalPlayer;
-        if (!status) Debug.LogError($"It is currently {CurrentPlayer.ActorNumber}'s turn.");
         return status;
     }
 
     [PunRPC]
-    private void StartTurn()
+    public void StartTurn()
     {
         if (!CheckTurn()) return;
         turnNumber += 1;
@@ -28,7 +28,7 @@ public class TurnManager : MonoBehaviour
     }
 
     [PunRPC]
-    private void EndTurn()
+    public void EndTurn()
     {
         CurrentPlayer = CurrentPlayer.GetNext();
         StartTurn();

@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -6,9 +8,9 @@ public class SelectionManager : MonoBehaviour
     UnitSelection _input;
     UnitSelection.InputActions _inputAction;
     Camera _camera;
-    // TODO: Generalize selection handler
-    Entity currentEntity;
-    Entity prevEntity;
+
+    GameObject currentSelection;
+    GameObject prevSelection;
 
     private void Awake()
     {
@@ -34,18 +36,19 @@ public class SelectionManager : MonoBehaviour
 
     void Select()
     {
-        prevEntity = currentEntity;
+        prevSelection = currentSelection;
         Vector2 mousePos = _inputAction.Pos.ReadValue<Vector2>();
         mousePos = _camera.ScreenToWorldPoint(mousePos);
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
         bool hitFound = hit.collider != null;
-        bool isClickable() => currentEntity is IClickable;
+        bool isClickable() => currentSelection.GetComponents<Component>().Any(component => component is IClickable);
 
         if(!hitFound) return;
-        currentEntity = hit.collider.gameObject.GetComponent<Entity>();
+        currentSelection = hit.collider.gameObject;
         
         if(!isClickable()) return;
-        ((IClickable)currentEntity).OnClick(prevEntity);
+        if (!TurnManager.getInstance().CheckTurn()) return;
+        ((IClickable)currentSelection.GetComponents<Component>().Single(component => component is IClickable)).OnClick(prevSelection);
     }
 }

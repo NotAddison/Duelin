@@ -60,7 +60,7 @@ public class EntityAttackController : EntityController
         // TODO: DesyncCheck
         DesyncCheck(targetPos);
 
-        TurnManager.getInstance().HandleTurnAction(TurnManager.ACTION.END);
+        TurnManager.getInstance().EndTurn();
         actionManager.Deselect();
     }
 
