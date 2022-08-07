@@ -50,7 +50,7 @@ public class EntityActionManager : MonoBehaviour
         entity.unit_card.GetComponent<UnitCard>().RenderCard(entity, true);
 
         _controllerList.ForEach(controller => {
-            string ACTION = ExtensionMethods.GetEnumDescription(controller.ACTION_TYPE);
+            string ACTION = Utility.GetEnumDescription(controller.ACTION_TYPE);
             _mainAction.Get().FindAction(ACTION).performed += controller.HandleAction;
         });
 
@@ -63,7 +63,7 @@ public class EntityActionManager : MonoBehaviour
         entity.unit_card.GetComponent<UnitCard>().RenderCard(entity);
         
         _controllerList.ForEach(controller => {
-            string ACTION = ExtensionMethods.GetEnumDescription(controller.ACTION_TYPE);
+            string ACTION = Utility.GetEnumDescription(controller.ACTION_TYPE);
             _mainAction.Get().FindAction(ACTION).performed -= controller.HandleAction;
             controller.Clear();
         });

@@ -41,7 +41,7 @@ public class TurnManager : MonoBehaviour
 
     public void HandleTurnAction(ACTION action)
     {
-        string ACTION = ExtensionMethods.GetEnumDescription(action);
+        string ACTION = Utility.GetEnumDescription(action);
         PhotonView.Get(this).RPC(ACTION, RpcTarget.All);
     }
 

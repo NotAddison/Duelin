@@ -3,10 +3,9 @@ using System.Linq;
 using System.Reflection;
 using System.ComponentModel;
 using System.Collections.Generic;
-using UnityEngine.InputSystem;
 using UnityEngine;
 
-public static class ExtensionMethods
+public static class Utility
 {
     public static void ForEach<T>(this IEnumerable<T> enumator, Action<T> callback)
     {

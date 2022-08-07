@@ -1,12 +1,11 @@
 using System;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class SelectionManager : MonoBehaviour
 {
-    UnitSelection _input;
-    UnitSelection.InputActions _inputAction;
+    SelectionActions _input;
+    SelectionActions.InputActions _inputAction;
     Camera _camera;
 
     GameObject currentSelection;
@@ -14,7 +13,7 @@ public class SelectionManager : MonoBehaviour
 
     private void Awake()
     {
-        _input = new UnitSelection();
+        _input = new SelectionActions();
         _inputAction = _input.Input;
         _camera = Camera.main;
     }

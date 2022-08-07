@@ -18,16 +18,16 @@ public class GameManager : MonoBehaviourPunCallbacks
         // ---- Spawn Characters ----
         for (int i = 0; i < Entities.Count; i++)
         {
-            GameObject entityInstance = PhotonNetwork.Instantiate($"Prefabs/Units/{Entities[i].name}", spawnPositions[PhotonNetwork.LocalPlayer.ActorNumber-1][i], Quaternion.identity);
+            PhotonNetwork.Instantiate($"Prefabs/Units/{Entities[i].name}", spawnPositions[PhotonNetwork.LocalPlayer.ActorNumber-1][i], Quaternion.identity);
         }
     }
 
     private List<List<Vector3>> InitSpawnPos(){
         
         List<Vector3> P1 = new List<Vector3>{
-            new Vector3 (0.16f, 0.72f, 0),  // Top Right Right
-            new Vector3 (0, 0.64f, 0),      // Top Right Middle
-            new Vector3 (-0.16f, 0.72f, 0)  // Top Right Left
+            new Vector3 (0.16f, -0.4f, 0),  // Bottom Left Right
+            new Vector3 (0, -0.32f, 0),      // Bottom Left Middle
+            new Vector3 (-0.16f, -0.4f, 0)  // Bottom Left Left
         };
 
         List<Vector3> P2 = new List<Vector3>{
@@ -43,9 +43,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         };
 
         List<Vector3> P4 = new List<Vector3>{
-            new Vector3 (0.16f, -0.4f, 0),  // Bottom Left Right
-            new Vector3 (0, -0.32f, 0),      // Bottom Left Middle
-            new Vector3 (-0.16f, -0.4f, 0)  // Bottom Left Left
+            new Vector3 (0.16f, 0.72f, 0),  // Top Right Right
+            new Vector3 (0, 0.64f, 0),      // Top Right Middle
+            new Vector3 (-0.16f, 0.72f, 0)  // Top Right Left
         };
 
         List<List<Vector3>> spawnPositions = new List<List<Vector3>>();

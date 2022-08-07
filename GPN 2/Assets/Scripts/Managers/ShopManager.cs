@@ -72,7 +72,7 @@ public class ShopManager : MonoBehaviour
 
             // TODO: Migrate to own object
             string spriteName = itemForSale.transform.Find("entity").GetComponent<BaseGoblin>().gameObject.GetComponent<SpriteRenderer>().sprite.name;
-            ExtensionMethods.RenderSprite(itemPrefabInstance.transform, spriteName, "item", "Atlas");
+            Utility.RenderSprite(itemPrefabInstance.transform, spriteName, "item", "Atlas");
         }
     }
 }
