@@ -46,15 +46,14 @@ Duelin is a 2D online PVP turn-based strategic combat game where players purchas
 - A maximum of 3 units can be purchased at the start of the game. <br>
 - After purchasing, players will pick their starting spawn position on the map. <br>
 - Spawn positions are assigned in the sequence of when the players joined the room. <br>
-- 
 </details>
 
 <details> <summary>Subsequent Round(s)<br></summary>
 - Players can only MOVE or ATTACK for each turn. <br>
-- Players can use the shop to purchase units (max 5) and cards (No max)
-- Players can capture a farm to gain passive points (2 per round & on Capture)
-- Each farm takes 2 turn to fully capture.
-- Players can win by POINTS or by ELIMINATING all the other opponent's unit.
+- Players can use the shop to purchase units (max 5) and cards (No max) <br>
+- Players can capture a farm to gain passive points (2 per round & on Capture) <br>
+- Each farm takes 2 turn to fully capture. <br>
+- Players can win by POINTS or by ELIMINATING all the other opponent's unit. <br>
 </details>
 
 ### Point System
