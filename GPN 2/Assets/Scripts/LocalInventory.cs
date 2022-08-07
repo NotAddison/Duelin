@@ -44,7 +44,14 @@ public class LocalInventory
 
             if(isOnMine && !hasCaptured) entity.occupationState = (BaseGoblin.OCCUPATION_STATE) ((int) entity.occupationState + 1);
             if(!isOnMine) entity.occupationState = BaseGoblin.OCCUPATION_STATE.FREE;
-            if(isOnMine && hasCaptured) AddGold();
+            if(isOnMine && hasCaptured)
+            {
+                if (entity.GetType() == typeof(Miner))
+                {
+                    AddGold(2);
+                }
+                AddGold(2);
+            }
         });
     }
 
@@ -100,8 +107,8 @@ public class LocalInventory
     ///<summary>
     ///Adds currency to the player's inventory (e.g: When farm captured / when enemy killed)
     ///</summary>
-    private void AddGold(){
-        Gold += 2;
+    public void AddGold(int value){
+        Gold += value;
     }
 
     ///<summary>
