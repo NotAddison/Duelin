@@ -93,6 +93,7 @@ public class SpawnManager : MonoBehaviour, IClickable
 
         ItemCard itemCard = prevSelection.GetComponent<ItemCard>();
 
+        itemCard.Deselect();
         GameObject item = ShopManager.getInstance().Purchase(itemCard.item);
 
         if (item == null) return;
@@ -100,7 +101,6 @@ public class SpawnManager : MonoBehaviour, IClickable
 
         GameObject.FindWithTag("GoldAmount").GetComponent<GoldBar>().RenderAmount();
         SpawnUnit(itemCard.item, new Vector3(spawnPos.x, spawnPos.y += 0.16f, spawnPos.z));
-        itemCard.Deselect();
         Destroy(itemCard);
         ShopManager.getInstance().RenderItemsForSale();
     }
