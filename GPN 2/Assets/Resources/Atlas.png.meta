@@ -884,7 +884,7 @@ TextureImporter:
         width: 36
         height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -905,7 +905,7 @@ TextureImporter:
         width: 24
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -913,6 +913,31 @@ TextureImporter:
       bones: []
       spriteID: 42f2c492969e7fd4a861c6376c4c1ba6
       internalID: -2090925775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spawn_highlight
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 320
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 0, y: 0}
+        - {x: -16, y: 8}
+        - {x: 0, y: 16}
+        - {x: 16, y: 8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35be660d74dd5a64890ebc4ebb37b570
+      internalID: 1999305011
       vertices: []
       indices: 
       edges: []
@@ -934,8 +959,19 @@ TextureImporter:
       crystal_mine: -978258620
       barrel: 1288579164
       archer: -1334303356
-      stone_0: -2147071191
       attack_highlight: -1692345310
+      warrior: 1055742990
+      stone_5: 381707343
+      skill_preparation: -1114622835
+      skill_preparation_minified: -2090925775
+      spawn: -2005268290
+      stone_1: -262239235
+      captain: -1904003348
+      stone_8: -1668747504
+      movement_highlight: -269626333
+      spawn_highlight: 1999305011
+      armored: -1722343050
+      stone_0: -2147071191
       stone_7: 1378683938
       Atlas_3: 1483851517
       disguise: 56609217
@@ -948,27 +984,17 @@ TextureImporter:
       water_0: -1930180091
       stone_wall: 1724306877
       rogue: -605117969
-      warrior: 1055742990
-      stone_5: 381707343
       shield: -1767259538
-      skill_preparation: -1114622835
-      spawn: -2005268290
       miner: -2042174566
-      captain: -1904003348
       gold_mine: -810610951
-      stone_1: -262239235
-      skill_preparation_minified: -2090925775
       builder: 478664579
       scout: 678689944
       javelin_warrior: -1537865992
-      movement_highlight: -269626333
       stone_2: -1543545181
       assassin: 2070326924
       marauder: -1437180695
       war_drummer: -689138694
       spear_warrior: 66282519
-      stone_8: -1668747504
-      armored: -1722343050
       dirt_0: 1412616925
   spritePackingTag: 
   pSDRemoveMatte: 0

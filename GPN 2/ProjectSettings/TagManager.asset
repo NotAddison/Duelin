@@ -12,6 +12,7 @@ TagManager:
   - ShopPanel
   - ShopManager
   - ShopItem
+  - SpawnManager
   layers:
   - Default
   - TransparentFX
@@ -52,14 +53,8 @@ TagManager:
   - name: Map
     uniqueID: 748148877
     locked: 0
-  - name: Highlight Movement
-    uniqueID: 2390773953
-    locked: 0
-  - name: Highlight Taunt
-    uniqueID: 1113340039
-    locked: 0
-  - name: Highlight Attack
-    uniqueID: 3761628825
+  - name: Highlight
+    uniqueID: 2801898283
     locked: 0
   - name: Entities
     uniqueID: 4081543479

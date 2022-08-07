@@ -1,10 +1,10 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
+    public static ShopManager getInstance() => GameObject.FindWithTag("ShopManager").GetComponent<ShopManager>();
     private List<GameObject> AllUnits;
     private List<GameObject> AllCards;
     private List<GameObject> UnitsForSale;
@@ -36,6 +36,8 @@ public class ShopManager : MonoBehaviour
 
         // TODO: UI Hint
         if (itemCost > LocalInventory.getInstance().GetGold()) return null;
+        if (SpawnManager.getInstance().HasSpawnPoints()) return null;
+
         if(UnitsForSale.Contains(selectedItem))
         {
             if (LocalInventory.getInstance().GetEntityListSize() >= MAX_UNITS) return null;
@@ -54,17 +56,13 @@ public class ShopManager : MonoBehaviour
         return selectedItem;
     }
 
-    public void RenderItemsForSale(bool _enabled)
+    public void RenderItemsForSale(bool _enabled = true)
     {
-        if (!_enabled)
-        {
-            GameObject.FindGameObjectsWithTag("ShopItem").ForEach(item => {
-                item.GetComponent<ItemCard>().Deselect();
-                Destroy(item);
-            });
-            return;
-        }
-        
+        GameObject.FindGameObjectsWithTag("ShopItem").ForEach(item => {
+            item.GetComponent<ItemCard>().Deselect();
+            Destroy(item);
+        });
+        if (!_enabled) return;
         for (int i = 0; i < 8; i++)
         {
             // GameObject itemForSale = i >= 5 ? CardsForSale[i] : UnitsForSale[i];

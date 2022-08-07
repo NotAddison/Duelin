@@ -1774,6 +1774,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: gold_0
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 358
+        width: 6
+        height: 150
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4499aa757bc80d042b2f95b3a5fca3cd
+      internalID: 2105299723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1824,6 +1845,7 @@ TextureImporter:
       gold_10: 799587055
       enemy_healthbar_14: -1914652417
       gold_23: 37451490
+      gold_0: 2105299723
       friendly_healthbar_3: 230340702
       gold_22: 95377835
       cool_down_bar_1: 90372336

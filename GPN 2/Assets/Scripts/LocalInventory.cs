@@ -19,20 +19,9 @@ public class LocalInventory
         mineTilemap = GameObject.Find(MINE_MAP).GetComponent<Tilemap>();
     }
 
-    public List<GameObject> RandomizeEntities(){ // Temporary function, to be removed later (after shop is implemented)
-        List<GameObject> AllUnits = new List<GameObject>(Resources.LoadAll<GameObject>("Prefabs/Units"));
-        var rand = new System.Random();
-        for (int i = 0; i < 3; i++)
-        {
-            int num = rand.Next(AllUnits.Count);
-            Entities.Add(AllUnits[num]);
-        }
-
-        return Entities;
-    }
-
     public void UpdateEntityListItem(GameObject entity, int index) 
     {
+        if (Entities.Count < index + 1) Entities.Add(entity);
         Entities[index] = entity;
     }
 
@@ -44,14 +33,8 @@ public class LocalInventory
 
             if(isOnMine && !hasCaptured) entity.occupationState = (BaseGoblin.OCCUPATION_STATE) ((int) entity.occupationState + 1);
             if(!isOnMine) entity.occupationState = BaseGoblin.OCCUPATION_STATE.FREE;
-            if(isOnMine && hasCaptured)
-            {
-                if (entity.GetType() == typeof(Miner))
-                {
-                    AddGold(2);
-                }
-                AddGold(2);
-            }
+            if(isOnMine && hasCaptured) AddGold(2 * (entity is Miner ? 2 : 1));
+            if(SpawnManager.getInstance().IsSpawnOccupied()) AddGold(1);
         });
     }
 

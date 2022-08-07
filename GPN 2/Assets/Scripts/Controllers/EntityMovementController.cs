@@ -67,10 +67,7 @@ public class EntityMovementController : EntityController
         }
     }
 
-    public override void Clear()
-    {
-        movementHighlightMap.ClearAllTiles();
-    }
+    public override void Clear() => movementHighlightMap.ClearAllTiles();
 
     public void displayMovableTiles()
     {
