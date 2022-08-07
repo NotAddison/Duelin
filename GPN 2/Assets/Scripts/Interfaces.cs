@@ -12,8 +12,5 @@ public interface IHoverable
 
 public interface IBuyable
 {
-    int Cost { get; set; }
-
-    int getCost() => Cost;
-    void setCost(int cost) => Cost = cost;
+    int Cost();
 }

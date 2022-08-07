@@ -70,10 +70,7 @@ public class ShopManager : MonoBehaviour
             GameObject itemPrefab = Resources.Load<GameObject>("Prefabs/UI/item_card");
             GameObject itemPrefabInstance = Instantiate(itemPrefab, displayPos, Quaternion.identity);
 
-            // TODO: Migrate to own object
-            BaseGoblin currentItemEntity = itemForSale.transform.Find("entity").GetComponent<BaseGoblin>();
-            string spriteName = currentItemEntity.gameObject.GetComponent<SpriteRenderer>().sprite.name;
-            Utility.RenderSprite(itemPrefabInstance.transform, spriteName, "item", "Atlas");
+            itemPrefabInstance.GetComponent<ItemCard>().RenderCard(itemForSale, ItemCard.ItemType.UNIT);
         }
     }
 }

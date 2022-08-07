@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using Photon.Pun;
 
-public class BaseGoblin : Entity, IClickable
+public class BaseGoblin : Entity, IClickable, IBuyable
 {
     public int Damage;
     public int Health;
