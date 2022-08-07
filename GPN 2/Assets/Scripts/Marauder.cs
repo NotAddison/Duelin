@@ -12,7 +12,10 @@ public class Marauder : BaseGoblin
     {
         if (cooldown == 0){
             cooldown += 4;
-            // [TODO] Buff player's whole team +1/+1
+            LocalInventory.getInstance().GetGoblins().ForEach(goblin => {
+                goblin.GetComponent<BaseGoblin>().Health += 1;
+                goblin.GetComponent<BaseGoblin>().Damage += 1;
+            });
         }
     }
 }
