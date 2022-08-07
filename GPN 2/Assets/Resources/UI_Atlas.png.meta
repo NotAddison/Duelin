@@ -1670,13 +1670,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: end_turn_true
+      name: end_turn_True
       rect:
         serializedVersion: 2
         x: 0
-        y: 138
+        y: 137
         width: 68
-        height: 31
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1691,7 +1691,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: end_turn_false
+      name: end_turn_False
       rect:
         serializedVersion: 2
         x: 0
@@ -1838,27 +1838,25 @@ TextureImporter:
       gold_20: -2041807866
       friendly_healthbar_6: -31717461
       friendly_healthbar_9: -18604749
-      enemy_healthbar_1: 31008297
+      gold_0: 2105299723
       settings: -879596315
-      gold_7: 1018394265
+      enemy_healthbar_1: 31008297
       gold_16: 1705148259
       gold_10: 799587055
+      gold_7: 1018394265
       enemy_healthbar_14: -1914652417
       gold_23: 37451490
-      gold_0: 2105299723
       friendly_healthbar_3: 230340702
       gold_22: 95377835
       cool_down_bar_1: 90372336
       gold_15: 1775143154
-      end_turn_true: 1904181749
+      ability_card: 108248020
       enemy_healthbar_3: -265749006
       gold_17: -1201038843
       gold_12: -1130044467
-      end_turn_false: 840640753
       gold_19: 74106666
       friendly_healthbar_10: -2000537275
       count_gold: 1021026331
-      ability_card: 108248020
       friendly_healthbar_11: -544046312
       friendly_healthbar_5: 1094091137
       cool_down_bar_3: 271744959
@@ -1881,9 +1879,11 @@ TextureImporter:
       enemy_healthbar_4: -1325817498
       unit_card_collapsed_selected: -1391482911
       gold_4: -1218212120
+      end_turn_True: 1904181749
       gold_8: 52808043
       shop_button: -1130324304
       count_mine: 1823502859
+      end_turn_False: 840640753
       gold_bar_15: 319662385
       enemy_healthbar_2: -2022132479
   spritePackingTag: 

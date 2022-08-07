@@ -8,6 +8,7 @@ public class ItemCard : UIElement, IClickable
 
     public void OnClick(GameObject prevSelection = null)
     {
+        if (TurnManager.getInstance().itemPurchased) return;
         bool canDeselect = prevSelection != null && prevSelection.GetComponent<ItemCard>() != null && prevSelection.GetComponent<ItemCard>() != this;
         if (canDeselect) prevSelection.GetComponent<ItemCard>().Deselect();
         isSelected = isSelected ? Deselect() : Select();

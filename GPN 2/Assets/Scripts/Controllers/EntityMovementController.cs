@@ -35,6 +35,7 @@ public class EntityMovementController : EntityController
     {
         clicks++;
         if (clicks <= 2) return;
+        if (TurnManager.getInstance().actionTaken) return;
 
         Vector2 mousePos = context.action.actionMap.FindAction(MOUSE_POS).ReadValue<Vector2>();
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
@@ -54,7 +55,7 @@ public class EntityMovementController : EntityController
         entity.transform.parent.position = destination;
         entity.UsePassive();
         DesyncCheck(destination);
-        TurnManager.getInstance().EndTurn();
+        TurnManager.getInstance().HandleTurnAction(TurnManager.ACTION.ACTION);
         actionManager.Deselect();
     }
 

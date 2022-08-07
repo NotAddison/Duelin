@@ -33,6 +33,7 @@ public class EntityAttackController : EntityController
     {
         clicks++;
         if (clicks <= 2) return;
+        if (TurnManager.getInstance().bonusActionTaken) return;
 
         Vector2 mousePos = context.action.actionMap.FindAction(MOUSE_POS).ReadValue<Vector2>();
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
@@ -57,7 +58,7 @@ public class EntityAttackController : EntityController
             // entity.UsePassive();
         }
 
-        TurnManager.getInstance().EndTurn();
+        TurnManager.getInstance().HandleTurnAction(TurnManager.ACTION.BONUS_ACTION);
         actionManager.Deselect();
     }
 

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,18 +8,13 @@ public class ShopManager : MonoBehaviour
     public static ShopManager getInstance() => GameObject.FindWithTag("ShopManager").GetComponent<ShopManager>();
     private List<GameObject> AllUnits;
     private List<GameObject> AllCards;
-    private List<GameObject> UnitsForSale;
-    private List<GameObject> CardsForSale;
-    private System.Random random;
+    private List<GameObject> UnitsForSale = new List<GameObject>();
+    private List<GameObject> CardsForSale = new List<GameObject>();
+    private System.Random random = new System.Random();
 
     private void Start() {
         AllUnits = new List<GameObject>(Resources.LoadAll<GameObject>("Prefabs/Units"));
         // AllCards = new List<GameObject>(Resources.LoadAll<GameObject>("Prefabs/Cards"));
-
-        UnitsForSale = new List<GameObject>();
-        CardsForSale = new List<GameObject>();
-
-        random = new System.Random();
 
         for(int i = 0; i < 8; i++) generateUnit();
         // for(int i = 0; i < 3; i++) generateCard();
@@ -53,6 +49,7 @@ public class ShopManager : MonoBehaviour
         }
 
         LocalInventory.getInstance().RemoveGold(itemCost);
+        TurnManager.getInstance().HandleTurnAction(TurnManager.ACTION.PURCHASE); 
 
         return selectedItem;
     }
@@ -74,5 +71,12 @@ public class ShopManager : MonoBehaviour
 
             itemPrefabInstance.GetComponent<ItemCard>().RenderCard(itemForSale, ItemCard.ItemType.UNIT);
         }
+    }
+
+    public bool CanAffordAny()
+    {
+        bool canAffordAnyUnit = UnitsForSale.Any(unit => unit.transform.Find("entity").GetComponent<BaseGoblin>().Cost() <= LocalInventory.getInstance().GetGold());
+        // bool canAffordAnyCard = CardsForSale.Any(card => card.transform.Find("entity").GetComponent<BaseGoblin>().Cost() < LocalInventory.getInstance().GetGold());
+        return canAffordAnyUnit; // && canAffordAnyCard;
     }
 }
