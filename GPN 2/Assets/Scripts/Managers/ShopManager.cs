@@ -32,7 +32,7 @@ public class ShopManager : MonoBehaviour
         int MAX_UNITS = 5;
         int MAX_CARDS = 4;
 
-        int itemCost = ((IBuyable)(selectedItem.GetComponents<Component>().Single(component => component is IBuyable))).Cost;
+        int itemCost = selectedItem.transform.Find("entity").GetComponent<BaseGoblin>().Cost();
 
         // TODO: UI Hint
         if (itemCost > LocalInventory.getInstance().GetGold()) return null;
@@ -71,7 +71,8 @@ public class ShopManager : MonoBehaviour
             GameObject itemPrefabInstance = Instantiate(itemPrefab, displayPos, Quaternion.identity);
 
             // TODO: Migrate to own object
-            string spriteName = itemForSale.transform.Find("entity").GetComponent<BaseGoblin>().gameObject.GetComponent<SpriteRenderer>().sprite.name;
+            BaseGoblin currentItemEntity = itemForSale.transform.Find("entity").GetComponent<BaseGoblin>();
+            string spriteName = currentItemEntity.gameObject.GetComponent<SpriteRenderer>().sprite.name;
             Utility.RenderSprite(itemPrefabInstance.transform, spriteName, "item", "Atlas");
         }
     }

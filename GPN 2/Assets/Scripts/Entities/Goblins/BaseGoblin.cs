@@ -10,6 +10,7 @@ public class BaseGoblin : Entity, IClickable
     public int Range;
     public int MovementRange;
     public float cooldown;
+    public virtual int Cost() => 1;
     public List<Entity> entitiesInRange;
     public EntityActionManager actionManager;
     public GameObject unit_card;
@@ -33,8 +34,8 @@ public class BaseGoblin : Entity, IClickable
         occupationState = OCCUPATION_STATE.FREE;
 
         RenderHealth(parent);
-        
-        if(!photonView.IsMine) return;
+
+        if (!photonView.IsMine) return;
         Vector3 cardPosition = new Vector3(-2.06f, (0.89f - (0.28f * entityIndex)), 0f);
         unit_card = Instantiate(Resources.Load<GameObject>("Prefabs/UI/unit_card"), cardPosition, Quaternion.identity);
         LocalInventory.getInstance().UpdateEntityListItem(parent.gameObject, entityIndex);
@@ -43,20 +44,20 @@ public class BaseGoblin : Entity, IClickable
     }
 
     public Vector3 getCurrentPos() => new Vector3(transform.position.x, transform.position.y - 0.16f, transform.position.z);
-    public virtual void UsePassive() {}
-    public virtual void UseAbility() {}
+    public virtual void UsePassive() { }
+    public virtual void UseAbility() { }
 
     public void OnClick(GameObject prevSelection = null)
     {
-        if(!photonView.IsMine) return;
-        Entity prevEntity = prevSelection?.GetComponent<Entity>(); 
+        if (!photonView.IsMine) return;
+        Entity prevEntity = prevSelection?.GetComponent<Entity>();
         bool isEntityGoblin = BaseGoblin.IsEntityGoblin(prevEntity);
-        BaseGoblin prevGoblin = isEntityGoblin ? (BaseGoblin) prevEntity : null;
+        BaseGoblin prevGoblin = isEntityGoblin ? (BaseGoblin)prevEntity : null;
         bool canDeselect() => isEntityGoblin && prevEntity != this;
         bool isTargetable() => isEntityGoblin && prevGoblin.entitiesInRange.Contains(this);
 
-        if(isTargetable()) return;
-        if(canDeselect()) prevGoblin.actionManager.Deselect();
+        if (isTargetable()) return;
+        if (canDeselect()) prevGoblin.actionManager.Deselect();
 
         isSelected = isSelected ? actionManager.Deselect() : actionManager.Select();
     }
@@ -64,7 +65,8 @@ public class BaseGoblin : Entity, IClickable
     public override void OnDamage(BaseGoblin attackingEntity, Vector3 targetPos)
     {
         Health -= attackingEntity.Damage;
-        if (Health <= 0) {
+        if (Health <= 0)
+        {
             OnDeath(attackingEntity);
             return;
         }
@@ -73,9 +75,9 @@ public class BaseGoblin : Entity, IClickable
     }
 
     public override void OnDeath(BaseGoblin attackingEntity, Vector3? targetPos = null)
-    {   
+    {
         Destroy(parent.gameObject);
-        if(!photonView.IsMine) return;
+        if (!photonView.IsMine) return;
         LocalInventory.getInstance().DestroyEntity(parent.gameObject);
         Debug.LogError(parent.gameObject.name);
         Destroy(unit_card);
