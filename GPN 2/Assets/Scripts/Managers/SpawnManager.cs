@@ -79,7 +79,7 @@ public class SpawnManager : MonoBehaviour, IClickable
     bool canSpawn(Vector3 targetPos)
     {
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(targetPos.x, targetPos.y), Vector2.zero);
-        bool isOccupied = hit.collider != null;
+        bool isOccupied = hit.collider != null && hit.collider.name != "Tilemap - Highlight [SpawnPoints]";
         return !isOccupied;
     }
 
@@ -99,6 +99,7 @@ public class SpawnManager : MonoBehaviour, IClickable
         GameObject item = ShopManager.getInstance().Purchase(itemCard.item);
 
         if (item == null) return;
+        Debug.Log("Purchase successful");
 
         GameObject.FindWithTag("GoldAmount").GetComponent<GoldBar>().RenderAmount();
         SpawnUnit(itemCard.item, new Vector3(spawnPos.x, spawnPos.y += 0.16f, spawnPos.z));

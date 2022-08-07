@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -213423817
-  m_SortingLayer: 5
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -605117969, guid: 72975a7118f979946a56f2a42a6f1ccb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -104,8 +104,7 @@ MonoBehaviour:
   Health: 4
   Range: 0
   MovementRange: 2
-  cooldown: 0
-  entitiesInRange: []
+  Cooldown: 0
   actionManager: {fileID: 0}
   unit_card: {fileID: 0}
   isSelected: 0
@@ -276,7 +275,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -213423817
-  m_SortingLayer: 5
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -2008757515, guid: 6fcbeac90a67c994aae5c5fa0b317565, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

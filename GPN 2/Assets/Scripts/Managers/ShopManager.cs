@@ -27,6 +27,7 @@ public class ShopManager : MonoBehaviour
     private void generateUnit() => UnitsForSale.Add(AllUnits[random.Next(AllUnits.Count)]);
     private void generateCard() => CardsForSale.Add(AllCards[random.Next(AllCards.Count)]);
 
+    // TODO: Sync across clients
     public GameObject Purchase(GameObject selectedItem)
     {
         int MAX_UNITS = 5;
@@ -36,7 +37,7 @@ public class ShopManager : MonoBehaviour
 
         // TODO: UI Hint
         if (itemCost > LocalInventory.getInstance().GetGold()) return null;
-        if (SpawnManager.getInstance().HasSpawnPoints()) return null;
+        if (!SpawnManager.getInstance().HasSpawnPoints()) return null;
 
         if(UnitsForSale.Contains(selectedItem))
         {
