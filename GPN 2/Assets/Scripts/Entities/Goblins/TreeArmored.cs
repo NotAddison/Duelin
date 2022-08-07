@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TreeArmored : Tank
 {
+    public override int Cost() => 1;
     public override void UseAbility()
     {
         

@@ -21,14 +21,13 @@ public class TurnManager : MonoBehaviour
         GameObject.FindWithTag("GoldAmount").GetComponent<GoldBar>().RenderAmount();
         itemPurchased = isFirstTurn ? false : !ShopManager.getInstance().CanAffordAny();
         EndTurnButton.getInstance().RenderButton(actionTaken && bonusActionTaken && itemPurchased);
-
-        Debug.Log($"{actionTaken}{bonusActionTaken}{itemPurchased}{isFirstTurn}");
     }
 
     [PunRPC]
     public void EndTurn()
     {
         actionTaken = bonusActionTaken = itemPurchased = isFirstTurn = false;
+        EndTurnButton.getInstance().RenderButton(actionTaken && bonusActionTaken && itemPurchased);
         CurrentPlayer = CurrentPlayer.GetNext();
         StartTurn();
     }

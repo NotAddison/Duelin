@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Soldier : BaseGoblin
 {
+    public override int Cost() => 1;
     void Start() {
         LocalInventory.getInstance().GetGoblins().ForEach(x => {
             if (x.GetType() == typeof(Soldier)) {

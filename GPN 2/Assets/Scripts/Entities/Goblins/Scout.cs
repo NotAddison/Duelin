@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Scout : BaseGoblin
 {
-    public override int Cost() => 4;
+    public override int Cost() => 2;
     public override void UseAbility()
     {
         

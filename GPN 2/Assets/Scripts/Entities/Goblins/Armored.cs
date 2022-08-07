@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Armored : Tank
 {
+    public override int Cost() => 2;
     public override void UseAbility()
     {
 

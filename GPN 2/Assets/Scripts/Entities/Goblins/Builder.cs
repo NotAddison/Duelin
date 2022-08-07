@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Builder : BaseGoblin
 {
+    public override int Cost() => 2;
     public override void UseAbility()
     {
     }

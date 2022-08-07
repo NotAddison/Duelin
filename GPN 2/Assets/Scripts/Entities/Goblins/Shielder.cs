@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Shielder : Tank
 {
+    public override int Cost() => 3;
     public override void UseAbility()
     {
         

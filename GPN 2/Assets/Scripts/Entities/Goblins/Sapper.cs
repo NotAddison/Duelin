@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sapper : MonoBehaviour
+public class Sapper : BaseGoblin
 {
-    // Start is called before the first frame update
+    public override int Cost() => 2;
     void Start()
     {
         

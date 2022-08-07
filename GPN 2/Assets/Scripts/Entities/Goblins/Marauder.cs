@@ -7,6 +7,7 @@ public class Marauder : BaseGoblin
     public string code;
     public string skillName;
     public string description;
+    public override int Cost() => 7;
 
     public override void UseAbility()
     {

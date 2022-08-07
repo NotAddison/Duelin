@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class Archer : BaseGoblin
 {
-    public override int Cost() => 4;
+    public override int Cost() => 3;
 
 }
