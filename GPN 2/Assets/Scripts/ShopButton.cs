@@ -8,5 +8,6 @@ public class ShopButton : UIElement, IClickable
     {
         _enabled = !_enabled;
         GameObject.FindWithTag("ShopPanel").GetComponent<SpriteRenderer>().enabled = _enabled;
+        GameObject.FindWithTag("ShopManager").GetComponent<ShopManager>().RenderItemsForSale(_enabled);
     }
 }

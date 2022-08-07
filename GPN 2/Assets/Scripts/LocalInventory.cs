@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
@@ -62,6 +63,7 @@ public class LocalInventory
     
     public int GetPositionOfEntity(GameObject entity) => Entities.FindIndex(e => e == entity);
     public int GetEntityListSize() => Entities.Count; 
+    public int GetCardListSize() => Cards.Count; 
     public List<BaseGoblin> GetGoblins() => Entities.Select(entity => entity.transform.Find("entity").GetComponent<BaseGoblin>()).ToList();
     public BaseGoblin GetGoblin(int index) => Entities[index].transform.Find("entity").GetComponent<BaseGoblin>();
 

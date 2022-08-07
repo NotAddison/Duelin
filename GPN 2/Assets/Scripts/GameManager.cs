@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void SpawnCharacters(){
         // [TO-DO]: Get players selected characters ; Spawn characters based on selected characters
         List<List<Vector3>> spawnPositions = InitSpawnPos();
-
         List<GameObject> Entities = LocalInventory.getInstance().RandomizeEntities();
         // ---- Spawn Characters ----
         for (int i = 0; i < Entities.Count; i++)

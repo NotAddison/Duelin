@@ -21,8 +21,8 @@ public static class ExtensionMethods
         return value.ToString();
     }
 
-    public static void RenderSprite(Transform parent, string spriteName, string componentName) {
-        Sprite sprite = Resources.LoadAll<Sprite>("UI_Atlas").Single(sprite => sprite.name.Equals(spriteName));
+    public static void RenderSprite(Transform parent, string spriteName, string componentName, string resourceName = "UI_Atlas") {
+        Sprite sprite = Resources.LoadAll<Sprite>(resourceName).Single(sprite => sprite.name.Equals(spriteName));
         SpriteRenderer renderer = parent.Find(componentName).gameObject.GetComponent<SpriteRenderer>();
         renderer.sprite = sprite;
     }
