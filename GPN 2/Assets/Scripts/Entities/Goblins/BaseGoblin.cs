@@ -83,12 +83,11 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     }
 
     public override void OnDeath(BaseGoblin attackingEntity, Vector3? targetPos = null)
-    {
-        Destroy(parent.gameObject);
-        if (!photonView.IsMine) return;
+    {    
+        if (!photonView.IsMine) {Destroy(parent.gameObject); return;}
         LocalInventory.getInstance().DestroyEntity(parent.gameObject);
-        Debug.LogError(parent.gameObject.name);
         Destroy(unit_card);
+        Destroy(parent.gameObject);
         entityIndex -= 1;
         if (attackingEntity.Range > 1) attackingEntity.isMovementBlocked = true;
     }
