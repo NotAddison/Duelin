@@ -17,7 +17,7 @@ public class UnitCard : MonoBehaviour, IClickable
     public void RenderCard(BaseGoblin entity, bool isSelected = false)
     {
         Utility.RenderSprite(gameObject.transform,$"{(entity.photonView.IsMine ? "friendly" : "enemy")}_healthbar_{entity.Health}" ,"healthbar");
-        Utility.RenderSprite(gameObject.transform, entity.cooldown > 0 ? $"cool_down_bar_{entity.cooldown}" : "empty_bar", "cooldown");
+        Utility.RenderSprite(gameObject.transform, entity.Cooldown > 0 ? $"cool_down_bar_{entity.Cooldown}" : "empty_bar", "cooldown");
         Utility.RenderSprite(gameObject.transform, $"unit_card{(isSelected ? "_selected" : "")}", "card");
 
         Sprite unitSprite = entity.gameObject.GetComponent<SpriteRenderer>().sprite;

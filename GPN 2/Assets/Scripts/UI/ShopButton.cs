@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class ShopButton : UIElement, IClickable
 {
-    private bool _enabled = false;
+    private bool _enabled;
+
+    private void Start() {
+        _enabled = GameObject.FindWithTag("ShopPanel").GetComponent<SpriteRenderer>().enabled;
+    }
 
     public void OnClick(GameObject prevSelection = null)
     {

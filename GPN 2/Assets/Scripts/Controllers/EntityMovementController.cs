@@ -61,7 +61,7 @@ public class EntityMovementController : EntityController
     public void DesyncCheck(Vector3 destination){
         destination.y -= 0.16f; // Offset for the tilemap
 
-        if (entity.getCurrentPos() != destination) // If current entity postion is not the same as destination position
+        if (entity.GetCurrentPos() != destination) // If current entity postion is not the same as destination position
         {
             PhotonView.Get(this).RPC("MoveEntity", RpcTarget.All, destination);
         }
@@ -85,7 +85,7 @@ public class EntityMovementController : EntityController
     private bool canMove(Vector3Int targetPos)
     {  
         Vector3 worldPos = gameTilemap.CellToWorld(targetPos);
-        int dist = (int) Math.Ceiling(Vector3.Distance(gameTilemap.WorldToCell(entity.getCurrentPos()), targetPos));
+        int dist = (int) Math.Ceiling(Vector3.Distance(gameTilemap.WorldToCell(entity.GetCurrentPos()), targetPos));
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(worldPos.x, worldPos.y += 0.16f), Vector2.zero);
         
         bool hasTile = gameTilemap.HasTile(targetPos);

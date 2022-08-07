@@ -1,5 +1,3 @@
-using System;
-using System.ComponentModel;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -59,7 +57,7 @@ public class EntityActionManager : MonoBehaviour
 
     public bool Deselect()
     {
-        entity.entitiesInRange.Clear();
+        entity.ClearEntitiesInRange();
         entity.unit_card.GetComponent<UnitCard>().RenderCard(entity);
         
         _controllerList.ForEach(controller => {

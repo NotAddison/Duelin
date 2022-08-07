@@ -38,7 +38,7 @@ public class LocalInventory
 
     public void UpdateGoldAmount(){
         GetGoblins().ForEach(entity => {
-            Vector3Int currentCellPos = mineTilemap.WorldToCell(entity.getCurrentPos());
+            Vector3Int currentCellPos = mineTilemap.WorldToCell(entity.GetCurrentPos());
             bool isOnMine = mineTilemap.HasTile(new Vector3Int(currentCellPos.x, currentCellPos.y, 2));
             bool hasCaptured = entity.occupationState == BaseGoblin.OCCUPATION_STATE.CAPTURED;
 

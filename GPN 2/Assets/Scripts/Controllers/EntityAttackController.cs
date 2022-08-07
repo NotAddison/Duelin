@@ -57,15 +57,8 @@ public class EntityAttackController : EntityController
             // entity.UsePassive();
         }
 
-        // TODO: DesyncCheck
-        DesyncCheck(targetPos);
-
         TurnManager.getInstance().EndTurn();
         actionManager.Deselect();
-    }
-
-    public void DesyncCheck(Vector3 targetPos){
-        // if () entity.GetComponent<PhotonView>().RPC("AttackEntity", RpcTarget.All, targetEntity, targetPos);
     }
 
     public override void Clear()
@@ -83,10 +76,11 @@ public class EntityAttackController : EntityController
             }
         }
     }
+    
     private bool canAttack(Vector3Int targetPos)
     {  
         Vector3 worldPos = gameTilemap.CellToWorld(targetPos);
-        int dist = (int) Math.Ceiling(Vector3.Distance(gameTilemap.WorldToCell(entity.getCurrentPos()), targetPos));
+        int dist = (int) Math.Ceiling(Vector3.Distance(gameTilemap.WorldToCell(entity.GetCurrentPos()), targetPos));
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(worldPos.x, worldPos.y += 0.16f), Vector2.zero);
         
         bool inRange = dist <= entity.Range && dist != 0;
@@ -94,7 +88,7 @@ public class EntityAttackController : EntityController
         bool isSameTeam = isOccupied && (hit.collider.gameObject.GetComponent<PhotonView>()?.IsMine ?? false);
         bool canAttack = inRange && isOccupied && !isSameTeam;
 
-        if(canAttack) entity.entitiesInRange.Add(hit.collider.gameObject.GetComponent<Entity>());
+        if(canAttack) entity.AddEntityToRange(hit.collider.gameObject.GetComponent<Entity>());
 
         return canAttack;
     }

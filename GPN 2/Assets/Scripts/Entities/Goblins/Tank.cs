@@ -51,7 +51,7 @@ public class Tank : BaseGoblin
     private bool isTaunted(Vector3Int targetPos)
     {  
         Vector3 worldPos = gameTilemap.CellToWorld(targetPos);
-        int dist = (int) Math.Ceiling(Vector3.Distance(gameTilemap.WorldToCell(getCurrentPos()), targetPos));
+        int dist = (int) Math.Ceiling(Vector3.Distance(gameTilemap.WorldToCell(GetCurrentPos()), targetPos));
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(worldPos.x, worldPos.y += 0.16f), Vector2.zero);
         
         bool inRange = dist <= 1 && dist != 0;

@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 2739460067692257351}
   - component: {fileID: 2739460067692257350}
   m_Layer: 0
-  m_Name: item_card_collapsed
+  m_Name: item_card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

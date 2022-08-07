@@ -9,12 +9,7 @@ public class TurnManager : MonoBehaviour
     private static Player CurrentPlayer = PhotonNetwork.MasterClient;  // Default to Master Client to be the first player
     private int turnNumber = 0;
 
-    public bool CheckTurn()
-    {
-        Debug.LogError($"It is currently {CurrentPlayer.ActorNumber}'s turn.");
-        bool status = GetCurrentPlayer() == PhotonNetwork.LocalPlayer;
-        return status;
-    }
+    public bool CheckTurn() => CurrentPlayer == PhotonNetwork.LocalPlayer;
 
     [PunRPC]
     public void StartTurn()
@@ -45,7 +40,6 @@ public class TurnManager : MonoBehaviour
         PhotonView.Get(this).RPC(ACTION, RpcTarget.All);
     }
 
-    public Player GetCurrentPlayer() => CurrentPlayer;
     public enum ACTION
     {
         [Description("EndTurn")]

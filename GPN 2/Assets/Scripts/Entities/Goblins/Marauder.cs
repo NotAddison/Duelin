@@ -10,8 +10,8 @@ public class Marauder : BaseGoblin
 
     public override void UseAbility()
     {
-        if (cooldown == 0){
-            cooldown += 4;
+        if (Cooldown == 0){
+            Cooldown += 4;
             LocalInventory.getInstance().GetGoblins().ForEach(goblin => {
                 goblin.GetComponent<BaseGoblin>().Health += 1;
                 goblin.GetComponent<BaseGoblin>().Damage += 1;

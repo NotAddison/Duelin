@@ -5,23 +5,27 @@ using Photon.Pun;
 
 public class BaseGoblin : Entity, IClickable, IBuyable
 {
+    #region Properties
     public int Damage;
     public int Health;
     public int Range;
     public int MovementRange;
-    public float cooldown;
+    public float Cooldown;
     public virtual int Cost() => 1;
-    public List<Entity> entitiesInRange;
+
     public EntityActionManager actionManager;
     public GameObject unit_card;
     public bool isSelected;
     public bool isMovementBlocked;
     public OCCUPATION_STATE occupationState;
 
+    private List<Entity> entitiesInRange;
     public PhotonView photonView;
     private Transform parent;
     private static int entityIndex = 0;
+    #endregion
 
+    #region Constructor
     void Start()
     {
         actionManager = GetComponent<EntityActionManager>();
@@ -42,22 +46,26 @@ public class BaseGoblin : Entity, IClickable, IBuyable
         entityIndex += 1;
         unit_card.GetComponent<UnitCard>().RenderCard(this);
     }
+    #endregion
 
-    public Vector3 getCurrentPos() => new Vector3(transform.position.x, transform.position.y - 0.16f, transform.position.z);
+    #region Virtual Methods
     public virtual void UsePassive() { }
     public virtual void UseAbility() { }
+    #endregion
 
+    #region Event Handlers
     public void OnClick(GameObject prevSelection = null)
     {
         if (!photonView.IsMine) return;
         Entity prevEntity = prevSelection?.GetComponent<Entity>();
-        bool isEntityGoblin = BaseGoblin.IsEntityGoblin(prevEntity);
-        BaseGoblin prevGoblin = isEntityGoblin ? (BaseGoblin)prevEntity : null;
-        bool canDeselect() => isEntityGoblin && prevEntity != this;
-        bool isTargetable() => isEntityGoblin && prevGoblin.entitiesInRange.Contains(this);
+        bool isEntityGoblin = prevEntity is BaseGoblin;
+        BaseGoblin prevGoblin = isEntityGoblin ? (BaseGoblin) prevEntity : null;
 
-        if (isTargetable()) return;
-        if (canDeselect()) prevGoblin.actionManager.Deselect();
+        bool canDeselect = isEntityGoblin && prevEntity != this;
+        bool isTargetable = isEntityGoblin && prevGoblin.GetEntitiesInRange().Contains(this);
+
+        if (isTargetable) return;
+        if (canDeselect) prevGoblin.actionManager.Deselect();
 
         isSelected = isSelected ? actionManager.Deselect() : actionManager.Select();
     }
@@ -84,8 +92,14 @@ public class BaseGoblin : Entity, IClickable, IBuyable
         entityIndex -= 1;
         if (attackingEntity.Range > 1) attackingEntity.isMovementBlocked = true;
     }
+    #endregion
 
-    public static bool IsEntityGoblin(Entity entity) => entity is BaseGoblin;
+    #region Public Methods
+    public void ClearEntitiesInRange() => entitiesInRange.Clear();
+    public List<Entity> GetEntitiesInRange() => entitiesInRange;
+    public Vector3 GetCurrentPos() => new Vector3(transform.position.x, transform.position.y - 0.16f, transform.position.z);
+    public void AddEntityToRange(Entity entity) => entitiesInRange.Add(entity);
+    #endregion
 
     private void RenderHealth(Transform parent)
     {

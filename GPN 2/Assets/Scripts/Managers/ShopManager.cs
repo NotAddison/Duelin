@@ -58,7 +58,10 @@ public class ShopManager : MonoBehaviour
     {
         if (!_enabled)
         {
-            GameObject.FindGameObjectsWithTag("ShopItem").ForEach(item => Destroy(item));
+            GameObject.FindGameObjectsWithTag("ShopItem").ForEach(item => {
+                item.GetComponent<ItemCard>().Deselect();
+                Destroy(item);
+            });
             return;
         }
         
