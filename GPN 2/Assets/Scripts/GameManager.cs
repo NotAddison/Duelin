@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         amountToWin += PhotonNetwork.CountOfPlayersInRooms > 2 ? (PhotonNetwork.CountOfPlayersInRooms - 2) * 5 : 0;
         GameObject.FindWithTag("GoldBar").GetComponent<GoldBar>().RenderBar();
         PhotonNetwork.Instantiate("Prefabs/Structures/spawn", spawnPositions[PhotonNetwork.LocalPlayer.ActorNumber-1], Quaternion.identity);
+        GameObject.FindWithTag("GoldAmount").GetComponent<GoldAmount>().RenderAmount();
         TurnManager.getInstance().StartTurn();
     }
     void OnApplicationQuit()
