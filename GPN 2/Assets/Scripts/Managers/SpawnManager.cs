@@ -79,6 +79,7 @@ public class SpawnManager : MonoBehaviour, IClickable
         bool isOccupied = hit.collider != null && hit.collider.name != "Tilemap - Highlight [SpawnPoints]" && hit.collider.name == "spawn(Clone)";
         return !isOccupied;
     }
+
     private void SpawnUnit(GameObject unit, Vector3 position) => PhotonNetwork.Instantiate($"Prefabs/Units/{unit.name}", position, Quaternion.identity);
     public void OnClick(GameObject prevSelection = null)
     {
@@ -90,6 +91,8 @@ public class SpawnManager : MonoBehaviour, IClickable
         mousePos = _camera.ScreenToWorldPoint(mousePos);
         Vector3Int gridPos = spawnHighlightMap.WorldToCell((Vector3) mousePos);
         Vector3 spawnPos = spawnHighlightMap.CellToWorld(gridPos);
+
+        if (!canSpawn(spawnPos)) return;
 
         ItemCard itemCard = prevSelection.GetComponent<ItemCard>();
 
