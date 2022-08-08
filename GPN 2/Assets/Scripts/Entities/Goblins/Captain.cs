@@ -18,5 +18,6 @@ public class Captain : BaseGoblin
                 LocalInventory.getInstance().AddGold(1);
             }
         });
+        LocalInventory.getInstance().AddGold(-1);
     }
 }
