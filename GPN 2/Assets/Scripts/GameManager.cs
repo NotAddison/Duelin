@@ -17,6 +17,22 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        // Play OST 
+        if (SettingsMenu.getInstance() == null) // Did not change any Settings
+        {
+            FindObjectOfType<AudioManager>().Play("OST 2", 1f);
+            FindObjectOfType<AudioManager>().Play("Ambience", 1f);
+        }
+        else
+        {
+            float ostVol = SettingsMenu.getInstance().GetOSTVol();
+            Debug.Log($"[GameManager] OST Volume set to {ostVol}");
+            FindObjectOfType<AudioManager>().Play("OST 2", ostVol);
+            FindObjectOfType<AudioManager>().Play("Ambience", SettingsMenu.getInstance().GetAmbienceVol());
+        }
+        
+
+
         amountToWin += PhotonNetwork.CountOfPlayersInRooms > 2 ? (PhotonNetwork.CountOfPlayersInRooms - 2) * 5 : 0;
         GameObject.FindWithTag("GoldBar").GetComponent<GoldBar>().RenderBar();
         PhotonNetwork.Instantiate("Prefabs/Structures/spawn", spawnPositions[PhotonNetwork.LocalPlayer.ActorNumber-1], Quaternion.identity);
