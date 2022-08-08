@@ -19,13 +19,10 @@ public class EntityAbilityController : EntityController
         return _abilityController;
     }
 
-    void Start() {
-
-    }
-
     public override void HandleAction(InputAction.CallbackContext context)
     {
-        entity.UseAbility();
+        Debug.Log($"Right click performed {entity}");
+        entity.UseAbility(context);
     }
 
     public delegate bool renderCondition(Vector3Int targetPos);

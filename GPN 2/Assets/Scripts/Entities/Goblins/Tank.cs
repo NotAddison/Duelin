@@ -12,11 +12,8 @@ public class Tank : BaseGoblin
     private readonly string TAUNT_MAP = "Tilemap - Highlight [Taunt]";
     private readonly string TAUNT_HIGHLIGHT = "Levels/Tiles/taunt_highlight";
 
-    public string code;
-    public string skillName;
-    public string description;
-
-    void Start() {
+    new protected void Start() {
+        base.Start();
         gameTilemap = GameObject.Find(GAME_MAP).GetComponent<Tilemap>();
         tauntHighlightMap = GameObject.Find(TAUNT_MAP).GetComponent<Tilemap>();
         tauntHighlight = Resources.Load<Tile>(TAUNT_HIGHLIGHT);
@@ -41,7 +38,7 @@ public class Tank : BaseGoblin
                 tauntHighlightMap.SetTile(new Vector3Int(x,y,0), tauntHighlight);
             }
         }
-    }
+    }   
 
     private void Clear()
     {

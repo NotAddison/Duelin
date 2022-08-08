@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class EntityActionManager : MonoBehaviour
 {
@@ -66,8 +67,17 @@ public class EntityActionManager : MonoBehaviour
             controller.Clear();
         });
 
+        GameObject.FindGameObjectsWithTag("Highlight").ForEach(obj => {
+            obj.GetComponent<Tilemap>().ClearAllTiles();
+        });
+
         entity.isSelected = false;
 
         return false;
+    }
+
+    public void UpdateController()
+    {
+        
     }
 }
