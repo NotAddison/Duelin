@@ -81,7 +81,6 @@ public class LocalInventory
         return Cards;
     }
 
-
     // ==== Currency ====
     public int GetGold(){
         return Gold;
@@ -92,6 +91,8 @@ public class LocalInventory
     ///</summary>
     public void AddGold(int value){
         Gold += value;
+        if (!(Gold >= GameManager.getInstance().amountToWin)) GameObject.FindWithTag("GoldAmount").GetComponent<GoldBar>().RenderAmount();
+        else Debug.Log("You Win");
     }
 
     ///<summary>
@@ -100,5 +101,4 @@ public class LocalInventory
     public void RemoveGold(int amount){
         Gold -= amount;
     }
-
 }

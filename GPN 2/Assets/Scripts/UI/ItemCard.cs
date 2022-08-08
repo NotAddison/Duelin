@@ -10,6 +10,13 @@ public class ItemCard : UIElement, IClickable
     {
         if (TurnManager.getInstance().itemPurchased) return;
         bool canDeselect = prevSelection != null && prevSelection.GetComponent<ItemCard>() != null && prevSelection.GetComponent<ItemCard>() != this;
+        bool isSelectionGoblin = prevSelection != null && prevSelection.GetComponent<BaseGoblin>() != null;
+        bool isSelectionSpawnTile = prevSelection != null && prevSelection.GetComponent<SpawnManager>() != null;
+
+        // TODO: Migrate deselection & selection to interface
+
+        if (isSelectionGoblin) prevSelection.GetComponent<BaseGoblin>().actionManager.Deselect();
+        if (isSelectionSpawnTile) prevSelection.GetComponent<SpawnManager>().Clear();
         if (canDeselect) prevSelection.GetComponent<ItemCard>().Deselect();
         isSelected = isSelected ? Deselect() : Select();
     }
@@ -17,10 +24,6 @@ public class ItemCard : UIElement, IClickable
     private bool Select()
     {
         Utility.RenderSprite(transform, $"unit_card_collapsed_selected", "item_card");
-
-        // !Bug: Clicking on a card and then clicking on a different card will 
-        // !     cause the spawn tiles to not render
-        // !     NOT GAME BREAKING
         if (type == ItemType.UNIT) SpawnManager.getInstance().DisplaySpawnableTiles();
 
         // TODO: Display selection information
