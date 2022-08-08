@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Warrior : BaseGoblin
 {
-    public override int Cost() => 1;
+    public override int Cost() => 3;
     new void Start() {
         base.Start();
         LocalInventory.getInstance().GetGoblins().ForEach(x => {
@@ -18,5 +18,6 @@ public class Warrior : BaseGoblin
                 LocalInventory.getInstance().AddGold(1);
             }
         });
+        LocalInventory.getInstance().AddGold(-1);
     }
 }

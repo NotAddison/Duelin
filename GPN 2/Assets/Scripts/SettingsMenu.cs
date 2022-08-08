@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -9,11 +11,19 @@ public class SettingsMenu : MonoBehaviour
     public float AmbienceVol = 1f;
 
     public static SettingsMenu getInstance() => GameObject.FindWithTag("Settings")?.GetComponent<SettingsMenu>();
-    
+
     void Start(){
-        GameObject.Find("Music").GetComponent<UnityEngine.UI.Slider>().value = PreserveSound.Instance.gameObject.GetComponent<AudioSource>().volume;
-        GameObject.Find("SFX").GetComponent<UnityEngine.UI.Slider>().value = 1f;
-        GameObject.Find("Ambience").GetComponent<UnityEngine.UI.Slider>().value = 1f;
+        Debug.LogError("Player Prefs null: " + (PlayerPrefs.HasKey("OSTVol")));
+
+        if (PlayerPrefs.HasKey("OSTVol")){GameObject.Find("Music").GetComponent<UnityEngine.UI.Slider>().value = PlayerPrefs.GetFloat("OSTVol");}
+        else GameObject.Find("Music").GetComponent<UnityEngine.UI.Slider>().value = 1f;
+
+        if (PlayerPrefs.HasKey("SFXVol")){GameObject.Find("SFX").GetComponent<UnityEngine.UI.Slider>().value = PlayerPrefs.GetFloat("SFXVol");}
+        else GameObject.Find("SFX").GetComponent<UnityEngine.UI.Slider>().value = 1f;
+
+        if (PlayerPrefs.HasKey("AmbienceVol")){GameObject.Find("Ambience").GetComponent<UnityEngine.UI.Slider>().value = PlayerPrefs.GetFloat("AmbienceVol");}
+        else GameObject.Find("Ambience").GetComponent<UnityEngine.UI.Slider>().value = 1f;
+
         DontDestroyOnLoad(this.gameObject);
     }
 
@@ -21,6 +31,7 @@ public class SettingsMenu : MonoBehaviour
         PreserveSound.Instance.gameObject.GetComponent<AudioSource>().volume = vol;
         Debug.LogError($"[Settings] Volume set to {vol}");
         OSTVol = vol;
+        PlayerPrefs.SetFloat("OSTVol", vol);
     }
 
     public float GetOSTVol(){
@@ -31,6 +42,7 @@ public class SettingsMenu : MonoBehaviour
         AudioListener.volume = vol;
         Debug.LogError($"[Settings] Volume set to {vol}");
         SFXVol = vol;
+        PlayerPrefs.SetFloat("SFXVol", vol);
     }
 
     public float GetSFXVol(){
@@ -41,9 +53,15 @@ public class SettingsMenu : MonoBehaviour
         AudioListener.volume = vol;
         Debug.LogError($"[Settings] Volume set to {vol}");
         AmbienceVol = vol;
+        PlayerPrefs.SetFloat("AmbienceVol", vol);
     }
 
     public float GetAmbienceVol(){
         return AmbienceVol;
+    }
+
+    public void ReturnToMain(){
+        PlayerPrefs.Save();
+        SceneManager.LoadScene("MainMenu");
     }
 }

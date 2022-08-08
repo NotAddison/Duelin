@@ -3,8 +3,13 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
 
+
 public class GameManager : MonoBehaviourPunCallbacks
 {
+    [SerializeField] GameObject GameCam;
+    [SerializeField] GameObject PauseCam;
+    [SerializeField] GameObject PauseMenu;
+
     public static GameManager getInstance() => GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
     List<Vector3> spawnPositions = new List<Vector3>(){
         new Vector3(     0, -0.48f, 0),
@@ -18,23 +23,25 @@ public class GameManager : MonoBehaviourPunCallbacks
     void Start()
     {
         // Play OST 
+        Debug.LogError("[GameManager] isNull: " + SettingsMenu.getInstance() == null);
         if (!SettingsMenu.getInstance()) // Did not change any Settings
         {
+            Debug.LogError("[GameManager] Setting Default Value (NULL)");
             FindObjectOfType<AudioManager>().Play("OST 2", 1f);
             FindObjectOfType<AudioManager>().Play("Ambience", 1f);
         }
         else
         {
+            Debug.LogError("[GameManager] Setting Custom Value");
             float ostVol = SettingsMenu.getInstance().GetOSTVol();
             Debug.Log($"[GameManager] OST Volume set to {ostVol}");
             FindObjectOfType<AudioManager>().Play("OST 2", ostVol);
             FindObjectOfType<AudioManager>().Play("Ambience", SettingsMenu.getInstance().GetAmbienceVol());
         }
-        
+
         amountToWin += PhotonNetwork.CountOfPlayersInRooms > 2 ? (PhotonNetwork.CountOfPlayersInRooms - 2) * 5 : 0;
         GameObject.FindWithTag("GoldBar").GetComponent<GoldBar>().RenderBar();
         PhotonNetwork.Instantiate("Prefabs/Structures/spawn", spawnPositions[PhotonNetwork.LocalPlayer.ActorNumber-1], Quaternion.identity);
-        GameObject.FindWithTag("GoldAmount").GetComponent<GoldAmount>().RenderAmount();
         TurnManager.getInstance().StartTurn();
     }
     void OnApplicationQuit()
@@ -43,5 +50,15 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     public override void OnPlayerLeftRoom(Player otherPlayer){
         Debug.LogError($"[GameManager]: Player {otherPlayer.ActorNumber} has left the room");
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseMenu.SetActive(true);
+            PauseCam.SetActive(true);
+            GameCam.SetActive(false);
+        }
     }
 }
