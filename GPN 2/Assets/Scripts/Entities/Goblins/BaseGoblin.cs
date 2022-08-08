@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Photon.Pun;
 
 public class BaseGoblin : Entity, IClickable, IBuyable
@@ -18,6 +19,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     public bool isSelected;
     public bool isMovementBlocked;
     public OCCUPATION_STATE occupationState;
+    private STATUS status;
 
     private List<Entity> entitiesInRange;
     public PhotonView photonView;
@@ -26,7 +28,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     #endregion
 
     #region Constructor
-    void Start()
+    protected void Start()
     {
         actionManager = GetComponent<EntityActionManager>();
         photonView = GetComponent<PhotonView>();
@@ -50,7 +52,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
 
     #region Virtual Methods
     public virtual void UsePassive() { }
-    public virtual void UseAbility() { }
+    public virtual void UseAbility(InputAction.CallbackContext context) { }
     #endregion
 
     #region Event Handlers
@@ -109,6 +111,27 @@ public class BaseGoblin : Entity, IClickable, IBuyable
         Sprite healthSprite = Resources.LoadAll<Sprite>("UI_Atlas").Single(sprite => sprite.name.Equals($"{(photonView.IsMine ? "friendly" : "enemy")}_healthbar_{Health}"));
         SpriteRenderer healthbarComponent = parent.Find("healthbar").gameObject.GetComponent<SpriteRenderer>();
         healthbarComponent.sprite = healthSprite;
+    }
+
+    public void HandleStatusEffects()
+    {
+        switch(status)
+        {
+            case STATUS.POISONED:
+
+                break;
+            case STATUS.SLOWED:
+
+                break;
+            default:
+                break;
+        }
+    }
+
+    private enum STATUS
+    {
+        SLOWED,
+        POISONED
     }
 
     public enum OCCUPATION_STATE

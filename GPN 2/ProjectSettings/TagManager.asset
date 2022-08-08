@@ -15,6 +15,7 @@ TagManager:
   - SpawnManager
   - EndTurnButton
   - GameManager
+  - Highlight
   layers:
   - Default
   - TransparentFX

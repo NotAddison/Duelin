@@ -18,6 +18,11 @@ public class TurnManager : MonoBehaviour
         turnNumber += 1;
         if (turnNumber <= 1) actionTaken = bonusActionTaken = isFirstTurn = true;
         LocalInventory.getInstance().UpdateGoldAmount();
+        LocalInventory.getInstance().GetGoblins().ForEach(goblin => {
+            goblin.UsePassive();
+            goblin.HandleStatusEffects();
+        });
+        GameObject.FindWithTag("GoldAmount").GetComponent<GoldBar>().RenderAmount();
         itemPurchased = isFirstTurn ? false : !ShopManager.getInstance().CanAffordAny();
         EndTurnButton.getInstance().RenderButton(actionTaken && bonusActionTaken && itemPurchased);
     }
