@@ -47,9 +47,9 @@ public class ItemCard : UIElement, IClickable
         Component itemComponent = null;
         this.item = item;
         this.type = type;
-        if (type == ItemType.UNIT) itemComponent = item.transform.Find("entity").GetComponent<BaseGoblin>();
+        itemComponent = type == ItemType.UNIT ? item.transform.Find("entity").GetComponent<BaseGoblin>() : item.transform.Find("card_icon").GetComponent<SpriteRenderer>();
         string spriteName = itemComponent.gameObject.GetComponent<SpriteRenderer>().sprite.name;
-        Utility.RenderSprite(transform, spriteName, "item", "Atlas");
+        Utility.RenderSprite(transform, type == ItemType.UNIT ? spriteName : $"{spriteName}_minified", "item", "Atlas");
     }
 
     public enum ItemType

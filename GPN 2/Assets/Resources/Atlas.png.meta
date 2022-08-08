@@ -970,6 +970,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: skill_preparation_name
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 64
+        width: 43
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fed9c97f38f1d54a910bb0668b3c5c5
+      internalID: 1474681004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skill_preparation_desc
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 79
+        width: 45
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0790799764d3b1248a23496ad994d71e
+      internalID: 1918454851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -988,6 +1030,7 @@ TextureImporter:
       barrel: 1288579164
       archer: -1334303356
       attack_highlight: -1692345310
+      skill_preparation_name: 1474681004
       warrior: 1055742990
       stone_5: 381707343
       skill_preparation: -1114622835
@@ -1010,6 +1053,7 @@ TextureImporter:
       sapper: 25987414
       stone_9: -1108701817
       water_0: -1930180091
+      skill_preparation_desc: 1918454851
       stone_wall: 1724306877
       rogue: -605117969
       shield: -1767259538
