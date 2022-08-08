@@ -91,7 +91,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
             Destroy(parent.gameObject); 
             return;
         }
-        LocalInventory.getInstance().DestroyEntity(parent.gameObject);
+        LocalInventory.getInstance().DestroyGoblin(parent.gameObject);
         Destroy(unit_card);
         Destroy(parent.gameObject);
         entityIndex -= 1;

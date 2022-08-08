@@ -8,7 +8,7 @@ public class SettingsMenu : MonoBehaviour
     public float SFXVol = 1f;
     public float AmbienceVol = 1f;
 
-    public static SettingsMenu getInstance() => GameObject.FindWithTag("Settings").GetComponent<SettingsMenu>();
+    public static SettingsMenu getInstance() => GameObject.FindWithTag("Settings")?.GetComponent<SettingsMenu>();
     
     void Start(){
         GameObject.Find("Music").GetComponent<UnityEngine.UI.Slider>().value = PreserveSound.Instance.gameObject.GetComponent<AudioSource>().volume;

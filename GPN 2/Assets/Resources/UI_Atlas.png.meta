@@ -1837,6 +1837,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: buy_button
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 0
+        width: 26
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 370d81cca1d91df4b9209357bf85566f
+      internalID: 328681393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1850,6 +1871,7 @@ TextureImporter:
     nameFileIdTable:
       friendly_healthbar_1: -2008757515
       gold_2: 1773917450
+      buy_button: 328681393
       center_panel: -2132541990
       gold_6: 1958818205
       gold_21: -713624775

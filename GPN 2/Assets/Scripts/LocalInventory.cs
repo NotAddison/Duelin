@@ -25,6 +25,12 @@ public class LocalInventory
         Entities[index] = entity;
     }
 
+    public void UpdateCardListItem(GameObject card, int index)
+    {
+        if (Cards.Count < index + 1) Cards.Add(card);
+        Cards[index] = card;
+    }
+
     public void UpdateGoldAmount(){
         GetGoblins().ForEach(entity => {
             Vector3Int currentCellPos = mineTilemap.WorldToCell(entity.GetCurrentPos());
@@ -38,7 +44,7 @@ public class LocalInventory
         });
     }
 
-    public void DestroyEntity(GameObject entity)
+    public void DestroyGoblin(GameObject entity)
     {
         int entityIndex = GetPositionOfEntity(entity);
         for (int i = entityIndex + 1; i < Entities.Count; i++)
@@ -50,12 +56,18 @@ public class LocalInventory
         }
         Entities.RemoveAt(entityIndex);
     }
+
+    public void DestroyCard(GameObject card) {
+
+    }
     
     public int GetPositionOfEntity(GameObject entity) => Entities.FindIndex(e => e == entity);
+    public int GetPositionOfCard(GameObject card) => Cards.FindIndex(c => c == card);
     public int GetEntityListSize() => Entities.Count; 
     public int GetCardListSize() => Cards.Count; 
     public List<BaseGoblin> GetGoblins() => Entities.Select(entity => entity.transform.Find("entity").GetComponent<BaseGoblin>()).ToList();
     public BaseGoblin GetGoblin(int index) => Entities[index].transform.Find("entity").GetComponent<BaseGoblin>();
+    public Card GetCard(int index) => Cards[index].transform.Find("card_modal").GetComponent<Card>();
 
     // --------------- Other Inventory Functions ---------------
 
@@ -65,6 +77,19 @@ public class LocalInventory
     ///</summary>
     public void AddCard(GameObject card){
         Cards.Add(card);
+        GameObject newCardInstance = null;
+        int cardListSize = GetCardListSize();
+        float startingXPosition = (cardListSize - 1) * -0.28f;
+
+        Cards.ForEach(card => {
+            Vector3 cardPos = new Vector3(startingXPosition + GetPositionOfCard(card) * 0.56f, -1.305f, 0f);
+            if(GetPositionOfCard(card) == cardListSize - 1) {
+                newCardInstance = GameObject.Instantiate(card, cardPos, Quaternion.identity);
+                return;
+            }
+            card.transform.position = cardPos;
+        });
+        UpdateCardListItem(newCardInstance, GetPositionOfCard(card));
     }
 
     ///<summary>
@@ -100,5 +125,6 @@ public class LocalInventory
     ///</summary>
     public void RemoveGold(int amount){
         Gold -= amount;
+        GameObject.FindWithTag("GoldAmount").GetComponent<GoldAmount>().RenderAmount();
     }
 }

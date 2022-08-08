@@ -60,7 +60,7 @@ public class ShopManager : MonoBehaviour
             item.GetComponent<ItemCard>().Deselect();
             Destroy(item);
         });
-        
+
         if (!_enabled) return;
         for (int i = 0; i < 8; i++)
         {
@@ -76,7 +76,7 @@ public class ShopManager : MonoBehaviour
     public bool CanAffordAny()
     {
         bool canAffordAnyUnit = UnitsForSale.Any(unit => unit.transform.Find("entity").GetComponent<BaseGoblin>().Cost() <= LocalInventory.getInstance().GetGold());
-        // bool canAffordAnyCard = CardsForSale.Any(card => card.transform.Find("entity").GetComponent<BaseGoblin>().Cost() < LocalInventory.getInstance().GetGold());
-        return canAffordAnyUnit; // && canAffordAnyCard;
+        bool canAffordAnyCard = CardsForSale.Any(card => card.transform.Find("card_modal").GetComponent<Card>().Cost() <= LocalInventory.getInstance().GetGold());
+        return canAffordAnyUnit || canAffordAnyCard;
     }
 }

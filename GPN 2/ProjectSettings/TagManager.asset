@@ -17,6 +17,7 @@ TagManager:
   - GameManager
   - Highlight
   - Settings
+  - BuyButton
   layers:
   - Default
   - TransparentFX
