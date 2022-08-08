@@ -22,7 +22,6 @@ public class TurnManager : MonoBehaviour
             goblin.UsePassive();
             goblin.HandleStatusEffects();
         });
-        GameObject.FindWithTag("GoldAmount").GetComponent<GoldBar>().RenderAmount();
         itemPurchased = isFirstTurn ? false : !ShopManager.getInstance().CanAffordAny();
         EndTurnButton.getInstance().RenderButton(actionTaken && bonusActionTaken && itemPurchased);
     }

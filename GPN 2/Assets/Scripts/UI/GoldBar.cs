@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class GoldBar : MonoBehaviour
 {
-    public void RenderAmount()
+    public void RenderBar()
     {
-        Sprite goldAmountSprite = Resources.LoadAll<Sprite>("UI_Atlas").Single(sprite => sprite.name.Equals($"gold_{LocalInventory.getInstance().GetGold()}"));
-        SpriteRenderer goldAmountComponent = GetComponent<SpriteRenderer>();
-        goldAmountComponent.sprite = goldAmountSprite;
+        Sprite goldBarSprite = Resources.LoadAll<Sprite>("UI_Atlas").Single(sprite => sprite.name.Equals($"gold_bar_{GameManager.getInstance().amountToWin}"));
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = goldBarSprite;
     }
 }
