@@ -78,6 +78,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         // UI Display
         PlayerNum.GetComponent<TextMeshProUGUI>().SetText($"{PhotonNetwork.CurrentRoom.PlayerCount} | {PhotonNetwork.CurrentRoom.MaxPlayers}");
         LocalPlayerNo.GetComponent<TextMeshProUGUI>().SetText($"Player {PhotonNetwork.LocalPlayer.ActorNumber}");
+        RoomCode.GetComponent<TextMeshProUGUI>().SetText(PhotonNetwork.CurrentRoom.Name);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)

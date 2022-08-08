@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
         {
             GameObject.Find("BuildVer").GetComponent<TextMeshProUGUI>().SetText($"{Application.version}");
         }
+
+        if (PhotonNetwork.IsConnected) PhotonNetwork.Disconnect();
     }
 
     public void Play(){
