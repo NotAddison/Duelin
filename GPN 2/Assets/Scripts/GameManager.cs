@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        amountToWin += PhotonNetwork.CountOfPlayersInRooms > 2 ? (PhotonNetwork.CountOfPlayersInRooms - 2) * 5 : 0;
+        GameObject.FindWithTag("GoldBar").GetComponent<GoldBar>().RenderBar();
         PhotonNetwork.Instantiate("Prefabs/Structures/spawn", spawnPositions[PhotonNetwork.LocalPlayer.ActorNumber-1], Quaternion.identity);
         TurnManager.getInstance().StartTurn();
     }
@@ -26,6 +28,5 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     public override void OnPlayerLeftRoom(Player otherPlayer){
         Debug.LogError($"[GameManager]: Player {otherPlayer.ActorNumber} has left the room");
-        
     }
 }

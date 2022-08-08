@@ -102,7 +102,7 @@ public class SpawnManager : MonoBehaviour, IClickable
         if (item == null) return;
         Debug.Log("Purchase successful");
 
-        GameObject.FindWithTag("GoldAmount").GetComponent<GoldBar>().RenderAmount();
+        GameObject.FindWithTag("GoldAmount").GetComponent<GoldAmount>().RenderAmount();
         SpawnUnit(itemCard.item, new Vector3(spawnPos.x, spawnPos.y += 0.16f, spawnPos.z));
         Destroy(itemCard);
         ShopManager.getInstance().RenderItemsForSale();
