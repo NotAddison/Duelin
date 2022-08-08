@@ -14,10 +14,10 @@ public class ShopManager : MonoBehaviour
 
     private void Start() {
         AllUnits = new List<GameObject>(Resources.LoadAll<GameObject>("Prefabs/Units"));
-        // AllCards = new List<GameObject>(Resources.LoadAll<GameObject>("Prefabs/Cards"));
+        AllCards = new List<GameObject>(Resources.LoadAll<GameObject>("Prefabs/Cards"));
 
-        for(int i = 0; i < 8; i++) generateUnit();
-        // for(int i = 0; i < 3; i++) generateCard();
+        for(int i = 0; i < 5; i++) generateUnit();
+        for(int i = 0; i < 3; i++) generateCard();
     }
 
     private void generateUnit() => UnitsForSale.Add(AllUnits[random.Next(AllUnits.Count)]);
@@ -29,7 +29,7 @@ public class ShopManager : MonoBehaviour
         int MAX_UNITS = 5;
         int MAX_CARDS = 4;
 
-        int itemCost = selectedItem.transform.Find("entity").GetComponent<BaseGoblin>().Cost();
+        int itemCost = selectedItem.transform.Find("entity")?.GetComponent<BaseGoblin>().Cost() ?? selectedItem.transform.Find("card_modal").GetComponent<Card>().Cost();
 
         // TODO: UI Hint
         if (itemCost > LocalInventory.getInstance().GetGold()) return null;
@@ -60,16 +60,16 @@ public class ShopManager : MonoBehaviour
             item.GetComponent<ItemCard>().Deselect();
             Destroy(item);
         });
+        
         if (!_enabled) return;
         for (int i = 0; i < 8; i++)
         {
-            // GameObject itemForSale = i >= 5 ? CardsForSale[i] : UnitsForSale[i];
-            GameObject itemForSale = UnitsForSale[i];
+            GameObject itemForSale = i >= 5 ? CardsForSale[i-5] : UnitsForSale[i];
             Vector3 displayPos = new Vector3(1.74f + (i % 2 * 0.31f), -0.06f + ((float) Math.Floor((double)(i / 2)) * -0.28f), 0f);
             GameObject itemPrefab = Resources.Load<GameObject>("Prefabs/UI/item_card");
             GameObject itemPrefabInstance = Instantiate(itemPrefab, displayPos, Quaternion.identity);
 
-            itemPrefabInstance.GetComponent<ItemCard>().RenderCard(itemForSale, ItemCard.ItemType.UNIT);
+            itemPrefabInstance.GetComponent<ItemCard>().RenderCard(itemForSale, i >= 5 ? ItemCard.ItemType.CARD : ItemCard.ItemType.UNIT);
         }
     }
 
