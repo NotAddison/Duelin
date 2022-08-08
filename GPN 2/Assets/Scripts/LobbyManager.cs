@@ -75,8 +75,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         Debug.LogError($"[Photon] Players in Room: {PhotonNetwork.CurrentRoom.PlayerCount}");
         RoomMenu.SetActive(true);
 
-        // Set UI Display Elements
-        PlayerNum.GetComponent<TextMeshProUGUI>().SetText($"{PhotonNetwork.CurrentRoom.PlayerCount}|{PhotonNetwork.CurrentRoom.MaxPlayers}");
+        // UI Display
+        PlayerNum.GetComponent<TextMeshProUGUI>().SetText($"{PhotonNetwork.CurrentRoom.PlayerCount} | {PhotonNetwork.CurrentRoom.MaxPlayers}");
         LocalPlayerNo.GetComponent<TextMeshProUGUI>().SetText($"Player {PhotonNetwork.LocalPlayer.ActorNumber}");
     }
 
@@ -108,6 +108,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         // UI Display
         string text = RoomMenuLog.GetComponent<TextMeshProUGUI>().text;
         RoomMenuLog.GetComponent<TextMeshProUGUI>().SetText(text + $"\n [Photon] Player {newPlayer.ActorNumber} has joined the room");
+        PlayerNum.GetComponent<TextMeshProUGUI>().SetText($"{PhotonNetwork.CurrentRoom.PlayerCount} | {PhotonNetwork.CurrentRoom.MaxPlayers}");
     }
 
     public void StartGame(){
