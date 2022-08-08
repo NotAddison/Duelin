@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Warrior : BaseGoblin
 {
-    public override int Cost() => 3;
-    void Start() {
+    public override int Cost() => 1;
+    new void Start() {
+        base.Start();
         LocalInventory.getInstance().GetGoblins().ForEach(x => {
             if (x.GetType() == typeof(Soldier)) {
                 LocalInventory.getInstance().AddGold(1);
