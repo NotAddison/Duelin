@@ -10,8 +10,13 @@ public class ItemCard : UIElement, IClickable
     {
         if (TurnManager.getInstance().itemPurchased) return;
         bool canDeselect = prevSelection != null && prevSelection.GetComponent<ItemCard>() != null && prevSelection.GetComponent<ItemCard>() != this;
-        bool isEntityGoblin = prevSelection != null && prevSelection.GetComponent<BaseGoblin>() != null;
-        if (isEntityGoblin) prevSelection.GetComponent<BaseGoblin>().actionManager.Deselect();
+        bool isSelectionGoblin = prevSelection != null && prevSelection.GetComponent<BaseGoblin>() != null;
+        bool isSelectionSpawnTile = prevSelection != null && prevSelection.GetComponent<SpawnManager>() != null;
+
+        // TODO: Migrate deselection & selection to interface
+
+        if (isSelectionGoblin) prevSelection.GetComponent<BaseGoblin>().actionManager.Deselect();
+        if (isSelectionSpawnTile) prevSelection.GetComponent<SpawnManager>().Clear();
         if (canDeselect) prevSelection.GetComponent<ItemCard>().Deselect();
         isSelected = isSelected ? Deselect() : Select();
     }
