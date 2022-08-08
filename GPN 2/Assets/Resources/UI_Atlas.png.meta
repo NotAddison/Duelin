@@ -1670,13 +1670,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: end_turn_True
+      name: end_turn_True_2
       rect:
         serializedVersion: 2
         x: 0
         y: 137
         width: 68
-        height: 32
+        height: 31
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1795,6 +1795,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: turn_toast
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 293
+        width: 136
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a6dc10cf7c5d25488b0ec17f496bc5d
+      internalID: 1946910019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: end_turn_True
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 68
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 648dff3afc8b9354d80c6a1a80c693e8
+      internalID: -2126569656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1824,6 +1866,7 @@ TextureImporter:
       cool_down_bar_5: 711543352
       gold_24: 421652455
       friendly_healthbar_2: 1509765867
+      turn_toast: 1946910019
       enemy_healthbar_9: 1283816696
       cool_down_bar_2: -572146204
       cool_down_bar_4: -459305981
@@ -1879,11 +1922,12 @@ TextureImporter:
       enemy_healthbar_4: -1325817498
       unit_card_collapsed_selected: -1391482911
       gold_4: -1218212120
-      end_turn_True: 1904181749
+      end_turn_True: -2126569656
       gold_8: 52808043
       shop_button: -1130324304
       count_mine: 1823502859
       end_turn_False: 840640753
+      end_turn_True_2: 1904181749
       gold_bar_15: 319662385
       enemy_healthbar_2: -2022132479
   spritePackingTag: 
