@@ -76,7 +76,7 @@ public class SpawnManager : MonoBehaviour, IClickable
     bool canSpawn(Vector3 targetPos)
     {
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(targetPos.x, targetPos.y), Vector2.zero);
-        bool isOccupied = hit.collider != null && hit.collider.name != "Tilemap - Highlight [SpawnPoints]" && hit.collider.name == "spawn(Clone)";
+        bool isOccupied = hit.collider != null && hit.collider.name != "Tilemap - Highlight [SpawnPoints]" && hit.collider.name != "spawn(Clone)";
         return !isOccupied;
     }
 

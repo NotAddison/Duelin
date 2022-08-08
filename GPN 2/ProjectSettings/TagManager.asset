@@ -59,14 +59,14 @@ TagManager:
   - name: Highlight
     uniqueID: 2801898283
     locked: 0
+  - name: Structures
+    uniqueID: 3794591207
+    locked: 0
   - name: Entities
     uniqueID: 4081543479
     locked: 0
   - name: Walls
     uniqueID: 1275787747
-    locked: 0
-  - name: Structures
-    uniqueID: 3794591207
     locked: 0
   - name: Panels
     uniqueID: 3168082797
