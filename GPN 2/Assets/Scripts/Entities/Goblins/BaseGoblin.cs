@@ -84,7 +84,11 @@ public class BaseGoblin : Entity, IClickable, IBuyable
 
     public override void OnDeath(BaseGoblin attackingEntity, Vector3? targetPos = null)
     {    
-        if (!photonView.IsMine) {Destroy(parent.gameObject); return;}
+        if (!photonView.IsMine) {
+            if (attackingEntity.photonView.IsMine) LocalInventory.getInstance().AddGold(2);
+            Destroy(parent.gameObject); 
+            return;
+        }
         LocalInventory.getInstance().DestroyEntity(parent.gameObject);
         Destroy(unit_card);
         Destroy(parent.gameObject);
