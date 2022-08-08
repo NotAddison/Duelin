@@ -31,5 +31,9 @@ public class PauseMenu : MonoBehaviour
     public void LeaveRoom(){
         PhotonNetwork.LeaveRoom();
         PhotonNetwork.LoadLevel("MainMenu");
+        
+        // Trigger OST Again
+        PreserveSound.Instance.gameObject.GetComponent<AudioSource>().time = 0;
+        PreserveSound.Instance.gameObject.GetComponent<AudioSource>().Play();
     }
 }
