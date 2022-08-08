@@ -7,8 +7,11 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
-    void Start(){
-        GameObject.Find("BuildVer").GetComponent<TextMeshProUGUI>().SetText($"{Application.version}");
+    void Awake(){
+        if (GameObject.Find("BuildVer") != null)
+        {
+            GameObject.Find("BuildVer").GetComponent<TextMeshProUGUI>().SetText($"{Application.version}");
+        }
     }
 
     public void Play(){
