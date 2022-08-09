@@ -65,7 +65,7 @@ public class ShopManager : MonoBehaviour
         for (int i = 0; i < 8; i++)
         {
             GameObject itemForSale = i >= 5 ? CardsForSale[i-5] : UnitsForSale[i];
-            Vector3 displayPos = new Vector3(1.74f + (i % 2 * 0.31f), -0.06f + ((float) Math.Floor((double)(i / 2)) * -0.28f), 0f);
+            Vector3 displayPos = new Vector3(1.72f + (i % 2 * 0.31f), -0.06f + ((float) Math.Floor((double)(i / 2)) * -0.28f), 0f);
             GameObject itemPrefab = Resources.Load<GameObject>("Prefabs/UI/item_card");
             GameObject itemPrefabInstance = Instantiate(itemPrefab, displayPos, Quaternion.identity);
 

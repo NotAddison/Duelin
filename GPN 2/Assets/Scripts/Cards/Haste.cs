@@ -1,12 +1,11 @@
 using UnityEngine;
 
-public class Preparation : Enhancement
+public class Haste : Enhancement
 {
-    new public virtual int Cost() => 1;
+    new public virtual int Cost() => 2;
     protected override void HandleEffect(GameObject target)
     {
         BaseGoblin targetGoblin = target.GetComponent<BaseGoblin>();
-        targetGoblin.Health += 1;
-        targetGoblin.Damage += 1;
+        targetGoblin.MovementRange += 1;
     }
 }

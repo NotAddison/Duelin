@@ -979,7 +979,7 @@ TextureImporter:
         width: 43
         height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1000,7 +1000,7 @@ TextureImporter:
         width: 45
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1008,6 +1008,90 @@ TextureImporter:
       bones: []
       spriteID: 0790799764d3b1248a23496ad994d71e
       internalID: 1918454851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skill_haste_desc
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 90
+        width: 44
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 887e7bf47ddec5f41b69481f0efe9134
+      internalID: -1410465286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skill_haste_name
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 66
+        width: 21
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aac0d49e1c1765542929284a7cf89bab
+      internalID: 1503638102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skill_haste_minified
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 36
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5186a628a0891d42979e379cfc7668b
+      internalID: -1906737720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skill_haste
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 0
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc89f2baf93c70c4eb007e7e4ad2656b
+      internalID: 827840545
       vertices: []
       indices: 
       edges: []
@@ -1031,6 +1115,7 @@ TextureImporter:
       archer: -1334303356
       attack_highlight: -1692345310
       skill_preparation_name: 1474681004
+      skill_haste_desc: -1410465286
       warrior: 1055742990
       stone_5: 381707343
       skill_preparation: -1114622835
@@ -1048,14 +1133,16 @@ TextureImporter:
       disguise: 56609217
       taunt_highlight: 343575484
       Atlas_2: 1664289674
-      stone_4: 1402577718
       stone_6: 1728432593
+      skill_haste_name: 1503638102
+      stone_4: 1402577718
       sapper: 25987414
       stone_9: -1108701817
       water_0: -1930180091
-      skill_preparation_desc: 1918454851
       stone_wall: 1724306877
+      skill_preparation_desc: 1918454851
       rogue: -605117969
+      skill_haste: 827840545
       shield: -1767259538
       miner: -2042174566
       gold_mine: -810610951
@@ -1064,6 +1151,7 @@ TextureImporter:
       javelin_warrior: -1537865992
       stone_2: -1543545181
       assassin: 2070326924
+      skill_haste_minified: -1906737720
       marauder: -1437180695
       war_drummer: -689138694
       spear_warrior: 66282519
