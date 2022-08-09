@@ -21,6 +21,7 @@ public class Card : MonoBehaviour, IClickable
     }
 
     public void UseEffect(GameObject target = null){
+        Debug.Log("Effect being used");
         Deselect();
         if(TurnManager.getInstance().bonusActionTaken) return;
         HandleEffect(target);

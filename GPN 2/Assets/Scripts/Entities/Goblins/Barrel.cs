@@ -38,8 +38,6 @@ public class Barrel : Tank
         Vector3Int gridPos = gameTilemap.WorldToCell((Vector3) mousePos);
 
         if(!canAttack(gridPos)) return;
-        Debug.Log("Attack");
-        
     }
 
     private void displayAttackableTiles()

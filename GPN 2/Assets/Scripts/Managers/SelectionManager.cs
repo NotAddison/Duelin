@@ -41,12 +41,12 @@ public class SelectionManager : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
         bool hitFound = hit.collider != null;
-        bool isClickable() => currentSelection.GetComponents<Component>().Any(component => component is IClickable);
+        bool isClickable(GameObject selection) => selection.GetComponents<Component>().Any(component => component is IClickable);
 
         if(!hitFound) return;
         currentSelection = hit.collider.gameObject;
-        
-        if(!isClickable()) return;
+
+        if(!isClickable(currentSelection)) return;
         if (!TurnManager.getInstance().CheckTurn()) return;
         ((IClickable)currentSelection.GetComponents<Component>().Single(component => component is IClickable)).OnClick(prevSelection);
     }
