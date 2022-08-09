@@ -1846,7 +1846,7 @@ TextureImporter:
         width: 26
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1854,6 +1854,48 @@ TextureImporter:
       bones: []
       spriteID: 370d81cca1d91df4b9209357bf85566f
       internalID: 328681393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lose_toast
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 257
+        width: 136
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30a780c537fe44042a09be44b22b0a62
+      internalID: 985752837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: win_toast
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 221
+        width: 136
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 861a3bb64b3334f42aa571e45564c345
+      internalID: 520498627
       vertices: []
       indices: 
       edges: []
@@ -1871,7 +1913,7 @@ TextureImporter:
     nameFileIdTable:
       friendly_healthbar_1: -2008757515
       gold_2: 1773917450
-      buy_button: 328681393
+      win_toast: 520498627
       center_panel: -2132541990
       gold_6: 1958818205
       gold_21: -713624775
@@ -1880,6 +1922,7 @@ TextureImporter:
       gold_1: -1298019152
       enemy_healthbar_7: -1323701392
       friendly_healthbar_7: -88532450
+      lose_toast: 985752837
       enemy_healthbar_8: 633239096
       enemy_healthbar_6: 509877090
       right_panel: 130098722
@@ -1934,20 +1977,21 @@ TextureImporter:
       gold_11: -1071065240
       enemy_healthbar_10: 1009423984
       gold_25_complete: 1793500069
+      buy_button: 328681393
       enemy_healthbar_15: -216602017
       enemy_healthbar_11: 2131623071
-      card: 945981171
       gold_14: -1927085369
+      card: 945981171
       enemy_healthbar_13: -1991305672
-      enemy_healthbar_12: -519268582
       enemy_healthbar_5: -1371276820
+      enemy_healthbar_12: -519268582
       enemy_healthbar_4: -1325817498
-      unit_card_collapsed_selected: -1391482911
       gold_4: -1218212120
-      end_turn_True: -2126569656
+      unit_card_collapsed_selected: -1391482911
       gold_8: 52808043
       shop_button: -1130324304
       count_mine: 1823502859
+      end_turn_True: -2126569656
       end_turn_False: 840640753
       end_turn_True_2: 1904181749
       gold_bar_15: 319662385

@@ -71,7 +71,7 @@ public class LocalInventory
             targetEntityUnitCard.transform.position = new Vector3(targetEntityUnitCardPos.x, targetEntityUnitCardPos.y += 0.28f, targetEntityUnitCardPos.z); 
         }
         Entities.RemoveAt(entityIndex);
-        if (GetEntityListSize() <= 0) Debug.Log("You lose");
+        if (GetEntityListSize() <= 0) GameObject.FindWithTag("WinLoseToast").GetComponent<WinLoseToast>().Render(false);
     }
     
     public int GetPositionOfEntity(GameObject entity) => Entities.FindIndex(e => e == entity);
@@ -143,7 +143,7 @@ public class LocalInventory
         else 
         {
             Debug.LogError("You win");
-            GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/UI/turn_toast"), Vector3.zero, Quaternion.identity);
+            GameObject.FindWithTag("WinLoseToast").GetComponent<WinLoseToast>().Render();
             ReturnToMain(); // Return to main menu : Leaves, Disconnects & Play OST.
         }
     }
@@ -162,7 +162,7 @@ public class LocalInventory
         HARVEST,
     }
 
-    private void ReturnToMain(){
+    public void ReturnToMain(){
         PhotonNetwork.LeaveRoom();
         PhotonNetwork.LoadLevel("MainMenu");
             
