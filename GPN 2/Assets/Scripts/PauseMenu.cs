@@ -10,6 +10,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject GameCam;
     [SerializeField] GameObject PauseCam;
 
+    public static PauseMenu getInstance() => GameObject.FindWithTag("PauseMenu")?.GetComponent<PauseMenu>();
+
 
     // Start is called before the first frame update
     void Start()
