@@ -29,14 +29,28 @@ Duelin is a 2D online PVP turn-based strategic combat game where players purchas
 
 ### Creating a Room
 <details>
-<summary> Click on xxxx<br></summary>
-<img src="" >
+<summary> Click on Play > Type a name for your room (2nd input) > Press Create > Invite your friends & Start the game! <br></summary>
+<br>
+1. Main Menu <br>
+<img src="README Assets\Create\Main.png" style="width:auto; height:300px;" > <br>
+2. Lobby Menu <br>
+<img src="README Assets\Create\Create.png" style="width:auto; height:300px;"><br>
+3. Room Information Menu (After creation/joining) <br>
+<img src="README Assets\Create\Info.png" style="width:auto; height:300px;"> <br>
+4. Host can view logs of room activity on the right <br>
+<img src="README Assets\Join\Host Room Info.png" style="width:auto; height:300px;"> <br>
 </details>
 
 ### Joining a Room
 <details>
-<summary> Click on xxxx<br></summary>
-<img src="" >
+<summary>  Click on Play > Enter your room name (1st input) > Press Join & Wait for the host to start the game! <br></summary>
+<br>
+1. Main Menu <br>
+<img src="README Assets\Create\Main.png" style="width:auto; height:300px;" ><br>
+2. Lobby Menu <br>
+<img src="README Assets\Join\Join.png" style="width:auto; height:300px;"> <br>
+3. Room Information Menu (After creation/joining) <br>
+<img src="README Assets\Join\Room.png" style="width:auto; height:300px;"> <br>
 </details>
 
 ### Gameplay
@@ -49,8 +63,8 @@ Duelin is a 2D online PVP turn-based strategic combat game where players purchas
 </details>
 
 <details> <summary>Subsequent Round(s)<br></summary>
-- Players can only MOVE or ATTACK for each turn. <br>
-- Players can use the shop to purchase units (max 5) and cards (No max) <br>
+- Players can only MOVE once and ATTACK once for each turn. <br>
+- Players can use the shop to purchase units (5 max) and cards (4 max) [Does not count as a "Action"]<br>
 - Players can capture a farm to gain passive points (2 per round & on Capture) <br>
 - Each farm takes 2 turn to fully capture. <br>
 - Players can win by POINTS or by ELIMINATING all the other opponent's unit. <br>
@@ -58,17 +72,17 @@ Duelin is a 2D online PVP turn-based strategic combat game where players purchas
 
 ### Point System
 <details> <summary>Points required to win :<br></summary>
-**2 Players - 15** <br>
-**3 Players - 20** <br>
-**4+ Players - 25** <br>
+<b>2 Players - 15</b><br>
+<b>3 Players - 20</b><br>
+<b>4+ Players - 25</b><br>
 <br>
 </details>
 
 <details> <summary>How to gain points :<br></summary>
-Kill enemy unit : **2** <br>
-Kill enemy: **Absorb half their points** <br>
-Capture farm : **2** <br>
-Farm points : **2** <br>
+Kill enemy unit : <b>2</b> <br>
+Kill enemy: <b>Absorb half their points</b><br>
+Capture farm :<b>2</b> <br>
+Farm points : <b>2</b> <br>
 </details> <br>
 
 
