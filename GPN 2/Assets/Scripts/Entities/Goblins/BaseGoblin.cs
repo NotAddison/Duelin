@@ -167,7 +167,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
         SILENCED,
         DODGE,
         PARALYZED,
-        MIND_CONTROLLED,
+        BRIBED,
         REGENERATE,
         NONE
     }
