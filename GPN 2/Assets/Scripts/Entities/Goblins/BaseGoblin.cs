@@ -20,6 +20,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     public bool isMovementBlocked;
     public OCCUPATION_STATE occupationState;
     private STATUS status;
+    private int statusDuration;
 
     private List<Entity> entitiesInRange;
     public PhotonView photonView;
@@ -38,6 +39,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
         isSelected = false;
         isMovementBlocked = false;
         occupationState = OCCUPATION_STATE.FREE;
+        status = STATUS.NONE;
 
         RenderHealth(parent);
 
@@ -79,7 +81,18 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     }
 
     public override void OnDamage(BaseGoblin attackingEntity, Vector3 targetPos)
-    {
+    {   
+        if (attackingEntity is Assassin) 
+        {
+            status = STATUS.POISONED;
+            statusDuration = 3;
+        }
+        if (attackingEntity is Barrel) 
+        {
+            status = STATUS.SLOWED;
+            MovementRange -= 1;
+            statusDuration = 2;
+        }
         Health -= attackingEntity.Damage;
         if (Health <= 0)
         {
@@ -89,12 +102,11 @@ public class BaseGoblin : Entity, IClickable, IBuyable
         RenderHealth(parent);
         unit_card.GetComponent<UnitCard>().RenderCard(this);
     }
-
     public override void OnDeath(BaseGoblin attackingEntity, Vector3? targetPos = null)
     {    
         if (!photonView.IsMine) {
             if (attackingEntity.photonView.IsMine) LocalInventory.getInstance().AddGold(2);
-            Destroy(parent.gameObject); 
+            Destroy(parent.gameObject);
             return;
         }
         LocalInventory.getInstance().DestroyGoblin(parent.gameObject);
@@ -124,20 +136,33 @@ public class BaseGoblin : Entity, IClickable, IBuyable
         switch(status)
         {
             case STATUS.POISONED:
-
+                statusDuration -= 1;
+                Health -= 1;
                 break;
             case STATUS.SLOWED:
-
+                statusDuration -= 1;
+                break;
+            case STATUS.NONE:
                 break;
             default:
                 break;
         }
+        Debug.Log(status);
+        if (statusDuration <= 0)
+        {
+            if (status == STATUS.SLOWED){
+                MovementRange += 1;
+            }
+            status = STATUS.NONE;
+        }
+
     }
 
     private enum STATUS
     {
         SLOWED,
-        POISONED
+        POISONED,
+        NONE
     }
 
     public enum OCCUPATION_STATE
