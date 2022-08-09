@@ -55,15 +55,13 @@ public class EntityAttackController : EntityController
         Entity target = targetEntity.GetComponent<Entity>();
 
         if (target != null) {
+            TurnManager.getInstance().HandleTurnAction(TurnManager.ACTION.BONUS_ACTION);
             target.OnDamage(entity, targetPos);
-            // entity.UsePassive();
+            actionManager.Deselect();
         }
 
         if (SettingsMenu.getInstance() == null) FindObjectOfType<AudioManager>().Play("Bow", 1f);
         else FindObjectOfType<AudioManager>().Play("Bow", SettingsMenu.getInstance().GetSFXVol());
-
-        TurnManager.getInstance().HandleTurnAction(TurnManager.ACTION.BONUS_ACTION);
-        actionManager.Deselect();
     }
 
     public override void Clear()
@@ -76,7 +74,6 @@ public class EntityAttackController : EntityController
         for(int x = gameTilemap.cellBounds.min.x; x <= gameTilemap.cellBounds.max.x; x++) {
             for(int y = gameTilemap.cellBounds.min.y; y <= gameTilemap.cellBounds.max.y; y++) {
                 if (!canAttack(new Vector3Int(x,y,0))) continue;
-                Debug.Log($"{x}{y}");
                 attackHighlightMap.SetTile(new Vector3Int(x,y,0), attackHighlight);
             }
         }
@@ -89,10 +86,10 @@ public class EntityAttackController : EntityController
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(worldPos.x, worldPos.y += 0.16f), Vector2.zero);
         
         bool inRange = dist <= entity.Range && dist != 0;
-        bool isOccupied = hit.collider != null;
+        bool isOccupied = hit.collider != null && hit.collider.name != "spawn(Clone)";
         bool isSameTeam = isOccupied && (hit.collider.gameObject.GetComponent<PhotonView>()?.IsMine ?? false);
         bool canAttack = inRange && isOccupied && !isSameTeam;
-
+        
         if(canAttack) entity.AddEntityToRange(hit.collider.gameObject.GetComponent<Entity>());
 
         return canAttack;

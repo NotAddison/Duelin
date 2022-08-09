@@ -22,6 +22,7 @@ public class TurnManager : MonoBehaviour
             .UpdateGameState()
             .UpdateGoldAmount();
         LocalInventory.getInstance().GetGoblins().ForEach(goblin => {
+            goblin.isAbilityUsed = false;
             goblin.UsePassive();
             goblin.HandleStatusEffects();
         });

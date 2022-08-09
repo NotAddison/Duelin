@@ -16,9 +16,12 @@ public class Marauder : BaseGoblin
         if (Cooldown == 0){
             Cooldown += 4;
             LocalInventory.getInstance().GetGoblins().ForEach(goblin => {
-                goblin.GetComponent<BaseGoblin>().Health += 1;
+                goblin.GetComponent<BaseGoblin>().AddHealth(1);
                 goblin.GetComponent<BaseGoblin>().Damage += 1;
             });
         }
+
+        isAbilityUsed = true;
+        actionManager.Deselect();
     }
 }

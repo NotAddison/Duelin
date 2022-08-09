@@ -20,6 +20,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     public EntityActionManager actionManager;
     public GameObject unit_card;
     public bool isSelected;
+    public bool isAbilityUsed = false;
     public bool isMovementBlocked;
     public OCCUPATION_STATE occupationState;
     private List<ArrayList> STATUSES = new List<ArrayList>();
@@ -58,6 +59,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
 
     #region Virtual Methods
     public virtual void UsePassive() { }
+    public virtual void Clear() {}
     public virtual void UseAbility(InputAction.CallbackContext context) { }
     #endregion
 
@@ -93,15 +95,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
             STATUSES.RemoveAt(index);
             return;
         }
-        if (attackingEntity is Assassin) 
-        {
-            AddStatus(STATUS.POISONED, 3);
-        }
-        if (attackingEntity is Barrel) 
-        {
-            AddStatus(STATUS.SLOWED, 2);
-            MovementRange -= 1;
-        }
+        if (attackingEntity is Assassin) AddStatus(STATUS.POISONED, 3);
         Health -= attackingEntity.Damage;
         if (Health <= 0)
         {
@@ -109,6 +103,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
             return;
         }
         RenderHealth(parent);
+        if (!photonView.IsMine) return;
         unit_card.GetComponent<UnitCard>().RenderCard(this);
     }
     public override void OnDeath(BaseGoblin attackingEntity, Vector3? targetPos = null)
@@ -122,7 +117,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
         Destroy(unit_card);
         Destroy(parent.gameObject);
         entityIndex -= 1;
-        if (attackingEntity != null && attackingEntity.Range > 1) attackingEntity.isMovementBlocked = true;
+        if (attackingEntity != null && !(attackingEntity is Javlin) && attackingEntity.Range > 1) attackingEntity.isMovementBlocked = true;
     }
     #endregion
 
@@ -131,6 +126,13 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     public List<Entity> GetEntitiesInRange() => entitiesInRange;
     public Vector3 GetCurrentPos() => new Vector3(transform.position.x, transform.position.y - 0.16f, transform.position.z);
     public void AddEntityToRange(Entity entity) => entitiesInRange.Add(entity);
+    public void AddHealth(int health)
+    {
+        Health += health;
+        RenderHealth(parent);
+        if (!photonView.IsMine) return;
+        unit_card.GetComponent<UnitCard>().RenderCard(this);
+    }
     public void AddStatus(STATUS status, int duration) => STATUSES.Add(new ArrayList(){status, duration});
     public bool HasStatus(STATUS status) => STATUSES.Any(s => ((STATUS)s[0]).Equals(status));
     #endregion
@@ -152,7 +154,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
                     Health -= 1;
                     break;
                 case STATUS.REGENERATE:
-                    if (Health < InitialHealth) Health += 1;
+                    if (Health < InitialHealth) AddHealth(1);
                     break;
                 case STATUS.NONE:
                     break;
@@ -165,6 +167,9 @@ public class BaseGoblin : Entity, IClickable, IBuyable
             if (((STATUS) status[0]) == STATUS.BRIBED) PhotonView.Get(this).TransferOwnership(originalOwner);
         });
         STATUSES.RemoveAll(status => ((int) status[1]) <= 0);
+        RenderHealth(parent);
+        if (!photonView.IsMine) return;
+        unit_card.GetComponent<UnitCard>().RenderCard(this);
     }
 
     public enum STATUS

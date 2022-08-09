@@ -38,7 +38,8 @@ public class Disguised : BaseGoblin
 
         if(!canCopy(gridPos)) return;
         Debug.LogError("Copy");
-           
+        isAbilityUsed = true;
+        actionManager.Deselect();
     }
     private void displayCopyableTiles()
     {
@@ -50,8 +51,7 @@ public class Disguised : BaseGoblin
         }
     }
 
-
-    private void Clear()
+    public override void Clear()
     {
         unitsHighlightMap.ClearAllTiles();
     }
@@ -64,13 +64,12 @@ public class Disguised : BaseGoblin
         
         bool isOccupied = hit.collider != null;
         bool inRange = dist <= 9 && dist != 0;
-        bool isUnit = hit.collider.gameObject.GetComponent<BaseGoblin>() != null;
+        bool isUnit = isOccupied && hit.collider.gameObject.GetComponent<BaseGoblin>() != null;
         bool isSameTeam = isOccupied && (hit.collider.gameObject.GetComponent<PhotonView>()?.IsMine ?? false);
         bool canCopy = isOccupied && !isSameTeam && isUnit && inRange;
 
         if(canCopy) Debug.Log(hit.collider.name);
-        Debug.LogError(isOccupied + " " + isUnit + " " + isSameTeam + " " + inRange + "" + canCopy);
-        // if(canBuild) AddEntityToRange(hit.collider.gameObject.GetComponent<Wall>());
+
         return canCopy;
     }
 }

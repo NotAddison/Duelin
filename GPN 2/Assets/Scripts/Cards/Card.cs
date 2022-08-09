@@ -26,6 +26,7 @@ public class Card : MonoBehaviour, IClickable
         if(TurnManager.getInstance().bonusActionTaken) return;
         HandleEffect(target);
         TurnManager.getInstance().HandleTurnAction(TurnManager.ACTION.BONUS_ACTION);
+        LocalInventory.getInstance().UpdateCardListItem(transform.parent.gameObject, LocalInventory.getInstance().GetPositionOfCard(transform.parent.gameObject));
         Destroy(transform.parent.gameObject);
     }
 

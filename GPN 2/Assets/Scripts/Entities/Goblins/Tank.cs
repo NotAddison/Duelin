@@ -40,7 +40,7 @@ public class Tank : BaseGoblin
         }
     }   
 
-    private void Clear()
+    public override void Clear()
     {
         tauntHighlightMap.ClearAllTiles();
     }

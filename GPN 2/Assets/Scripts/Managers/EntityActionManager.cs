@@ -57,6 +57,7 @@ public class EntityActionManager : MonoBehaviour
     public bool Deselect()
     {
         entity.ClearEntitiesInRange();
+        entity.Clear();
         entity.unit_card.GetComponent<UnitCard>().RenderCard(entity);
         
         _controllerList.ForEach(controller => {

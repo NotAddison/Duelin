@@ -28,6 +28,7 @@ public class Builder : BaseGoblin
         buildHighlight = Resources.Load<Tile>(BUILD_HIGHLIGHT);
         wall = Resources.Load<Tile>(STONE_WALL);
     }
+
     public override void UseAbility(InputAction.CallbackContext context)
     {
         displayBuildableTiles();
@@ -37,8 +38,12 @@ public class Builder : BaseGoblin
         Vector3Int gridPos = gameTilemap.WorldToCell((Vector3) mousePos);
 
         if(!canBuild(gridPos)) return;
-        wallTilemap.SetTile(gridPos, wall);
+        wallTilemap.SetTile(new Vector3Int(gridPos.x, gridPos.y, 2), wall);
+        Clear();
+        isAbilityUsed = true;
+        actionManager.Deselect();
     }
+
     private void displayBuildableTiles()
     {
         for(int x = gameTilemap.cellBounds.min.x; x <= gameTilemap.cellBounds.max.x; x++) {
@@ -49,7 +54,7 @@ public class Builder : BaseGoblin
         }
     }
 
-    private void Clear()
+    public override void Clear()
     {
         buildHighlightMap.ClearAllTiles();
     }
@@ -59,14 +64,12 @@ public class Builder : BaseGoblin
         Vector3 worldPos = gameTilemap.CellToWorld(targetPos);
         int dist = (int) Math.Ceiling(Vector3.Distance(gameTilemap.WorldToCell(GetCurrentPos()), targetPos));
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(worldPos.x, worldPos.y += 0.16f), Vector2.zero);
-        
+
+        bool hasTile = gameTilemap.HasTile(targetPos);
         bool inRange = dist <= 1 && dist != 0;
         bool isOccupied = hit.collider != null;
-        bool canBuild = inRange && !isOccupied;
+        bool canBuild = hasTile && inRange && !isOccupied;
 
-        if(canBuild) Debug.Log(hit.collider.name);
-        Debug.LogError(inRange + " " + isOccupied + " " + canBuild);
-        // if(canBuild) AddEntityToRange(hit.collider.gameObject.GetComponent<Wall>());
         return canBuild;
     }
 }

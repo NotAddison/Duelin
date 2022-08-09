@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2214031340658134957}
   m_Layer: 7
   m_Name: entity
-  m_TagString: Untagged
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 3
   Health: 2
+  InitialHealth: 0
   Range: 1
   MovementRange: 3
   Cooldown: 0

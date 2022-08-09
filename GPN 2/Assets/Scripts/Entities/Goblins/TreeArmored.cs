@@ -15,6 +15,6 @@ public class TreeArmored : Tank
         base.UsePassive();
         Debug.Log("Tree Armored regenerates health");
         // [TODO] Implement max health instead of health
-        if (Health < 8) Health += 1;
+        if (Health < InitialHealth) AddHealth(1);
     }
 }

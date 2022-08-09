@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
-
 
 public class EntityAbilityController : EntityController
 {
@@ -21,10 +17,9 @@ public class EntityAbilityController : EntityController
 
     public override void HandleAction(InputAction.CallbackContext context)
     {
-        Debug.Log($"Right click performed {entity}");
+        if (TurnManager.getInstance().isFirstTurn) return;
         if (entity.HasStatus(BaseGoblin.STATUS.SILENCED)) return;
+        if (entity.isAbilityUsed) return;
         entity.UseAbility(context);
     }
-
-    public delegate bool renderCondition(Vector3Int targetPos);
 }
