@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WinLoseToast : MonoBehaviour
 {
-    int lifetime = 2;
+    int lifetime = 5;
 
     public void Render(bool isWin = true)
     {
@@ -16,7 +16,6 @@ public class WinLoseToast : MonoBehaviour
     IEnumerator WaitThenDie()
     {
         yield return new WaitForSeconds(lifetime);
-        Destroy(this.gameObject);
         LocalInventory.getInstance().ReturnToMain();
     }
 }

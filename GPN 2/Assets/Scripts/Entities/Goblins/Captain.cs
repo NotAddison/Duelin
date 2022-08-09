@@ -8,6 +8,7 @@ public class Captain : BaseGoblin
     new void Start() {
         base.Start();
         LocalInventory.getInstance().GetGoblins().ForEach(x => {
+            if (x == this) return;
             if (x.GetType() == typeof(Soldier)) {
                 LocalInventory.getInstance().AddGold(1);
             }
@@ -18,6 +19,5 @@ public class Captain : BaseGoblin
                 LocalInventory.getInstance().AddGold(1);
             }
         });
-        LocalInventory.getInstance().AddGold(-1);
     }
 }

@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9126267151397461307}
   m_Layer: 0
-  m_Name: javlin
+  m_Name: marauder
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 6723109731729283063}
   - component: {fileID: 6598314775706322358}
   - component: {fileID: 5058435426514469824}
-  - component: {fileID: 6238105584323631448}
+  - component: {fileID: 6940281427539141206}
   - component: {fileID: 8394247618085826998}
   - component: {fileID: 7022894901443801380}
   m_Layer: 7
@@ -194,7 +194,7 @@ SpriteRenderer:
   m_SortingLayerID: -213423817
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 66282519, guid: 72975a7118f979946a56f2a42a6f1ccb, type: 3}
+  m_Sprite: {fileID: -1437180695, guid: 72975a7118f979946a56f2a42a6f1ccb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -231,7 +231,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
---- !u!114 &6238105584323631448
+--- !u!114 &6940281427539141206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -240,13 +240,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8527937685167479622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02047824dd3159044aab52827e838806, type: 3}
+  m_Script: {fileID: 11500000, guid: 84ad9832e95e20c4a8e2b4613cb10bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 4
-  Health: 5
+  Damage: 6
+  Health: 6
   InitialHealth: 0
-  Range: 2
+  Range: 1
   MovementRange: 2
   Cooldown: 0
   actionManager: {fileID: 0}
@@ -256,6 +256,9 @@ MonoBehaviour:
   isMovementBlocked: 0
   occupationState: 0
   photonView: {fileID: 0}
+  code: 
+  skillName: 
+  description: 
 --- !u!114 &8394247618085826998
 MonoBehaviour:
   m_ObjectHideFlags: 0
