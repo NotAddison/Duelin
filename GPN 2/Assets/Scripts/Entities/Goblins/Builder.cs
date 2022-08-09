@@ -65,6 +65,7 @@ public class Builder : BaseGoblin
         bool canBuild = inRange && !isOccupied;
 
         if(canBuild) Debug.Log(hit.collider.name);
+        Debug.LogError(inRange + " " + isOccupied + " " + canBuild);
         // if(canBuild) AddEntityToRange(hit.collider.gameObject.GetComponent<Wall>());
         return canBuild;
     }

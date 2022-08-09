@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
+using Photon.Pun;
 
 
 public class Disguised : BaseGoblin
@@ -21,6 +22,11 @@ public class Disguised : BaseGoblin
         gameTilemap = GameObject.Find(GAME_MAP).GetComponent<Tilemap>();
         unitsHighlightMap = GameObject.Find(UNITS_MAP).GetComponent<Tilemap>();
         unitsHighlight = Resources.Load<Tile>(UNITS_HIGHLIGHT);
+    }
+    public override void OnDeath(BaseGoblin attackingEntity, Vector3? targetPos = null)
+    {
+        base.OnDeath(attackingEntity, targetPos);
+        Clear();
     }
     public override void UseAbility(InputAction.CallbackContext context)
     {
@@ -53,12 +59,17 @@ public class Disguised : BaseGoblin
     private bool canCopy(Vector3Int targetPos)
     {  
         Vector3 worldPos = gameTilemap.CellToWorld(targetPos);
+        int dist = (int) Math.Ceiling(Vector3.Distance(gameTilemap.WorldToCell(GetCurrentPos()), targetPos));
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(worldPos.x, worldPos.y += 0.16f), Vector2.zero);
         
         bool isOccupied = hit.collider != null;
-        bool canCopy = isOccupied;
+        bool inRange = dist <= 9 && dist != 0;
+        bool isUnit = hit.collider.gameObject.GetComponent<BaseGoblin>() != null;
+        bool isSameTeam = isOccupied && (hit.collider.gameObject.GetComponent<PhotonView>()?.IsMine ?? false);
+        bool canCopy = isOccupied && !isSameTeam && isUnit && inRange;
 
         if(canCopy) Debug.Log(hit.collider.name);
+        Debug.LogError(isOccupied + " " + isUnit + " " + isSameTeam + " " + inRange + "" + canCopy);
         // if(canBuild) AddEntityToRange(hit.collider.gameObject.GetComponent<Wall>());
         return canCopy;
     }

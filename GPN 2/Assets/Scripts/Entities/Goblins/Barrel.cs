@@ -36,8 +36,9 @@ public class Barrel : Tank
         Vector2 mousePos = context.action.actionMap.FindAction(MOUSE_POS).ReadValue<Vector2>();
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         Vector3Int gridPos = gameTilemap.WorldToCell((Vector3) mousePos);
-
+        
         if(!canAttack(gridPos)) return;
+        PhotonView.Get(this).RPC($"AttackEntity", RpcTarget.All, (Vector3) mousePos);
     }
 
     private void displayAttackableTiles()
@@ -55,6 +56,26 @@ public class Barrel : Tank
         barrelUnitHighlightMap.ClearAllTiles();
     }
 
+    [PunRPC]
+    private void AttackEntity(Vector3 targetPos)
+    {
+        Vector3Int gridPos = gameTilemap.WorldToCell(targetPos);
+        Vector3 worldPos = gameTilemap.CellToWorld(gridPos);
+
+        GameObject targetEntity = Physics2D.Raycast(new Vector2(worldPos.x, worldPos.y += 0.16f), Vector2.zero).collider.gameObject;
+        Entity target = targetEntity.GetComponent<Entity>();
+
+        if (target != null) {
+            target.OnDamage(this, targetPos);
+            // entity.UsePassive();
+        }
+
+        if (SettingsMenu.getInstance() == null) FindObjectOfType<AudioManager>().Play("Bow", 1f);
+        else FindObjectOfType<AudioManager>().Play("Bow", SettingsMenu.getInstance().GetSFXVol());
+
+        // TurnManager.getInstance().HandleTurnAction(TurnManager.ACTION.BONUS_ACTION);
+        // actionManager.Deselect();
+    }
     private bool canAttack(Vector3Int targetPos)
     {  
         Vector3 worldPos = gameTilemap.CellToWorld(targetPos);
@@ -67,6 +88,7 @@ public class Barrel : Tank
         bool canAttack = inRange && isOccupied && !isSameTeam;
 
         if(canAttack) Debug.Log(hit.collider.name);
+        Debug.LogError(inRange + " " + isOccupied + " " + isSameTeam + " " + canAttack);
         if(canAttack) AddEntityToRange(hit.collider.gameObject.GetComponent<Entity>());
         return canAttack;
     }
