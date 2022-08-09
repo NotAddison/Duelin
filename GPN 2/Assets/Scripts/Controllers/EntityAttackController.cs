@@ -32,6 +32,7 @@ public class EntityAttackController : EntityController
     public override void HandleAction(InputAction.CallbackContext context)
     {
         clicks++;
+        displayAttackableTiles();
         if (clicks <= 2) return;
         if (TurnManager.getInstance().bonusActionTaken) return;
 

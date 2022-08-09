@@ -38,7 +38,7 @@ public class LocalInventory
             int index = GAME_STATEs.FindIndex(s => (GAME_STATE) s[0] == (GAME_STATE) state[0]);
             GAME_STATEs[index][1] = ((int) GAME_STATEs[index][1]) - 1; 
         });
-        GAME_STATEs.RemoveAll(state => (int) state[1] <= 0);
+        GAME_STATEs.RemoveAll(state => ((int) state[1]) <= 0);
         return this;
     }
 

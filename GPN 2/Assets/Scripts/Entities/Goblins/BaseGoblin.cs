@@ -10,6 +10,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     #region Properties
     public int Damage;
     public int Health;
+    public int InitialHealth;
     public int Range;
     public int MovementRange;
     public float Cooldown;
@@ -39,6 +40,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
         isSelected = false;
         isMovementBlocked = false;
         occupationState = OCCUPATION_STATE.FREE;
+        InitialHealth = Health;
 
         RenderHealth(parent);
 
@@ -66,6 +68,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
         }
 
         if (!photonView.IsMine) return;
+        if (HasStatus(STATUS.PARALYZED)) return;
         Entity prevEntity = prevSelection?.GetComponent<Entity>();
         bool isSelectionGoblin = prevEntity is BaseGoblin;
         BaseGoblin prevGoblin = isSelectionGoblin ? (BaseGoblin) prevEntity : null;
@@ -81,6 +84,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
 
     public override void OnDamage(BaseGoblin attackingEntity, Vector3 targetPos)
     {   
+        if(HasStatus(BaseGoblin.STATUS.DODGE)) return;
         if (attackingEntity is Assassin) 
         {
             AddStatus(STATUS.POISONED, 3);
@@ -120,6 +124,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     public Vector3 GetCurrentPos() => new Vector3(transform.position.x, transform.position.y - 0.16f, transform.position.z);
     public void AddEntityToRange(Entity entity) => entitiesInRange.Add(entity);
     public void AddStatus(STATUS status, int duration) => STATUSES.Add(new ArrayList(){status, duration});
+    public bool HasStatus(STATUS status) => STATUSES.Any(s => ((STATUS)s[0]).Equals(status));
     #endregion
 
     private void RenderHealth(Transform parent)
@@ -132,14 +137,14 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     public void HandleStatusEffects()
     {
         STATUSES.ForEach(status => {
+            status[1] = ((int) status[1]) - 1;
             switch(status[0])
             {
                 case STATUS.POISONED:
-                    status[1] = ((int) status[1]) - 1;
                     Health -= 1;
                     break;
-                case STATUS.SLOWED:
-                    status[1] = ((int) status[1]) - 1;
+                case STATUS.REGENERATE:
+                    if (Health < InitialHealth) Health += 1;
                     break;
                 case STATUS.NONE:
                     break;
@@ -147,12 +152,10 @@ public class BaseGoblin : Entity, IClickable, IBuyable
                     break;
             }
 
-            if ((int) status[1] <= 0)
-            {
-                if (((STATUS) status[0]) == STATUS.SLOWED) MovementRange += 1;
-                status[0] = STATUS.NONE;
-            }
+            if (!(((int) status[1]) <= 0)) return;
+            if (((STATUS) status[0]) == STATUS.SLOWED) MovementRange += 1;
         });
+        STATUSES.RemoveAll(status => ((int) status[1]) <= 0);
     }
 
     public enum STATUS
@@ -160,6 +163,12 @@ public class BaseGoblin : Entity, IClickable, IBuyable
         SLOWED,
         POISONED,
         TAUNTED,
+        SILENT,
+        SILENCED,
+        DODGE,
+        PARALYZED,
+        MIND_CONTROLLED,
+        REGENERATE,
         NONE
     }
 

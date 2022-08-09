@@ -33,7 +33,9 @@ public class EntityMovementController : EntityController
 
     public override void HandleAction(InputAction.CallbackContext context)
     {
+        if (!entity.HasStatus(BaseGoblin.STATUS.SILENT) && entity.HasStatus(BaseGoblin.STATUS.TAUNTED)) return;
         clicks++;
+        displayMovableTiles();
         if (clicks <= 2) return;
         if (TurnManager.getInstance().actionTaken) return;
 

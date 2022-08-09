@@ -22,6 +22,7 @@ public class EntityAbilityController : EntityController
     public override void HandleAction(InputAction.CallbackContext context)
     {
         Debug.Log($"Right click performed {entity}");
+        if (entity.HasStatus(BaseGoblin.STATUS.SILENCED)) return;
         entity.UseAbility(context);
     }
 

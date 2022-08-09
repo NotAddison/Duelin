@@ -7,6 +7,7 @@ public class Preparation : Enhancement
     {
         BaseGoblin targetGoblin = target.GetComponent<BaseGoblin>();
         targetGoblin.Health += 1;
+        targetGoblin.InitialHealth += 1;
         targetGoblin.Damage += 1;
     }
 }

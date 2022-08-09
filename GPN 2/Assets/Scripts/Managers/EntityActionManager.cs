@@ -44,8 +44,6 @@ public class EntityActionManager : MonoBehaviour
         EntityController.clicks = 0;
         entity.isMovementBlocked = false;
 
-        _movementController.displayMovableTiles();
-        _attackController.displayAttackableTiles();
         entity.unit_card.GetComponent<UnitCard>().RenderCard(entity, true);
 
         _controllerList.ForEach(controller => {
