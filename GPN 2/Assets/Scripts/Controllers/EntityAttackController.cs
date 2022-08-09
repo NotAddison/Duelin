@@ -59,8 +59,8 @@ public class EntityAttackController : EntityController
             // entity.UsePassive();
         }
 
-        if (SettingsMenu.getInstance() == null) FindObjectOfType<AudioManager>().Play("Bow", 1f);
-        else FindObjectOfType<AudioManager>().Play("Bow", SettingsMenu.getInstance().GetSFXVol());
+        if (SettingsMenu.getInstance() == null) FindObjectOfType<AudioManager>().Play("Hit", 1f);
+        else FindObjectOfType<AudioManager>().Play("Hit", SettingsMenu.getInstance().GetSFXVol());
 
         TurnManager.getInstance().HandleTurnAction(TurnManager.ACTION.BONUS_ACTION);
         actionManager.Deselect();

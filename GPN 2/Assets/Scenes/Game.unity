@@ -4158,7 +4158,7 @@ MonoBehaviour:
     Loop: 0
     source: {fileID: 0}
   - name: Hit
-    clip: {fileID: 8300000, guid: 312f3178684e3c544887e31abad929f3, type: 3}
+    clip: {fileID: 8300000, guid: 9d21b5ea7a3877d41a8005c9dc6a637c, type: 3}
     volume: 1
     Loop: 0
     source: {fileID: 0}
