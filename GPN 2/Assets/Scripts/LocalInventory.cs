@@ -144,7 +144,6 @@ public class LocalInventory
         {
             Debug.LogError("You win");
             GameObject.FindWithTag("WinLoseToast").GetComponent<WinLoseToast>().Render();
-            ReturnToMain(); // Return to main menu : Leaves, Disconnects & Play OST.
         }
     }
 
