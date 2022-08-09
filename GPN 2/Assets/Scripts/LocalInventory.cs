@@ -40,8 +40,9 @@ public class LocalInventory
             if(isOnMine && !hasCaptured) entity.occupationState = (BaseGoblin.OCCUPATION_STATE) ((int) entity.occupationState + 1);
             if(!isOnMine) entity.occupationState = BaseGoblin.OCCUPATION_STATE.FREE;
             if(isOnMine && hasCaptured) AddGold(2 * (entity is Miner ? 2 : 1));
-            if(SpawnManager.getInstance().IsSpawnOccupied()) AddGold(1);
         });
+        if(SpawnManager.getInstance().IsSpawnOccupied()) AddGold(1);
+        GameObject.FindWithTag("GoldAmount").GetComponent<GoldAmount>().RenderAmount();
     }
 
     public void DestroyGoblin(GameObject entity)

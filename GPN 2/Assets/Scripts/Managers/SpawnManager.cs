@@ -14,7 +14,7 @@ public class SpawnManager : MonoBehaviour, IClickable
     SelectionActions.InputActions _inputAction;
     Camera _camera;
     readonly string SPAWN_HIGHLIGHT = "Levels/Tiles/spawn_highlight";
-    List<Vector3> playerSpawnPoints;
+    List<Vector3> playerSpawnPoints = new List<Vector3>();
     List<List<Vector3>> SpawnPoints = new List<List<Vector3>>{
         new List<Vector3>{
             new Vector3 (0.16f, -0.4f, 0),  // Bottom Left Right

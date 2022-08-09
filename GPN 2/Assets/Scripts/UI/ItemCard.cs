@@ -3,7 +3,6 @@ using UnityEngine;
 public class ItemCard : UIElement, IClickable
 {
     private bool isSelected = false;
-    private bool _enabled;
     public GameObject item;
     public ItemType type;
 
@@ -26,11 +25,8 @@ public class ItemCard : UIElement, IClickable
     {
         Utility.RenderSprite(transform, $"unit_card_collapsed_selected", "item_card");
         if (type == ItemType.UNIT) SpawnManager.getInstance().DisplaySpawnableTiles();
-        else if (type == ItemType.CARD)
-        {
-            _enabled = !_enabled;
-            GameObject.FindWithTag("BuyButton").GetComponent<SpriteRenderer>().enabled = _enabled;
-        }
+        else if (type == ItemType.CARD) GameObject.FindWithTag("BuyButton").GetComponent<SpriteRenderer>().enabled = true;
+
 
         // TODO: Display selection information
 
@@ -41,11 +37,8 @@ public class ItemCard : UIElement, IClickable
     {
         Utility.RenderSprite(transform, $"unit_card_collapsed", "item_card");
         SpawnManager.getInstance().Clear();
-        if (type == ItemType.CARD)
-        {
-            _enabled = !_enabled;
-            GameObject.FindWithTag("BuyButton").GetComponent<SpriteRenderer>().enabled = _enabled;
-        }
+        if (type == ItemType.CARD) GameObject.FindWithTag("BuyButton").GetComponent<SpriteRenderer>().enabled = false;
+
         
         // TODO: Hide selection information
 

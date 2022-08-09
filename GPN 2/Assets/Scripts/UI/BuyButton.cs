@@ -17,6 +17,5 @@ public class BuyButton : UIElement, IClickable
         LocalInventory.getInstance().AddCard(item);
         Destroy(itemCard);
         ShopManager.getInstance().RenderItemsForSale();
-        GameObject.FindWithTag("BuyButton").GetComponent<SpriteRenderer>().enabled = false;
     }
 }

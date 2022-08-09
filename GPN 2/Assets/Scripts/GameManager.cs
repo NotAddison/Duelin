@@ -22,8 +22,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        // Play OST 
-        Debug.LogError("[GameManager] isNull: " + SettingsMenu.getInstance() == null);
         if (!SettingsMenu.getInstance()) // Did not change any Settings
         {
             Debug.LogError("[GameManager] Setting Default Value (NULL)");
@@ -44,6 +42,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonNetwork.Instantiate("Prefabs/Structures/spawn", spawnPositions[PhotonNetwork.LocalPlayer.ActorNumber-1], Quaternion.identity);
         TurnManager.getInstance().StartTurn();
     }
+
     void OnApplicationQuit()
     {
         PhotonNetwork.LeaveRoom();
