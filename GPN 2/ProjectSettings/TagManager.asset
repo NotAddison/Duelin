@@ -18,6 +18,7 @@ TagManager:
   - Highlight
   - Settings
   - BuyButton
+  - PauseMenu
   layers:
   - Default
   - TransparentFX
