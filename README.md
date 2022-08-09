@@ -20,12 +20,13 @@ Duelin is a 2D online PVP turn-based strategic combat game where players purchas
 >   - [Creating A Room](#creating-a-room)
 >   - [Joining A Room](#joining-a-room)
 >   - [Gameplay](#gameplay)
-> - [Unit Classes](#units-classes)
+> - [Unit Classes](#units)
 > - [Cards](#cards)
 <br>
 
 ## How to play? 
 *Tutorial on how to play Duelin! —*
+> Want a video tutorial instead? Click [here](https://www.youtube.com/)!
 
 ### Creating a Room
 <details>
@@ -86,40 +87,9 @@ Farm points : <b>2</b> <br>
 </details> <br>
 
 
-## Units Classes
-<details>
-<summary><b>Generalist</b> <img src="https://via.placeholder.com/150"></summary>
-<b>Description</b> : A jack of all traits, but a master of none. <br>
-<b>Ability</b>: <i>Depends on the unit</i> <br>
-
-<br>
-<img src="https://via.placeholder.com/150"><br>
-</details>
-
-<details>
-<summary><b>Agility</b> <img src="https://via.placeholder.com/150"></summary>
-<b>Description</b> : A speedy little bugger, fast but at the expense of health.<br>
-<b>Ability</b>: Move a few extra steps <br>
-
-<br>
-<img src="https://via.placeholder.com/150"><br>
-</details>
-
-<details>
-<summary><b>Damage</b> <img src="https://via.placeholder.com/150"></summary>
-<b>Description</b> : Lorem Ipsum <br>
-<b>Ability</b>: Taunt Enemies <br>
-
-<img src="https://via.placeholder.com/150"><br>
-</details>
-
-<details>
-<summary><b>Tank</b> <img src="https://via.placeholder.com/150"></summary>
-<b>Description</b> : The frontlines; Strong but not that "strong"<br>
-<b>Ability</b>: Taunt Enemies <br>
-
-<img src="https://via.placeholder.com/150"><br>
-</details> </br>
+## Units
+> Units are the main pieces that players will use to fight against each other. <br>
+<img src="README Assets\Units.png" style="Width:auto; Height:200px">
 
 ## Cards
 <details>
