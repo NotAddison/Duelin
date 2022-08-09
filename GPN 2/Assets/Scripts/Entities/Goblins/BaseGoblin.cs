@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,8 +20,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     public bool isSelected;
     public bool isMovementBlocked;
     public OCCUPATION_STATE occupationState;
-    private STATUS status;
-    private int statusDuration;
+    private List<ArrayList> STATUSES = new List<ArrayList>();
 
     private List<Entity> entitiesInRange;
     public PhotonView photonView;
@@ -39,7 +39,6 @@ public class BaseGoblin : Entity, IClickable, IBuyable
         isSelected = false;
         isMovementBlocked = false;
         occupationState = OCCUPATION_STATE.FREE;
-        status = STATUS.NONE;
 
         RenderHealth(parent);
 
@@ -84,14 +83,12 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     {   
         if (attackingEntity is Assassin) 
         {
-            status = STATUS.POISONED;
-            statusDuration = 3;
+            AddStatus(STATUS.POISONED, 3);
         }
         if (attackingEntity is Barrel) 
         {
-            status = STATUS.SLOWED;
+            AddStatus(STATUS.SLOWED, 2);
             MovementRange -= 1;
-            statusDuration = 2;
         }
         Health -= attackingEntity.Damage;
         if (Health <= 0)
@@ -122,6 +119,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     public List<Entity> GetEntitiesInRange() => entitiesInRange;
     public Vector3 GetCurrentPos() => new Vector3(transform.position.x, transform.position.y - 0.16f, transform.position.z);
     public void AddEntityToRange(Entity entity) => entitiesInRange.Add(entity);
+    public void AddStatus(STATUS status, int duration) => STATUSES.Add(new ArrayList(){status, duration});
     #endregion
 
     private void RenderHealth(Transform parent)
@@ -133,35 +131,35 @@ public class BaseGoblin : Entity, IClickable, IBuyable
 
     public void HandleStatusEffects()
     {
-        switch(status)
-        {
-            case STATUS.POISONED:
-                statusDuration -= 1;
-                Health -= 1;
-                break;
-            case STATUS.SLOWED:
-                statusDuration -= 1;
-                break;
-            case STATUS.NONE:
-                break;
-            default:
-                break;
-        }
-        Debug.Log(status);
-        if (statusDuration <= 0)
-        {
-            if (status == STATUS.SLOWED){
-                MovementRange += 1;
+        STATUSES.ForEach(status => {
+            switch(status[0])
+            {
+                case STATUS.POISONED:
+                    status[1] = ((int) status[1]) - 1;
+                    Health -= 1;
+                    break;
+                case STATUS.SLOWED:
+                    status[1] = ((int) status[1]) - 1;
+                    break;
+                case STATUS.NONE:
+                    break;
+                default:
+                    break;
             }
-            status = STATUS.NONE;
-        }
 
+            if ((int) status[1] <= 0)
+            {
+                if (((STATUS) status[0]) == STATUS.SLOWED) MovementRange += 1;
+                status[0] = STATUS.NONE;
+            }
+        });
     }
 
-    private enum STATUS
+    public enum STATUS
     {
         SLOWED,
         POISONED,
+        TAUNTED,
         NONE
     }
 
