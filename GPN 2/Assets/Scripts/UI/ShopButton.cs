@@ -10,6 +10,8 @@ public class ShopButton : UIElement, IClickable
 
     public void OnClick(GameObject prevSelection = null)
     {
+        bool isSelectionCard = prevSelection != null && prevSelection.GetComponent<Card>() != null;
+        if (isSelectionCard) prevSelection.GetComponent<Card>().Deselect();
         _enabled = !_enabled;
         GameObject.FindWithTag("ShopPanel").GetComponent<SpriteRenderer>().enabled = _enabled;
         GameObject.FindWithTag("ShopManager").GetComponent<ShopManager>().RenderItemsForSale(_enabled);

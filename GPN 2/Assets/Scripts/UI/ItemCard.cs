@@ -8,6 +8,8 @@ public class ItemCard : UIElement, IClickable
 
     public void OnClick(GameObject prevSelection = null)
     {
+        bool isSelectionCard = prevSelection != null && prevSelection.GetComponent<Card>() != null;
+        if (isSelectionCard) prevSelection.GetComponent<Card>().Deselect();
         if (TurnManager.getInstance().itemPurchased) return;
         bool canDeselect = prevSelection != null && prevSelection.GetComponent<ItemCard>() != null && prevSelection.GetComponent<ItemCard>() != this;
         bool isSelectionGoblin = prevSelection != null && prevSelection.GetComponent<BaseGoblin>() != null;
@@ -26,7 +28,6 @@ public class ItemCard : UIElement, IClickable
         Utility.RenderSprite(transform, $"unit_card_collapsed_selected", "item_card");
         if (type == ItemType.UNIT) SpawnManager.getInstance().DisplaySpawnableTiles();
         else if (type == ItemType.CARD) GameObject.FindWithTag("BuyButton").GetComponent<SpriteRenderer>().enabled = true;
-
 
         // TODO: Display selection information
 

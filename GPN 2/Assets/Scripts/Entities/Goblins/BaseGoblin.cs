@@ -58,13 +58,19 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     #region Event Handlers
     public void OnClick(GameObject prevSelection = null)
     {
+        bool isSelectionCard = prevSelection != null && prevSelection.GetComponent<Targetable>() != null;
+        if (isSelectionCard) {
+            prevSelection.GetComponent<Targetable>().UseEffect(this.gameObject);
+            return;
+        }
+
         if (!photonView.IsMine) return;
         Entity prevEntity = prevSelection?.GetComponent<Entity>();
-        bool isEntityGoblin = prevEntity is BaseGoblin;
-        BaseGoblin prevGoblin = isEntityGoblin ? (BaseGoblin) prevEntity : null;
+        bool isSelectionGoblin = prevEntity is BaseGoblin;
+        BaseGoblin prevGoblin = isSelectionGoblin ? (BaseGoblin) prevEntity : null;
 
-        bool canDeselect = isEntityGoblin && prevEntity != this;
-        bool isTargetable = isEntityGoblin && prevGoblin.GetEntitiesInRange().Contains(this);
+        bool canDeselect = isSelectionGoblin && prevEntity != this;
+        bool isTargetable = isSelectionGoblin && prevGoblin.GetEntitiesInRange().Contains(this);
 
         if (isTargetable) return;
         if (canDeselect) prevGoblin.actionManager.Deselect();

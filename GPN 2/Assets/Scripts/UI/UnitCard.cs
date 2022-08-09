@@ -5,6 +5,8 @@ public class UnitCard : MonoBehaviour, IClickable
 {
     public void OnClick(GameObject prevSelection = null)
     {
+        bool isSelectionCard = prevSelection != null && prevSelection.GetComponent<Card>() != null;
+        if (isSelectionCard) prevSelection.GetComponent<Card>().Deselect();
         bool isEntityCard = prevSelection != null && prevSelection.GetComponent<UnitCard>();
         int unitIndex = (int) Math.Ceiling((0.89f - gameObject.transform.position.y) / 0.28f);
         BaseGoblin goblin = LocalInventory.getInstance().GetGoblin(unitIndex);
