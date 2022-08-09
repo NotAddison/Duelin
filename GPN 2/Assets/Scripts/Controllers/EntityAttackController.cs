@@ -86,7 +86,7 @@ public class EntityAttackController : EntityController
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(worldPos.x, worldPos.y += 0.16f), Vector2.zero);
         
         bool inRange = dist <= entity.Range && dist != 0;
-        bool isOccupied = hit.collider != null && hit.collider.name != "spawn(Clone)";
+        bool isOccupied = hit.collider != null && hit.collider.name != "Tilemap - Highlight [SpawnPoints]";
         bool isSameTeam = isOccupied && (hit.collider.gameObject.GetComponent<PhotonView>()?.IsMine ?? false);
         bool canAttack = inRange && isOccupied && !isSameTeam;
         
