@@ -6,6 +6,7 @@ public class Haste : Enhancement
     protected override void HandleEffect(GameObject target)
     {
         BaseGoblin targetGoblin = target.GetComponent<BaseGoblin>();
+        if(!isEligible(gameTilemap.WorldToCell(targetGoblin.transform.position))) return;
         targetGoblin.MovementRange += 1;
     }
 }

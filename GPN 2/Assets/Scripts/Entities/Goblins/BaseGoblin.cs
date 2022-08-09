@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class BaseGoblin : Entity, IClickable, IBuyable
 {
@@ -24,6 +25,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     private List<ArrayList> STATUSES = new List<ArrayList>();
 
     private List<Entity> entitiesInRange;
+    private Player originalOwner;
     public PhotonView photonView;
     private Transform parent;
     private static int entityIndex = 0;
@@ -45,6 +47,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
         RenderHealth(parent);
 
         if (!photonView.IsMine) return;
+        originalOwner = PhotonNetwork.LocalPlayer;
         Vector3 cardPosition = new Vector3(-2.06f, (0.89f - (0.28f * entityIndex)), 0f);
         unit_card = Instantiate(Resources.Load<GameObject>("Prefabs/UI/unit_card"), cardPosition, Quaternion.identity);
         LocalInventory.getInstance().UpdateEntityListItem(parent.gameObject, entityIndex);
@@ -84,7 +87,12 @@ public class BaseGoblin : Entity, IClickable, IBuyable
 
     public override void OnDamage(BaseGoblin attackingEntity, Vector3 targetPos)
     {   
-        if(HasStatus(BaseGoblin.STATUS.DODGE)) return;
+        if(HasStatus(STATUS.DODGE))
+        {
+            int index = STATUSES.FindIndex(status => ((STATUS) status[0]) == STATUS.DODGE);
+            STATUSES.RemoveAt(index);
+            return;
+        }
         if (attackingEntity is Assassin) 
         {
             AddStatus(STATUS.POISONED, 3);
@@ -106,7 +114,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     public override void OnDeath(BaseGoblin attackingEntity, Vector3? targetPos = null)
     {    
         if (!photonView.IsMine) {
-            if (attackingEntity.photonView.IsMine) LocalInventory.getInstance().AddGold(2);
+            if (attackingEntity != null && attackingEntity.photonView.IsMine) LocalInventory.getInstance().AddGold(2);
             Destroy(parent.gameObject);
             return;
         }
@@ -114,7 +122,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
         Destroy(unit_card);
         Destroy(parent.gameObject);
         entityIndex -= 1;
-        if (attackingEntity.Range > 1) attackingEntity.isMovementBlocked = true;
+        if (attackingEntity != null && attackingEntity.Range > 1) attackingEntity.isMovementBlocked = true;
     }
     #endregion
 
@@ -154,6 +162,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
 
             if (!(((int) status[1]) <= 0)) return;
             if (((STATUS) status[0]) == STATUS.SLOWED) MovementRange += 1;
+            if (((STATUS) status[0]) == STATUS.BRIBED) PhotonView.Get(this).TransferOwnership(originalOwner);
         });
         STATUSES.RemoveAll(status => ((int) status[1]) <= 0);
     }
