@@ -99,7 +99,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         string text = RoomMenuLog.GetComponent<TextMeshProUGUI>().text;
-        RoomMenuLog.GetComponent<TextMeshProUGUI>().SetText(text + $"\n [Photon] Player {otherPlayer.ActorNumber} has left the room");
+        RoomMenuLog.GetComponent<TextMeshProUGUI>().SetText(text + $"\n[Photon] Player {otherPlayer.ActorNumber} has left the room");
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -108,7 +108,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
         // UI Display
         string text = RoomMenuLog.GetComponent<TextMeshProUGUI>().text;
-        RoomMenuLog.GetComponent<TextMeshProUGUI>().SetText(text + $"\n [Photon] Player {newPlayer.ActorNumber} has joined the room");
+        RoomMenuLog.GetComponent<TextMeshProUGUI>().SetText(text + $"\n[Photon] Player {newPlayer.ActorNumber} has joined the room");
         PlayerNum.GetComponent<TextMeshProUGUI>().SetText($"{PhotonNetwork.CurrentRoom.PlayerCount} | {PhotonNetwork.CurrentRoom.MaxPlayers}");
     }
 
@@ -126,6 +126,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         else
         {
             Debug.LogError("[Photon]: Only the Host Client can start the game");
+            string text = RoomMenuLog.GetComponent<TextMeshProUGUI>().text;
+            RoomMenuLog.GetComponent<TextMeshProUGUI>().SetText(text + "\n[Photon]: Only the Host Client can start the game");
         }
     }
 }
