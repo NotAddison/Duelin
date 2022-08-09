@@ -897,9 +897,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Gameplay \u2014\n- Networking (Photon)\n- Multiplayer Rooms\n- Player
-    Spawning & Syncing\n- Local Inventory\n- Turn Manager\n- Main UI\n- User Settings\n\nAudio
-    \u2014\n- OST Tracks\n- SFX"
+  m_text: "Gameplay \u2014\n- Networking (Photon)\n- Multiplayer Rooms & Lobbies\n-
+    Player Spawning & Syncing\n- Local Inventory\n- Turn Manager\n- User Interfaces\n-
+    User Settings\n- Game Pause\n- User Preferences\n\nAudio \u2014\n- OST Tracks\n-
+    All SFX\n- Ambient Noises (Spliced)\n- Audio Mixing & Mastering"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 375e9ddf82f14dd4fa02d15bf4fa75a7, type: 2}
   m_sharedMaterial: {fileID: 7130028076385556869, guid: 375e9ddf82f14dd4fa02d15bf4fa75a7, type: 2}
