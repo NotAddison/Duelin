@@ -17,6 +17,7 @@ public class TurnManager : MonoBehaviour
         if (!CheckTurn()) return;
         turnNumber += 1;
         if (turnNumber <= 1) actionTaken = bonusActionTaken = isFirstTurn = true;
+        Instantiate(Resources.Load<GameObject>("Prefabs/UI/turn_toast"), Vector3.zero, Quaternion.identity);
         LocalInventory.getInstance()
             .UpdateGameState()
             .UpdateGoldAmount();
