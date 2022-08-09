@@ -1585,8 +1585,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Gameplay \u2014\n- Core Gameplay\n- Player Movement\n- Gameplay UI\n\nArt
-    \u2014\n- Art yes"
+  m_text: "Gameplay \u2014\n- Core Gameplay\n\t- Movement\n\t- Attacking\n\t- Abilites\n\t-
+    Turn Management\n\t- Unit selection\n\t- cards & abilities\n\t- Shop\n\t- Local
+    Inventory\n\t- UI Systems & Interactions\n\t- Input System & Handlers\n\nArt
+    \u2014\n- Character Sprites\n- Map tiles\n- UI Elements\n- UI / UX Design\n..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 375e9ddf82f14dd4fa02d15bf4fa75a7, type: 2}
   m_sharedMaterial: {fileID: 7130028076385556869, guid: 375e9ddf82f14dd4fa02d15bf4fa75a7, type: 2}
@@ -1649,7 +1651,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0.48529717}
+  m_margin: {x: 0, y: 0, z: -4.067993, w: 0.48529717}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1673,7 +1675,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1849949230}
   - component: {fileID: 1849949232}
-  - component: {fileID: 1849949231}
+  - component: {fileID: 1849949233}
   m_Layer: 5
   m_Name: Jimmy Image
   m_TagString: Untagged
@@ -1698,10 +1700,18 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15.002, y: 62.466}
-  m_SizeDelta: {x: 30.0046, y: 30.0046}
+  m_AnchoredPosition: {x: 3.503333, y: 73.86526}
+  m_SizeDelta: {x: 29, y: 42}
   m_Pivot: {x: 0.5000003, y: 0.5}
---- !u!114 &1849949231
+--- !u!222 &1849949232
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849949229}
+  m_CullTransparentMesh: 1
+--- !u!114 &1849949233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1710,7 +1720,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1849949229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -1721,21 +1731,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!222 &1849949232
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1849949229}
-  m_CullTransparentMesh: 1
+  m_Sprite: {fileID: 1241620627, guid: 0fefb475c7d720643aeee3fe30294ff4, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1924604508
 GameObject:
   m_ObjectHideFlags: 0
