@@ -1,5 +1,5 @@
 ## What is Duelin?
-<img src="">
+<img src="GPN 2\Assets\Resources\UI Images\Title.png">
 Duel + Goblins = <b>Duelin</b> <br>
 Brought to you by the makers of the board game INSECTUM, <br>
 Duelin is a 2D online PVP turn-based strategic combat game where players purchase units and battle against their friends!
