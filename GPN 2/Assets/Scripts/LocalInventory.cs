@@ -1,8 +1,10 @@
+using System.ComponentModel;
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Photon.Pun;
 
 public class LocalInventory
 {
@@ -138,7 +140,12 @@ public class LocalInventory
     public void AddGold(int value){
         Gold += value;
         if (!(Gold >= GameManager.getInstance().amountToWin)) GameObject.FindWithTag("GoldAmount").GetComponent<GoldAmount>().RenderAmount();
-        else Debug.Log("You Win");
+        else 
+        {
+            Debug.LogError("You win");
+            GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/UI/turn_toast"), Vector3.zero, Quaternion.identity);
+            ReturnToMain(); // Return to main menu : Leaves, Disconnects & Play OST.
+        }
     }
 
     ///<summary>
@@ -153,5 +160,14 @@ public class LocalInventory
     {
         PLAGUED,
         HARVEST,
+    }
+
+    private void ReturnToMain(){
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.LoadLevel("MainMenu");
+            
+        // Trigger OST Again
+        PreserveSound.Instance.gameObject.GetComponent<AudioSource>().time = 0;
+        PreserveSound.Instance.gameObject.GetComponent<AudioSource>().Play();
     }
 }

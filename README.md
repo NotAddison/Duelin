@@ -26,7 +26,7 @@ Duelin is a 2D online PVP turn-based strategic combat game where players purchas
 
 ## How to play? 
 > A quick guide on how to play Duelin! <br>
-> Want a video tutorial instead? Click [here](https://www.youtube.com/)!
+> Want a video tutorial instead? Click [here](https://www.youtube.com/) [Sorry, was not able to record and edit on time :(]!
 
 ### Creating a Room
 <details>
