@@ -33,8 +33,8 @@ public class EntityActionManager : MonoBehaviour
         _abilityController  = EntityAbilityController.Create(gameObject, entity, this);
 
         _controllerList.AddRange(new List<EntityController>{
-            _movementController,
             _attackController,
+            _movementController,
             _abilityController
         });
     }
