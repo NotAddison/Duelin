@@ -20,7 +20,7 @@ public class Card : MonoBehaviour, IClickable
         return false;
     }
 
-    public void UseEffect(GameObject target){
+    public void UseEffect(GameObject target = null){
         Deselect();
         if(TurnManager.getInstance().bonusActionTaken) return;
         HandleEffect(target);
@@ -28,7 +28,7 @@ public class Card : MonoBehaviour, IClickable
         Destroy(transform.parent.gameObject);
     }
 
-    protected virtual void HandleEffect(GameObject target){}
+    protected virtual void HandleEffect(GameObject target = null){}
 
     protected void Start() {}
 }

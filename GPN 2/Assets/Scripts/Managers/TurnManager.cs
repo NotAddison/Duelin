@@ -17,7 +17,9 @@ public class TurnManager : MonoBehaviour
         if (!CheckTurn()) return;
         turnNumber += 1;
         if (turnNumber <= 1) actionTaken = bonusActionTaken = isFirstTurn = true;
-        LocalInventory.getInstance().UpdateGoldAmount();
+        LocalInventory.getInstance()
+            .UpdateGameState()
+            .UpdateGoldAmount();
         LocalInventory.getInstance().GetGoblins().ForEach(goblin => {
             goblin.UsePassive();
             goblin.HandleStatusEffects();

@@ -51,6 +51,17 @@ public class GameManager : MonoBehaviourPunCallbacks
         Debug.LogError($"[GameManager]: Player {otherPlayer.ActorNumber} has left the room");
     }
 
+    [PunRPC]
+    public void AddGameState(int stateInt, int duration)
+    {
+        LocalInventory.getInstance().AddGameState((LocalInventory.GAME_STATE) stateInt, duration);
+    }
+
+    public void UpdateGameState(LocalInventory.GAME_STATE state, int duration)
+    {
+        PhotonView.Get(this).RPC("AddGameState", RpcTarget.All, (int) state, duration);
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

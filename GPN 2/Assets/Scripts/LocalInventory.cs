@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +12,7 @@ public class LocalInventory
     private Tilemap mineTilemap;
     private static LocalInventory _instance = null;
     private readonly string MINE_MAP = "Tilemap - Mines";
+    private List<ArrayList> GAME_STATEs = new List<ArrayList>();
     public static LocalInventory getInstance() => _instance == null ? _instance = new LocalInventory() : _instance;
 
     LocalInventory()
@@ -31,7 +32,17 @@ public class LocalInventory
         Cards[index] = card;
     }
 
-    public void UpdateGoldAmount(){
+    public LocalInventory UpdateGameState()
+    {
+        GAME_STATEs.ForEach(state => {
+            int index = GAME_STATEs.FindIndex(s => (GAME_STATE) s[0] == (GAME_STATE) state[0]);
+            GAME_STATEs[index][1] = ((int) GAME_STATEs[index][1]) - 1; 
+        });
+        GAME_STATEs.RemoveAll(state => (int) state[1] <= 0);
+        return this;
+    }
+
+    public LocalInventory UpdateGoldAmount(){
         GetGoblins().ForEach(entity => {
             Vector3Int currentCellPos = mineTilemap.WorldToCell(entity.GetCurrentPos());
             bool isOnMine = mineTilemap.HasTile(new Vector3Int(currentCellPos.x, currentCellPos.y, 2));
@@ -39,10 +50,12 @@ public class LocalInventory
 
             if(isOnMine && !hasCaptured) entity.occupationState = (BaseGoblin.OCCUPATION_STATE) ((int) entity.occupationState + 1);
             if(!isOnMine) entity.occupationState = BaseGoblin.OCCUPATION_STATE.FREE;
-            if(isOnMine && hasCaptured) AddGold(2 * (entity is Miner ? 2 : 1));
+            if(!IsHarvest() && IsPlagued()) return;
+            if(isOnMine && hasCaptured) AddGold(2 * (entity is Miner ? 2 : 1) * (!IsPlagued() && IsHarvest() ? 2 : 1));
         });
         if(SpawnManager.getInstance().IsSpawnOccupied()) AddGold(1);
         GameObject.FindWithTag("GoldAmount").GetComponent<GoldAmount>().RenderAmount();
+        return this;
     }
 
     public void DestroyGoblin(GameObject entity)
@@ -56,10 +69,7 @@ public class LocalInventory
             targetEntityUnitCard.transform.position = new Vector3(targetEntityUnitCardPos.x, targetEntityUnitCardPos.y += 0.28f, targetEntityUnitCardPos.z); 
         }
         Entities.RemoveAt(entityIndex);
-    }
-
-    public void DestroyCard(GameObject card) {
-
+        if (GetEntityListSize() <= 0) Debug.Log("You lose");
     }
     
     public int GetPositionOfEntity(GameObject entity) => Entities.FindIndex(e => e == entity);
@@ -69,6 +79,8 @@ public class LocalInventory
     public List<BaseGoblin> GetGoblins() => Entities.Select(entity => entity.transform.Find("entity").GetComponent<BaseGoblin>()).ToList();
     public BaseGoblin GetGoblin(int index) => Entities[index].transform.Find("entity").GetComponent<BaseGoblin>();
     public Card GetCard(int index) => Cards[index].transform.Find("card_modal").GetComponent<Card>();
+    private bool IsPlagued() => GAME_STATEs.Any(state => (GAME_STATE) state[0] == GAME_STATE.PLAGUED);
+    private bool IsHarvest() => GAME_STATEs.Any(state => (GAME_STATE) state[0] == GAME_STATE.HARVEST);
 
     // --------------- Other Inventory Functions ---------------
 
@@ -91,6 +103,14 @@ public class LocalInventory
             card.transform.position = cardPos;
         });
         UpdateCardListItem(newCardInstance, GetPositionOfCard(card));
+    }
+
+    public void AddGameState(GAME_STATE state, int duration)
+    {
+        GAME_STATEs.Add(new ArrayList(){
+            state,
+            duration
+        });
     }
 
     ///<summary>
@@ -127,5 +147,11 @@ public class LocalInventory
     public void RemoveGold(int amount){
         Gold -= amount;
         GameObject.FindWithTag("GoldAmount").GetComponent<GoldAmount>().RenderAmount();
+    }
+
+    public enum GAME_STATE
+    {
+        PLAGUED,
+        HARVEST,
     }
 }
