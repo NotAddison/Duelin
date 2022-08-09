@@ -49,6 +49,13 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
     public override void OnPlayerLeftRoom(Player otherPlayer){
         Debug.LogError($"[GameManager]: Player {otherPlayer.ActorNumber} has left the room");
+
+        // Check if last one = Win by elimination
+        Debug.LogError("NoPlayers = " + PhotonNetwork.CurrentRoom.PlayerCount);
+        Debug.LogError("Win Eliminated?" + (PhotonNetwork.CurrentRoom.PlayerCount == 1));
+        if (PhotonNetwork.CountOfPlayersInRooms == 1){
+            GameObject.FindWithTag("WinLoseToast").GetComponent<WinLoseToast>().Render(true);
+        } 
     }
 
     [PunRPC]

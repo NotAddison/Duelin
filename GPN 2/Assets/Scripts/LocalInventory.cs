@@ -72,6 +72,9 @@ public class LocalInventory
         }
         Entities.RemoveAt(entityIndex);
         if (GetEntityListSize() <= 0) GameObject.FindWithTag("WinLoseToast").GetComponent<WinLoseToast>().Render(false);
+        Debug.LogError("NoPlayers = " + PhotonNetwork.CurrentRoom.PlayerCount);
+        Debug.LogError("Win Eliminated?" + (PhotonNetwork.CurrentRoom.PlayerCount == 1));
+        if (PhotonNetwork.CountOfPlayersInRooms == 1) GameObject.FindWithTag("WinLoseToast").GetComponent<WinLoseToast>().Render(true);
     }
     
     public int GetPositionOfEntity(GameObject entity) => Entities.FindIndex(e => e == entity);
