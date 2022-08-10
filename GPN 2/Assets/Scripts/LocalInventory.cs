@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
@@ -8,14 +7,14 @@ using Photon.Pun;
 
 public class LocalInventory
 {
+    private static LocalInventory _instance = null;
+    public static LocalInventory getInstance() => _instance == null ? _instance = new LocalInventory() : _instance;
     private int Gold = 5;
     private List<GameObject> Entities = new List<GameObject>();
     private List<GameObject> Cards = new List<GameObject>();
     private Tilemap mineTilemap;
-    private static LocalInventory _instance = null;
     private readonly string MINE_MAP = "Tilemap - Mines";
     private List<ArrayList> GAME_STATEs = new List<ArrayList>();
-    public static LocalInventory getInstance() => _instance == null ? _instance = new LocalInventory() : _instance;
 
     LocalInventory()
     {
@@ -72,8 +71,6 @@ public class LocalInventory
         }
         Entities.RemoveAt(entityIndex);
         if (GetEntityListSize() <= 0) GameObject.FindWithTag("WinLoseToast").GetComponent<WinLoseToast>().Render(false);
-        Debug.LogError("NoPlayers = " + PhotonNetwork.CurrentRoom.PlayerCount);
-        Debug.LogError("Win Eliminated?" + (PhotonNetwork.CurrentRoom.PlayerCount == 1));
         if (PhotonNetwork.CountOfPlayersInRooms == 1) GameObject.FindWithTag("WinLoseToast").GetComponent<WinLoseToast>().Render(true);
     }
     
