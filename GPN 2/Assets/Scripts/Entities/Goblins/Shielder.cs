@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.Tilemaps;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Photon.Pun;
 
 public class Shielder : Tank, IActiveAbility
@@ -18,7 +14,6 @@ public class Shielder : Tank, IActiveAbility
     [PunRPC]
     private void RunActive(Vector3 targetPos)
     {
-        Debug.Log("Applying Paralyze");
         Collider2D hit = Physics2D.Raycast(new Vector2(targetPos.x, targetPos.y += 0.16f), Vector2.zero).collider;
         GameObject targetEntity = hit.gameObject;
         targetEntity.GetComponent<BaseGoblin>().AddStatus(BaseGoblin.STATUS.PARALYZED, 2);
