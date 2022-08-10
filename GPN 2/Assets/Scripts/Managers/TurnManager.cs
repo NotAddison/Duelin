@@ -5,7 +5,7 @@ using Photon.Realtime;
 
 public class TurnManager : MonoBehaviour
 {
-    public static TurnManager getInstance() => GameObject.FindWithTag("TurnManager").GetComponent<TurnManager>();
+    public static TurnManager getInstance() => GameObject.FindWithTag("GameManager").GetComponent<TurnManager>();
     private static Player CurrentPlayer = PhotonNetwork.MasterClient;  // Default to Master Client to be the first player
     private int turnNumber = 0;
     public bool actionTaken, bonusActionTaken, itemPurchased, isFirstTurn = false;
@@ -21,11 +21,13 @@ public class TurnManager : MonoBehaviour
         LocalInventory.getInstance()
             .UpdateGameState()
             .UpdateGoldAmount();
+
         LocalInventory.getInstance().GetGoblins().ForEach(goblin => {
             goblin.isAbilityUsed = false;
-            goblin.UsePassive();
+            if(goblin is IPassiveAbility) ((IPassiveAbility) goblin).UsePassive();
             goblin.HandleStatusEffects();
         });
+
         itemPurchased = isFirstTurn ? false : !ShopManager.getInstance().CanAffordAny();
         EndTurnButton.getInstance().RenderButton(actionTaken && bonusActionTaken && itemPurchased);
     }

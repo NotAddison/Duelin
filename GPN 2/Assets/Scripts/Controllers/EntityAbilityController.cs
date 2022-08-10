@@ -20,6 +20,6 @@ public class EntityAbilityController : EntityController
         if (TurnManager.getInstance().isFirstTurn) return;
         if (entity.HasStatus(BaseGoblin.STATUS.SILENCED)) return;
         if (entity.isAbilityUsed) return;
-        entity.UseAbility(context);
+        if (entity is IActiveAbility) ((IActiveAbility)entity).UseActive(context);
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 public class EntityController : MonoBehaviour
 {
     protected readonly string MOUSE_POS = "POS";
-    protected readonly string GAME_MAP = "Tilemap - GameMap";
     public ACTION ACTION_TYPE;
     public static int clicks;
 

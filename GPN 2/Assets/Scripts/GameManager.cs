@@ -3,7 +3,6 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
 
-
 public class GameManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] GameObject GameCam;
@@ -18,7 +17,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         new Vector3( 1.28f,  0.16f, 0),
     };
 
-    public int amountToWin = 15;
+    public int amountToWin = 25;
 
     void Start()
     {
@@ -37,7 +36,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             FindObjectOfType<AudioManager>().Play("Ambience", SettingsMenu.getInstance().GetAmbienceVol());
         }
 
-        amountToWin += PhotonNetwork.CountOfPlayersInRooms > 2 ? (PhotonNetwork.CountOfPlayersInRooms - 2) * 5 : 0;
+        // amountToWin += PhotonNetwork.CountOfPlayersInRooms > 2 ? (PhotonNetwork.CountOfPlayersInRooms - 2) * 5 : 0;
         GameObject.FindWithTag("GoldBar").GetComponent<GoldBar>().RenderBar();
         PhotonNetwork.Instantiate("Prefabs/Structures/spawn", spawnPositions[PhotonNetwork.LocalPlayer.ActorNumber-1], Quaternion.identity);
         TurnManager.getInstance().StartTurn();

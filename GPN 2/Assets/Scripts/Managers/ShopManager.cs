@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    public static ShopManager getInstance() => GameObject.FindWithTag("ShopManager").GetComponent<ShopManager>();
+    public static ShopManager getInstance() => GameObject.FindWithTag("GameManager").GetComponent<ShopManager>();
     private List<GameObject> AllUnits;
     private List<GameObject> AllCards;
     private List<GameObject> UnitsForSale = new List<GameObject>();

@@ -109,6 +109,7 @@ MonoBehaviour:
   actionManager: {fileID: 0}
   unit_card: {fileID: 0}
   isSelected: 0
+  isAbilityUsed: 0
   isMovementBlocked: 0
   occupationState: 0
   photonView: {fileID: 0}

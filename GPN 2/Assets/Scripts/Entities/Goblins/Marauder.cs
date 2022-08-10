@@ -1,27 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using Photon.Pun;
 
-
-public class Marauder : BaseGoblin
+public class Marauder : BaseGoblin, IActiveAbility
 {
-    public string code;
-    public string skillName;
-    public string description;
     public override int Cost() => 7;
 
-    public override void UseAbility(InputAction.CallbackContext context)
+    // !Not working
+    public void HandleActive(GameObject targetEntity, Vector3Int targetPos)
     {
-        if (Cooldown == 0){
-            Cooldown += 4;
-            LocalInventory.getInstance().GetGoblins().ForEach(goblin => {
-                goblin.GetComponent<BaseGoblin>().AddHealth(1);
-                goblin.GetComponent<BaseGoblin>().Damage += 1;
-            });
-        }
-
-        isAbilityUsed = true;
-        actionManager.Deselect();
+        // object[] args = new object[LocalInventory.getInstance().GetEntityListSize()];
+        // if (Cooldown > 0) return;
+        // Cooldown += 4;
+        // int index = 0;
+        // LocalInventory.getInstance().GetGoblins().ForEach(goblin => {
+        //     args[index] = goblin;
+        //     index++;
+        //     goblin.GetComponent<BaseGoblin>().AddHealth(1);
+        //     goblin.GetComponent<BaseGoblin>().Damage += 1;
+        // });     
+        // photonView.RPC("RunActive", RpcTarget.All, args as object);   
     }
+
+    // [PunRPC]
+    // private void RunActive(object[] goblins)
+    // {   
+    //     goblins.ForEach(goblin => {
+    //         ((GameObject)goblin).GetComponent<BaseGoblin>().AddHealth(1);
+    //     });
+    // }
+
+    public bool isActive(Vector3Int targetPos) => false;
+    public bool isTargetable() => false;
 }

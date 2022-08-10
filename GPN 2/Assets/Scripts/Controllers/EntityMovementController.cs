@@ -12,9 +12,7 @@ public class EntityMovementController : EntityController
     private BaseGoblin entity;
     private Vector3 destination; 
     private EntityActionManager actionManager;
-    private readonly string MOVEMENT_MAP = "Tilemap - Highlight [Movement]";
-    private readonly string MOVEMENT_HIGHLIGHT = "Levels/Tiles/movement_highlight";
-
+    
     public static EntityMovementController Create(GameObject parent, BaseGoblin entity, EntityActionManager actionManager)
     {
         EntityMovementController _movementController = parent.AddComponent<EntityMovementController>();
@@ -25,9 +23,9 @@ public class EntityMovementController : EntityController
     }
 
     private void Start() {
-        gameTilemap = GameObject.Find(GAME_MAP).GetComponent<Tilemap>();
-        movementHighlightMap = GameObject.Find(MOVEMENT_MAP).GetComponent<Tilemap>();
-        movementHighlight = Resources.Load<Tile>(MOVEMENT_HIGHLIGHT);
+        gameTilemap = TilemapRepository.getInstance().GetTilemap(TilemapRepository.GAME_MAP);
+        movementHighlightMap = TilemapRepository.getInstance().GetTilemap(TilemapRepository.MOVEMENT_MAP);
+        movementHighlight = TilemapRepository.getInstance().GetTile(TilemapRepository.MOVE_TILE);
         destination = entity.transform.position;
     }
 
@@ -58,7 +56,7 @@ public class EntityMovementController : EntityController
         if (SettingsMenu.getInstance() == null) FindObjectOfType<AudioManager>().Play("Move", 1f);
         else FindObjectOfType<AudioManager>().Play("Move", SettingsMenu.getInstance().GetSFXVol());
         
-        entity.UsePassive();
+        if(entity is IPassiveAbility) ((IPassiveAbility) entity).UsePassive();
         DesyncCheck(destination);
         TurnManager.getInstance().HandleTurnAction(TurnManager.ACTION.ACTION);
         actionManager.Deselect();

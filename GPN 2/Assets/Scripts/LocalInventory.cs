@@ -9,16 +9,16 @@ public class LocalInventory
 {
     private static LocalInventory _instance = null;
     public static LocalInventory getInstance() => _instance == null ? _instance = new LocalInventory() : _instance;
-    private int Gold = 5;
+    private int Gold = 8;
     private List<GameObject> Entities = new List<GameObject>();
     private List<GameObject> Cards = new List<GameObject>();
     private Tilemap mineTilemap;
-    private readonly string MINE_MAP = "Tilemap - Mines";
+    
     private List<ArrayList> GAME_STATEs = new List<ArrayList>();
 
     LocalInventory()
     {
-        mineTilemap = GameObject.Find(MINE_MAP).GetComponent<Tilemap>();
+        mineTilemap = TilemapRepository.getInstance().GetTilemap(TilemapRepository.MINE_MAP);
     }
 
     public void UpdateEntityListItem(GameObject entity, int index) 

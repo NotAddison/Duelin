@@ -11,8 +11,8 @@ public class EntityAttackController : EntityController
     private Tile attackHighlight;
     private BaseGoblin entity;
     private EntityActionManager actionManager;
-    private readonly string ATTACK_MAP = "Tilemap - Highlight [Attack]";
-    private readonly string ATTACK_HIGHLIGHT = "Levels/Tiles/attack_highlight";
+    
+    
 
     public static EntityAttackController Create(GameObject parent, BaseGoblin entity, EntityActionManager actionManager)
     {
@@ -24,9 +24,9 @@ public class EntityAttackController : EntityController
     }
 
     private void Start() {
-        gameTilemap = GameObject.Find(GAME_MAP).GetComponent<Tilemap>();
-        attackHighlightMap = GameObject.Find(ATTACK_MAP).GetComponent<Tilemap>();
-        attackHighlight = Resources.Load<Tile>(ATTACK_HIGHLIGHT);
+        gameTilemap = TilemapRepository.getInstance().GetTilemap(TilemapRepository.GAME_MAP);
+        attackHighlightMap = TilemapRepository.getInstance().GetTilemap(TilemapRepository.ATTACK_MAP);
+        attackHighlight = TilemapRepository.getInstance().GetTile(TilemapRepository.ATTACK_TILE);
     }
     
     public override void HandleAction(InputAction.CallbackContext context)
@@ -54,11 +54,9 @@ public class EntityAttackController : EntityController
         GameObject targetEntity = Physics2D.Raycast(new Vector2(worldPos.x, worldPos.y += 0.16f), Vector2.zero).collider.gameObject;
         Entity target = targetEntity.GetComponent<Entity>();
 
-        if (target != null) {
-            TurnManager.getInstance().HandleTurnAction(TurnManager.ACTION.BONUS_ACTION);
-            target.OnDamage(entity, targetPos);
-            actionManager.Deselect();
-        }
+        TurnManager.getInstance().HandleTurnAction(TurnManager.ACTION.BONUS_ACTION);
+        target.OnDamage(entity, targetPos);
+        actionManager.Deselect();
 
         if (SettingsMenu.getInstance() == null) FindObjectOfType<AudioManager>().Play("Bow", 1f);
         else FindObjectOfType<AudioManager>().Play("Bow", SettingsMenu.getInstance().GetSFXVol());

@@ -10,6 +10,10 @@ public class Drummer : BaseGoblin
         base.Start();
         GameObject.FindGameObjectsWithTag("Unit").ForEach(obj => {
             BaseGoblin goblin = obj.GetComponent<BaseGoblin>();
+            if(goblin == null) {
+                Debug.Log(obj.name);
+                return;
+            }
             goblin.Damage -= 1;
         });
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TurnToast : MonoBehaviour
 {
-    int lifetime = 2;
+    float lifetime = 1.2f;
     private void Start() => StartCoroutine(WaitThenDie());
 
     IEnumerator WaitThenDie()

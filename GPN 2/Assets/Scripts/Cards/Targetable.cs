@@ -8,16 +8,16 @@ public class Targetable : Card
     protected Tilemap gameTilemap;
     private Tilemap targetTilemap;
     private Tile targetHighlight;
-    private readonly string GAME_MAP = "Tilemap - GameMap";
-    private readonly string TARGET_MAP = "Tilemap - Highlight [Targetables]";
-    private readonly string TARGET_HIGHLIGHT = "Levels/Tiles/taunt_highlight";
+    
+    
+    
 
     new private void Start()
     {
         base.Start();
-        gameTilemap = GameObject.Find(GAME_MAP).GetComponent<Tilemap>();
-        targetTilemap = GameObject.Find(TARGET_MAP).GetComponent<Tilemap>();
-        targetHighlight = Resources.Load<Tile>(TARGET_HIGHLIGHT);
+        gameTilemap = TilemapRepository.getInstance().GetTilemap(TilemapRepository.GAME_MAP);
+        targetTilemap = TilemapRepository.getInstance().GetTilemap(TilemapRepository.ACTIVE_MAP);
+        targetHighlight = TilemapRepository.getInstance().GetTile(TilemapRepository.ATTACK_TILE);
     }
 
     public override bool Select()

@@ -1,75 +1,46 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.InputSystem;
+using Photon.Pun;
 
-public class Builder : BaseGoblin
+public class Builder : BaseGoblin, IActiveAbility
 {
-    private Tilemap gameTilemap;
-    private Tilemap buildHighlightMap;
-    private Tilemap wallTilemap;
-    private Tile buildHighlight;
-    private Tile wall;
-    private readonly string GAME_MAP = "Tilemap - GameMap";
-    private readonly string WALL_MAP = "Tilemap - Walls";
-    private readonly string BUILD_MAP = "Tilemap - Highlight [Build]";
-    private readonly string BUILD_HIGHLIGHT = "Levels/Tiles/attack_highlight";
-    private readonly string STONE_WALL = "Levels/Tiles/stone_wall";
-    protected readonly string MOUSE_POS = "POS";
+    private Tilemap GAME_MAP;
+    private Tilemap WALL_MAP;
+    private Tile WALL;
     public override int Cost() => 2;
-    
-    new protected void Start() {
+
+    new protected void Start()
+    {
         base.Start();
-        gameTilemap = GameObject.Find(GAME_MAP).GetComponent<Tilemap>();
-        wallTilemap = GameObject.Find(WALL_MAP).GetComponent<Tilemap>();
-        buildHighlightMap = GameObject.Find(BUILD_MAP).GetComponent<Tilemap>();
-        buildHighlight = Resources.Load<Tile>(BUILD_HIGHLIGHT);
-        wall = Resources.Load<Tile>(STONE_WALL);
+        GAME_MAP = TilemapRepository.getInstance().GetTilemap(TilemapRepository.GAME_MAP);
+        WALL_MAP = TilemapRepository.getInstance().GetTilemap(TilemapRepository.WALL_MAP);
+        WALL = TilemapRepository.getInstance().GetTile(TilemapRepository.WALL_TILE);
     }
 
-    public override void UseAbility(InputAction.CallbackContext context)
+    public bool isActive(Vector3Int targetPos)
     {
-        displayBuildableTiles();
-
-        Vector2 mousePos = context.action.actionMap.FindAction(MOUSE_POS).ReadValue<Vector2>();
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-        Vector3Int gridPos = gameTilemap.WorldToCell((Vector3) mousePos);
-
-        if(!canBuild(gridPos)) return;
-        wallTilemap.SetTile(new Vector3Int(gridPos.x, gridPos.y, 2), wall);
-        Clear();
-        isAbilityUsed = true;
-        actionManager.Deselect();
-    }
-
-    private void displayBuildableTiles()
-    {
-        for(int x = gameTilemap.cellBounds.min.x; x <= gameTilemap.cellBounds.max.x; x++) {
-            for(int y = gameTilemap.cellBounds.min.y; y <= gameTilemap.cellBounds.max.y; y++) {
-                if (!canBuild(new Vector3Int(x,y,0))) continue;
-                buildHighlightMap.SetTile(new Vector3Int(x,y,0), buildHighlight);
-            }
-        }
-    }
-
-    public override void Clear()
-    {
-        buildHighlightMap.ClearAllTiles();
-    }
-
-    private bool canBuild(Vector3Int targetPos)
-    {  
-        Vector3 worldPos = gameTilemap.CellToWorld(targetPos);
-        int dist = (int) Math.Ceiling(Vector3.Distance(gameTilemap.WorldToCell(GetCurrentPos()), targetPos));
+        Vector3 worldPos = GAME_MAP.CellToWorld(targetPos);
+        int dist = (int) Math.Ceiling(Vector3.Distance(GAME_MAP.WorldToCell(GetCurrentPos()), targetPos));
         RaycastHit2D hit = Physics2D.Raycast(new Vector2(worldPos.x, worldPos.y += 0.16f), Vector2.zero);
 
-        bool hasTile = gameTilemap.HasTile(targetPos);
+        bool hasTile = GAME_MAP.HasTile(targetPos);
         bool inRange = dist <= 1 && dist != 0;
         bool isOccupied = hit.collider != null;
         bool canBuild = hasTile && inRange && !isOccupied;
 
         return canBuild;
+    }
+    
+    public void HandleActive(GameObject targetEntity, Vector3Int targetPos)
+    {
+        photonView.RPC("RunActive", RpcTarget.All, GAME_MAP.CellToWorld(targetPos));
+    }
+
+    [PunRPC]
+    private void RunActive(Vector3 targetPos)
+    {
+        Vector3Int gridPos = GAME_MAP.WorldToCell(targetPos);
+        WALL_MAP.SetTile(new Vector3Int(gridPos.x, gridPos.y, 2), WALL);
     }
 }

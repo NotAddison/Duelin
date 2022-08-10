@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Photon.Pun;
 using Photon.Realtime;
 
@@ -58,16 +57,15 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     #endregion
 
     #region Virtual Methods
-    public virtual void UsePassive() { }
     public virtual void Clear() {}
-    public virtual void UseAbility(InputAction.CallbackContext context) { }
     #endregion
 
     #region Event Handlers
     public void OnClick(GameObject prevSelection = null)
     {
         bool isSelectionCard = prevSelection != null && prevSelection.GetComponent<Targetable>() != null;
-        if (isSelectionCard) {
+        if (isSelectionCard) 
+        {
             prevSelection.GetComponent<Targetable>().UseEffect(this.gameObject);
             return;
         }
@@ -106,6 +104,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
         if (!photonView.IsMine) return;
         unit_card.GetComponent<UnitCard>().RenderCard(this);
     }
+    
     public override void OnDeath(BaseGoblin attackingEntity, Vector3? targetPos = null)
     {    
         if (!photonView.IsMine) {

@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class TreeArmored : Tank
+public class TreeArmored : Tank, IPassiveAbility
 {
     public override int Cost() => 1;
-    public override void UseAbility(InputAction.CallbackContext context)
+
+    new public void HandlePassive()
     {
-        
-    }
-    public override void UsePassive()
-    {
-        base.UsePassive();
-        Debug.Log("Tree Armored regenerates health");
-        // [TODO] Implement max health instead of health
+        base.HandlePassive();
         if (Health < InitialHealth) AddHealth(1);
     }
 }

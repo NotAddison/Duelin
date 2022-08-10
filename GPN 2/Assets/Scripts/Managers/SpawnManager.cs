@@ -13,7 +13,6 @@ public class SpawnManager : MonoBehaviour, IClickable
     SelectionActions _input;
     SelectionActions.InputActions _inputAction;
     Camera _camera;
-    readonly string SPAWN_HIGHLIGHT = "Levels/Tiles/spawn_highlight";
     List<Vector3> playerSpawnPoints = new List<Vector3>();
     List<List<Vector3>> SpawnPoints = new List<List<Vector3>>{
         new List<Vector3>{
@@ -56,7 +55,7 @@ public class SpawnManager : MonoBehaviour, IClickable
     { 
         playerSpawnPoints = SpawnPoints[PhotonNetwork.LocalPlayer.ActorNumber-1];
         spawnHighlightMap = GetComponent<Tilemap>();
-        spawnHighlight = Resources.Load<Tile>(SPAWN_HIGHLIGHT);
+        spawnHighlight = TilemapRepository.getInstance().GetTile(TilemapRepository.SPAWN_TILE);
     }
 
     public bool HasSpawnPoints() => playerSpawnPoints.Any(spawnPoint => canSpawn(spawnPoint));

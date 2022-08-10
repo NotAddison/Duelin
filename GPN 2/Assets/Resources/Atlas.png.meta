@@ -778,7 +778,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: taunt_highlight
+      name: passive_highlight
       rect:
         serializedVersion: 2
         x: 33
@@ -1200,6 +1200,7 @@ TextureImporter:
       attack_highlight: -1692345310
       skill_preparation_name: 1474681004
       skill_haste_desc: -1410465286
+      passive_highlight: 343575484
       skill_plague_name: -821762345
       skill_plague: -1662694382
       warrior: 1055742990
@@ -1219,18 +1220,17 @@ TextureImporter:
       stone_7: 1378683938
       Atlas_3: 1483851517
       disguise: 56609217
-      taunt_highlight: 343575484
+      skill_haste_name: 1503638102
       Atlas_2: 1664289674
-      stone_4: 1402577718
       stone_6: 1728432593
+      stone_4: 1402577718
       sapper: 25987414
       stone_9: -1108701817
       water_0: -1930180091
-      skill_preparation_desc: 1918454851
       stone_wall: 1724306877
+      skill_preparation_desc: 1918454851
       rogue: -605117969
       skill_haste: 827840545
-      skill_haste_name: 1503638102
       shield: -1767259538
       miner: -2042174566
       gold_mine: -810610951
