@@ -3810,7 +3810,7 @@ MonoBehaviour:
     Loop: 0
     source: {fileID: 0}
   - name: Hit
-    clip: {fileID: 8300000, guid: 312f3178684e3c544887e31abad929f3, type: 3}
+    clip: {fileID: 8300000, guid: 6aa003e2c90ae5d4a9a1701004f99ceb, type: 3}
     volume: 1
     Loop: 0
     source: {fileID: 0}
