@@ -21,11 +21,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        if (!PlayerPrefs.HasKey("OSTVol")) FindObjectOfType<AudioManager>().Play("OST 2", 1f);
-        else FindObjectOfType<AudioManager>().Play("OST 2", PlayerPrefs.GetFloat("OSTVol"));
-
-        if (!PlayerPrefs.HasKey("AmbienceVol")) FindObjectOfType<AudioManager>().Play("Ambience", 1f);
-        else FindObjectOfType<AudioManager>().Play("Ambience", PlayerPrefs.GetFloat("AmbienceVol"));
+        AudioPlayer("OSTVol","OST 2");
+        AudioPlayer("AmbienceVol","Ambience");
 
         // amountToWin += PhotonNetwork.CountOfPlayersInRooms > 2 ? (PhotonNetwork.CountOfPlayersInRooms - 2) * 5 : 0;
         GameObject.FindWithTag("GoldBar").GetComponent<GoldBar>().RenderBar();
@@ -57,6 +54,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void UpdateGameState(LocalInventory.GAME_STATE state, int duration)
     {
         PhotonView.Get(this).RPC("AddGameState", RpcTarget.All, (int) state, duration);
+    }
+
+    public void AudioPlayer(string key,string name, float vol = 1f)
+    {
+        if (!PlayerPrefs.HasKey(key)) FindObjectOfType<AudioManager>().Play(name, vol);
+        else FindObjectOfType<AudioManager>().Play(name, PlayerPrefs.GetFloat(key));
     }
 
     void Update()
