@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Photon.Pun;
+using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 public class LocalInventory
 {
@@ -163,7 +165,8 @@ public class LocalInventory
 
     public void ReturnToMain(){
         PhotonNetwork.LeaveRoom();
-        PhotonNetwork.LoadLevel("MainMenu");
+        PhotonNetwork.Disconnect();
+        SceneManager.LoadScene("MainMenu");
             
         // Trigger OST Again
         PreserveSound.Instance.gameObject.GetComponent<AudioSource>().time = 0;

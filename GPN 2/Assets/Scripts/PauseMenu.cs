@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -32,7 +33,8 @@ public class PauseMenu : MonoBehaviour
 
     public void LeaveRoom(){
         PhotonNetwork.LeaveRoom();
-        PhotonNetwork.LoadLevel("MainMenu");
+        PhotonNetwork.Disconnect();
+        SceneManager.LoadScene("MainMenu");
         
         // Trigger OST Again
         PreserveSound.Instance.gameObject.GetComponent<AudioSource>().time = 0;

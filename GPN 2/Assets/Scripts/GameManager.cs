@@ -21,20 +21,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        if (!SettingsMenu.getInstance()) // Did not change any Settings
-        {
-            Debug.LogError("[GameManager] Setting Default Value (NULL)");
-            FindObjectOfType<AudioManager>().Play("OST 2", 1f);
-            FindObjectOfType<AudioManager>().Play("Ambience", 1f);
-        }
-        else
-        {
-            Debug.LogError("[GameManager] Setting Custom Value");
-            float ostVol = SettingsMenu.getInstance().GetOSTVol();
-            Debug.Log($"[GameManager] OST Volume set to {ostVol}");
-            FindObjectOfType<AudioManager>().Play("OST 2", ostVol);
-            FindObjectOfType<AudioManager>().Play("Ambience", SettingsMenu.getInstance().GetAmbienceVol());
-        }
+        if (!PlayerPrefs.HasKey("OSTVol")) FindObjectOfType<AudioManager>().Play("OST 2", 1f);
+        else FindObjectOfType<AudioManager>().Play("OST 2", PlayerPrefs.GetFloat("OSTVol"));
+
+        if (!PlayerPrefs.HasKey("AmbienceVol")) FindObjectOfType<AudioManager>().Play("Ambience", 1f);
+        else FindObjectOfType<AudioManager>().Play("Ambience", PlayerPrefs.GetFloat("AmbienceVol"));
 
         // amountToWin += PhotonNetwork.CountOfPlayersInRooms > 2 ? (PhotonNetwork.CountOfPlayersInRooms - 2) * 5 : 0;
         GameObject.FindWithTag("GoldBar").GetComponent<GoldBar>().RenderBar();

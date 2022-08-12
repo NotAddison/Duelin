@@ -58,8 +58,8 @@ public class EntityAttackController : EntityController
         target.OnDamage(entity, targetPos);
         actionManager.Deselect();
 
-        if (SettingsMenu.getInstance() == null) FindObjectOfType<AudioManager>().Play("Hit", 1f);
-        else FindObjectOfType<AudioManager>().Play("Hit", SettingsMenu.getInstance().GetSFXVol());
+        if (!PlayerPrefs.HasKey("SFXVol")) FindObjectOfType<AudioManager>().Play("Hit", 1f);
+        else FindObjectOfType<AudioManager>().Play("Hit", PlayerPrefs.GetFloat("SFXVol"));
     }
 
     public override void Clear()

@@ -30,8 +30,6 @@ public class SettingsMenu : MonoBehaviour
 
         if (PlayerPrefs.HasKey("AmbienceVol")){GameObject.Find("Ambience").GetComponent<UnityEngine.UI.Slider>().value = PlayerPrefs.GetFloat("AmbienceVol");}
         else GameObject.Find("Ambience").GetComponent<UnityEngine.UI.Slider>().value = 1f;
-
-        DontDestroyOnLoad(this.gameObject);
     }
 
     public void SetOSTVol(float vol){
