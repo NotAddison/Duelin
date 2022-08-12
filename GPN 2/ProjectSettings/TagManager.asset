@@ -22,6 +22,7 @@ TagManager:
   - WinLoseToast
   - UnitStats
   - UnitAbility
+  - Countdown
   layers:
   - Default
   - TransparentFX

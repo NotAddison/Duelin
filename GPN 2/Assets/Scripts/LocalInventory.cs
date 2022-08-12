@@ -166,8 +166,8 @@ public class LocalInventory
     }
 
     public void ReturnToMain(){
-        Entities.Clear();
-        Cards.Clear();
+        Entities = new List<GameObject>();
+        Cards = new List<GameObject>();
         Gold = 5;
 
         PhotonNetwork.LeaveRoom();
