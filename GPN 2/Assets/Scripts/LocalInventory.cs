@@ -142,11 +142,7 @@ public class LocalInventory
     public void AddGold(int value){
         Gold += value;
         if (!(Gold >= GameManager.getInstance().amountToWin)) GameObject.FindWithTag("GoldAmount").GetComponent<GoldAmount>().RenderAmount();
-        else 
-        {
-            Debug.LogError("You win");
-            GameObject.FindWithTag("WinLoseToast").GetComponent<WinLoseToast>().Render();
-        }
+        else GameManager.getInstance().HandleWin();
     }
 
     ///<summary>
