@@ -79,7 +79,7 @@ public class LocalInventory
     IEnumerator isLastPlayer()
     {
         yield return new WaitForSeconds(2.5f);
-        if (PhotonNetwork.CountOfPlayersInRooms == 1) GameObject.FindWithTag("WinLoseToast").GetComponent<WinLoseToast>().Render();
+        if (PhotonNetwork.PlayerList.Count() == 1) GameObject.FindWithTag("WinLoseToast").GetComponent<WinLoseToast>().Render();
     }
     
     public int GetPositionOfEntity(GameObject entity) => Entities.FindIndex(e => e == entity);

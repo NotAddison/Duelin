@@ -14,7 +14,7 @@ public class TurnManager : MonoBehaviour
     public bool actionTaken, bonusActionTaken, itemPurchased, isFirstTurn = false;
     public bool CheckTurn() => CurrentPlayer == PhotonNetwork.LocalPlayer;
 
-    private void Start() {
+    private void Awake() {
         CurrentPlayer = PhotonNetwork.MasterClient;
         turnNumber = 0;
         TurnTimer = 0;
