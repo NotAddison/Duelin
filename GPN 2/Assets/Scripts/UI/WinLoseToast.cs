@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WinLoseToast : MonoBehaviour
 {
-    int lifetime = 5;
+    int lifetime = 2;
 
     public void Render(bool isWin = true)
     {

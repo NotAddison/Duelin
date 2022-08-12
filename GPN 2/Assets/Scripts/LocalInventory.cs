@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Photon.Pun;
-using Photon.Realtime;
 using UnityEngine.SceneManagement;
 
 public class LocalInventory
 {
     private static LocalInventory _instance = null;
     public static LocalInventory getInstance() => _instance == null ? _instance = new LocalInventory() : _instance;
-    private int Gold = 8;
+    private int Gold;
     private List<GameObject> Entities = new List<GameObject>();
     private List<GameObject> Cards = new List<GameObject>();
     private Tilemap mineTilemap;
@@ -20,6 +19,7 @@ public class LocalInventory
 
     LocalInventory()
     {
+        Gold = 5;
         mineTilemap = TilemapRepository.getInstance().GetTilemap(TilemapRepository.MINE_MAP);
     }
 
@@ -73,7 +73,13 @@ public class LocalInventory
         }
         Entities.RemoveAt(entityIndex);
         if (GetEntityListSize() <= 0) GameObject.FindWithTag("WinLoseToast").GetComponent<WinLoseToast>().Render(false);
-        if (PhotonNetwork.CountOfPlayersInRooms == 1) GameObject.FindWithTag("WinLoseToast").GetComponent<WinLoseToast>().Render(true);
+        GameManager.getInstance().StartCoroutine(isLastPlayer());
+    }
+
+    IEnumerator isLastPlayer()
+    {
+        yield return new WaitForSeconds(2.5f);
+        if (PhotonNetwork.CountOfPlayersInRooms == 1) GameObject.FindWithTag("WinLoseToast").GetComponent<WinLoseToast>().Render();
     }
     
     public int GetPositionOfEntity(GameObject entity) => Entities.FindIndex(e => e == entity);
@@ -160,6 +166,10 @@ public class LocalInventory
     }
 
     public void ReturnToMain(){
+        Entities.Clear();
+        Cards.Clear();
+        Gold = 5;
+
         PhotonNetwork.LeaveRoom();
         PhotonNetwork.Disconnect();
         SceneManager.LoadScene("MainMenu");

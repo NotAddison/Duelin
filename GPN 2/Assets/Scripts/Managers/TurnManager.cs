@@ -13,6 +13,13 @@ public class TurnManager : MonoBehaviour
     public bool actionTaken, bonusActionTaken, itemPurchased, isFirstTurn = false;
     public bool CheckTurn() => CurrentPlayer == PhotonNetwork.LocalPlayer;
 
+    private void Start() {
+        CurrentPlayer = PhotonNetwork.MasterClient;
+        turnNumber = 0;
+        TurnTimer = 0;
+        actionTaken = bonusActionTaken = itemPurchased = isFirstTurn = false;
+    }
+
     [PunRPC]
     public void StartTurn()
     {
@@ -92,6 +99,5 @@ public class TurnManager : MonoBehaviour
             PhotonView.Get(this).RPC("EndTurn", RpcTarget.All);
         }
         TurnTimer--;
-        // Debug.LogError($"[GameManager] Turn Timer: {TurnTimer}");
     }
 }
