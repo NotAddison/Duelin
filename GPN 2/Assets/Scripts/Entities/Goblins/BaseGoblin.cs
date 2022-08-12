@@ -87,6 +87,8 @@ public class BaseGoblin : Entity, IClickable, IBuyable
 
     public override void OnDamage(BaseGoblin attackingEntity, Vector3 targetPos)
     {   
+        Debug.LogError($"[BaseGoblin] Damage: {attackingEntity.Damage}");
+        if(attackingEntity.Damage >= 5) CameraShaker.getInstance().toggle = true; // Camera Shake (if damage is more then or equal to 5)
         if(HasStatus(STATUS.DODGE))
         {
             int index = STATUSES.FindIndex(status => ((STATUS) status[0]) == STATUS.DODGE);
@@ -112,6 +114,7 @@ public class BaseGoblin : Entity, IClickable, IBuyable
             Destroy(parent.gameObject);
             return;
         }
+        if (!CameraShaker.getInstance().toggle) CameraShaker.getInstance().toggle = true; // Camera Shake
         LocalInventory.getInstance().DestroyGoblin(parent.gameObject);
         Destroy(unit_card);
         Destroy(parent.gameObject);

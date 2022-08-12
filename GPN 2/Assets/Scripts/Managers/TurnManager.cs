@@ -91,8 +91,7 @@ public class TurnManager : MonoBehaviour
         if(TurnTimer <= 0){
             PhotonView.Get(this).RPC("EndTurn", RpcTarget.All);
         }
-
         TurnTimer--;
-        Debug.LogError($"[GameManager] Turn Timer: {TurnTimer}");
+        // Debug.LogError($"[GameManager] Turn Timer: {TurnTimer}");
     }
 }
