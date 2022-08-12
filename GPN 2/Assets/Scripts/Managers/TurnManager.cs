@@ -5,6 +5,8 @@ using Photon.Realtime;
 
 public class TurnManager : MonoBehaviour
 {
+    public int Time = 30;
+    private int TurnTimer = 0;
     public static TurnManager getInstance() => GameObject.FindWithTag("GameManager").GetComponent<TurnManager>();
     private static Player CurrentPlayer = PhotonNetwork.MasterClient;  // Default to Master Client to be the first player
     private int turnNumber = 0;
@@ -17,6 +19,7 @@ public class TurnManager : MonoBehaviour
         if (!CheckTurn()) return;
         turnNumber += 1;
         if (turnNumber <= 1) actionTaken = bonusActionTaken = isFirstTurn = true;
+        else InvokeRepeating("CountDown", 1, 1);
         Instantiate(Resources.Load<GameObject>("Prefabs/UI/turn_toast"), Vector3.zero, Quaternion.identity);
         LocalInventory.getInstance()
             .UpdateGameState()
@@ -38,6 +41,8 @@ public class TurnManager : MonoBehaviour
         actionTaken = bonusActionTaken = itemPurchased = isFirstTurn = false;
         EndTurnButton.getInstance().RenderButton(actionTaken && bonusActionTaken && itemPurchased);
         CurrentPlayer = CurrentPlayer.GetNext();
+        CancelInvoke("CountDown");
+        TurnTimer = Time;
         StartTurn();
     }
 
@@ -80,5 +85,14 @@ public class TurnManager : MonoBehaviour
         END,
         [Description("StartTurn")]
         START
+    }
+    
+    public void CountDown(){
+        if(TurnTimer <= 0){
+            PhotonView.Get(this).RPC("EndTurn", RpcTarget.All);
+        }
+
+        TurnTimer--;
+        Debug.LogError($"[GameManager] Turn Timer: {TurnTimer}");
     }
 }
