@@ -68,4 +68,9 @@ public class GameManager : MonoBehaviourPunCallbacks
             GameCam.SetActive(false);
         }
     }
+
+    [PunRPC]
+    public void WinByGold(){
+        Debug.LogError("You win");
+    }
 }
