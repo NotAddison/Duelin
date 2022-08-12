@@ -58,8 +58,7 @@ public class EntityAttackController : EntityController
         target.OnDamage(entity, targetPos);
         actionManager.Deselect();
 
-        if (!PlayerPrefs.HasKey("SFXVol")) FindObjectOfType<AudioManager>().Play("Hit", 1f);
-        else FindObjectOfType<AudioManager>().Play("Hit", PlayerPrefs.GetFloat("SFXVol"));
+        GameManager.getInstance().AudioPlayer("SFXVol", "Hit");
     }
 
     public override void Clear()

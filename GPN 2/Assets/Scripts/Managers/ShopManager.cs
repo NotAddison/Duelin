@@ -39,16 +39,14 @@ public class ShopManager : MonoBehaviour
         {
             if (LocalInventory.getInstance().GetEntityListSize() >= MAX_UNITS) return null;
             UnitsForSale.Remove(selectedItem);
-            if (!PlayerPrefs.HasKey("SFXVol")) FindObjectOfType<AudioManager>().Play("Purchase", 1f);
-            else FindObjectOfType<AudioManager>().Play("Purchase", PlayerPrefs.GetFloat("SFXVol"));
+            GameManager.getInstance().AudioPlayer("SFXVol", "Purchase");
             generateUnit();
         }
         if(CardsForSale.Contains(selectedItem))
         {
             if (LocalInventory.getInstance().GetCardListSize() >= MAX_CARDS) return null;
             CardsForSale.Remove(selectedItem);
-            if (!PlayerPrefs.HasKey("SFXVol")) FindObjectOfType<AudioManager>().Play("Card Pick Up", 1f);
-            else FindObjectOfType<AudioManager>().Play("Card Pick Up", PlayerPrefs.GetFloat("SFXVol"));
+            GameManager.getInstance().AudioPlayer("SFXVol", "Purchase");
             generateCard();
         }
 

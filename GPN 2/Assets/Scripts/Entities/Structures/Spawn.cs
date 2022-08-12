@@ -11,6 +11,6 @@ public class Spawn : Entity
     public override void OnDeath(BaseGoblin attackingEntity = null, Vector3? targetPos = null)
     {
         if (!PhotonView.Get(this).IsMine) return;
-        GameObject.FindWithTag("WinLoseToast").GetComponent<WinLoseToast>().Render(false);
+        GameManager.getInstance().HandleWin();
     }
 }

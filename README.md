@@ -1,6 +1,9 @@
+<p align = "center">
+  <img src="GPN 2\Assets\Resources\UI Images\Title.png"> <br>
+  Duel + Goblins = <b>Duelin</b> <br><br>
+</p>
+
 ## What is Duelin?
-<img src="GPN 2\Assets\Resources\UI Images\Title.png">
-Duel + Goblins = <b>Duelin</b> <br>
 Brought to you by the makers of the board game INSECTUM, <br>
 Duelin is a 2D online PVP turn-based strategic combat game where players purchase units and battle against their friends!
 
@@ -26,7 +29,6 @@ Duelin is a 2D online PVP turn-based strategic combat game where players purchas
 
 ## How to play? 
 > A quick guide on how to play Duelin! <br>
-> Want a video tutorial instead? Click [here](https://www.youtube.com/) [Sorry, was not able to record and edit on time :(]!
 
 ### Creating a Room
 <details>
@@ -64,11 +66,16 @@ Duelin is a 2D online PVP turn-based strategic combat game where players purchas
 </details>
 
 <details> <summary>Subsequent Round(s)<br></summary>
-- Players can only MOVE once and ATTACK once for each turn. <br>
+- Players can only <b>MOVE once</b> and <b>ATTACK once</b> for each turn. <br>
 - Players can use the shop to purchase units (5 max) and cards (4 max) [Does not count as a "Action"]<br>
 - Players can capture a farm to gain passive points (2 per round & on Capture) <br>
 - Each farm takes 2 turn to fully capture. <br>
-- Players can win by POINTS or by ELIMINATING all the other opponent's unit. <br>
+</details>
+
+<details> <summary>Win Conditions<br></summary>
+- Eliminate all the other player's units and core. <br>
+- Eliminate other player's core (hut). <br>
+- Win by gold/points. (fill up the gold bar) <br>
 </details>
 
 ### Point System
@@ -81,9 +88,8 @@ Duelin is a 2D online PVP turn-based strategic combat game where players purchas
 
 <details> <summary>How to gain points :<br></summary>
 Kill enemy unit : <b>2</b> <br>
-Kill enemy: <b>Absorb half their points</b><br>
-Capture farm :<b>2</b> <br>
-Farm points : <b>2</b> <br>
+Capture farm :<b>2</b> (2 turns to fully capture) <br>
+Farm points : <b>2</b> (a unit must remain on the farm) <br>
 </details> <br>
 
 

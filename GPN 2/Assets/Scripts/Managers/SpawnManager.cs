@@ -101,8 +101,7 @@ public class SpawnManager : MonoBehaviour, IClickable
         if (item == null) return;
 
         SpawnUnit(itemCard.item, new Vector3(spawnPos.x, spawnPos.y += 0.16f, spawnPos.z));
-        if (!PlayerPrefs.HasKey("SFXVol")) FindObjectOfType<AudioManager>().Play("Spawn", 1f);
-        else FindObjectOfType<AudioManager>().Play("Spawn", PlayerPrefs.GetFloat("SFXVol"));
+        GameManager.getInstance().AudioPlayer("SFXVol", "Spawn");
         Destroy(itemCard);
         ShopManager.getInstance().RenderItemsForSale();
     }
