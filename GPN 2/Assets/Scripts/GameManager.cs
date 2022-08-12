@@ -59,6 +59,23 @@ public class GameManager : MonoBehaviourPunCallbacks
         PhotonView.Get(this).RPC("AddGameState", RpcTarget.All, (int) state, duration);
     }
 
+    public void HandleWin()
+    {
+        Win();
+        PhotonView.Get(this).RPC("Lose", RpcTarget.Others);
+    }
+
+    private void Win()
+    {
+        GameObject.FindWithTag("WinLoseToast").GetComponent<WinLoseToast>().Render();
+    }
+
+    [PunRPC]
+    private void Lose()
+    {
+        GameObject.FindWithTag("WinLoseToast").GetComponent<WinLoseToast>().Render(false);
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
