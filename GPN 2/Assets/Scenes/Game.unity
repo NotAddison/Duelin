@@ -3999,6 +3999,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
+  - name: OST 2
+    clip: {fileID: 8300000, guid: ea416727bdbaaa24184628d7cd116fc6, type: 3}
+    volume: 1
+    Loop: 1
+    source: {fileID: 0}
   - name: Move
     clip: {fileID: 8300000, guid: 46054be78d2815541b9350b650edf292, type: 3}
     volume: 1
@@ -4009,17 +4014,47 @@ MonoBehaviour:
     volume: 1
     Loop: 0
     source: {fileID: 0}
+  - name: Damage
+    clip: {fileID: 8300000, guid: 312f3178684e3c544887e31abad929f3, type: 3}
+    volume: 1
+    Loop: 0
+    source: {fileID: 0}
+  - name: Damage Big
+    clip: {fileID: 8300000, guid: 7ea37bf2b12d00b468af6295f356f554, type: 3}
+    volume: 1
+    Loop: 0
+    source: {fileID: 0}
   - name: Player Eliminated
     clip: {fileID: 8300000, guid: e1167307df9266942acaf1102533b689, type: 3}
     volume: 1
     Loop: 0
     source: {fileID: 0}
-  - name: OST 2
-    clip: {fileID: 8300000, guid: ea416727bdbaaa24184628d7cd116fc6, type: 3}
-    volume: 1
-    Loop: 1
-    source: {fileID: 0}
   - name: Ambience
+    clip: {fileID: 8300000, guid: eb7b9a719b29dd346b27f870cd4eb5db, type: 3}
+    volume: 1
+    Loop: 0
+    source: {fileID: 0}
+  - name: Spawn
+    clip: {fileID: 8300000, guid: c07a48ce754c91e4893eeba5874de9e7, type: 3}
+    volume: 1
+    Loop: 0
+    source: {fileID: 0}
+  - name: Purchase
+    clip: {fileID: 8300000, guid: 70671b61d0f105544ae4d691e7ec4088, type: 3}
+    volume: 1
+    Loop: 0
+    source: {fileID: 0}
+  - name: Card Pick Up
+    clip: {fileID: 8300000, guid: fa7a662e7d8ab284e918a057593e289a, type: 3}
+    volume: 1
+    Loop: 0
+    source: {fileID: 0}
+  - name: Card Drop
+    clip: {fileID: 8300000, guid: 95d66a0402c99a84fada3c5f9939d972, type: 3}
+    volume: 1
+    Loop: 0
+    source: {fileID: 0}
+  - name: 
     clip: {fileID: 8300000, guid: eb7b9a719b29dd346b27f870cd4eb5db, type: 3}
     volume: 1
     Loop: 1

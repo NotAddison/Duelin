@@ -88,7 +88,16 @@ public class BaseGoblin : Entity, IClickable, IBuyable
     public override void OnDamage(BaseGoblin attackingEntity, Vector3 targetPos)
     {   
         Debug.LogError($"[BaseGoblin] Damage: {attackingEntity.Damage}");
-        if(attackingEntity.Damage >= 5) CameraShaker.getInstance().toggle = true; // Camera Shake (if damage is more then or equal to 5)
+        if(attackingEntity.Damage >= 5){
+            CameraShaker.getInstance().toggle = true;  // Camera Shake (if damage is more then or equal to 5)
+            if (!PlayerPrefs.HasKey("SFXVol")) FindObjectOfType<AudioManager>().Play("Damage Big", 1f);
+            else FindObjectOfType<AudioManager>().Play("Damage Big", PlayerPrefs.GetFloat("SFXVol"));
+        }
+        else{
+            if (!PlayerPrefs.HasKey("SFXVol")) FindObjectOfType<AudioManager>().Play("Damage", 1f);
+            else FindObjectOfType<AudioManager>().Play("Damage", PlayerPrefs.GetFloat("SFXVol"));
+        }
+
         if(HasStatus(STATUS.DODGE))
         {
             int index = STATUSES.FindIndex(status => ((STATUS) status[0]) == STATUS.DODGE);

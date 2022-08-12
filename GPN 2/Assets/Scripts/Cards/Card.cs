@@ -9,6 +9,8 @@ public class Card : MonoBehaviour, IClickable
 
     public virtual bool Select()
     {
+        if (!PlayerPrefs.HasKey("SFXVol")) FindObjectOfType<AudioManager>().Play("Card Pick Up", 1f);
+        else FindObjectOfType<AudioManager>().Play("Card Pick Up", PlayerPrefs.GetFloat("SFXVol"));
         transform.parent.transform.position = new Vector3(transform.parent.transform.position.x, -1.05f, transform.parent.transform.position.z);
         return true;
     }
@@ -23,6 +25,10 @@ public class Card : MonoBehaviour, IClickable
     public void UseEffect(GameObject target = null){
         Debug.Log("Effect being used");
         Deselect();
+        
+        if (!PlayerPrefs.HasKey("SFXVol")) FindObjectOfType<AudioManager>().Play("Card Drop", 1f);
+        else FindObjectOfType<AudioManager>().Play("Card Drop", PlayerPrefs.GetFloat("SFXVol"));
+
         if(TurnManager.getInstance().bonusActionTaken) return;
         HandleEffect(target);
         TurnManager.getInstance().HandleTurnAction(TurnManager.ACTION.BONUS_ACTION);
