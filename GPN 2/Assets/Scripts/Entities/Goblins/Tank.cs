@@ -53,4 +53,6 @@ public class Tank : BaseGoblin, IPassiveAbility
         Clear();
         displayTauntedTiles();
     }
+
+    public string PassiveAbilityDescription() => "Units in range can only attack this unit";
 }

@@ -3,6 +3,7 @@ using Photon.Pun;
 
 public class Marauder : BaseGoblin, IActiveAbility
 {
+    public string ActiveAbilityDescription() => "Once every 4 turns, give all units +1 | +1";
     public override int Cost() => 7;
 
     // !Not working

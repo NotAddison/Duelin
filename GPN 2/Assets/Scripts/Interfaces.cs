@@ -7,7 +7,7 @@ public interface IClickable
 
 public interface IHoverable
 {
-    void OnHover();
+    void OnHover(GameObject prevHover = null);
 }
 
 public interface IBuyable
