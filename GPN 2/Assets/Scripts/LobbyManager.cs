@@ -51,6 +51,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         // UI Display
         string text = RoomMenuLog.GetComponent<TextMeshProUGUI>().text;
         RoomMenuLog.GetComponent<TextMeshProUGUI>().SetText(text + $"[Photon] Server: {PhotonNetwork.CloudRegion}");
+        RoomMenuLog.GetComponent<TextMeshProUGUI>().SetText(text + $"\n[Photon] Ping: {PhotonNetwork.GetPing()} ms");
         RoomCode.GetComponent<TextMeshProUGUI>().SetText(code);
     }
 
@@ -115,12 +116,12 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public void StartGame(){
         if (PhotonNetwork.IsMasterClient)
         {
-            if (PhotonNetwork.CurrentRoom.PlayerCount > 0){ PhotonNetwork.LoadLevel("Game"); PhotonNetwork.CurrentRoom.IsOpen = false;} 
+            if (PhotonNetwork.CurrentRoom.PlayerCount > 1){ PhotonNetwork.LoadLevel("Game"); PhotonNetwork.CurrentRoom.IsOpen = false;} 
             else 
             {
                 Debug.LogError("[Photon]: Not enough players!"); 
                 string text = RoomMenuLog.GetComponent<TextMeshProUGUI>().text;
-                RoomMenuLog.GetComponent<TextMeshProUGUI>().SetText(text + $"\n [Photon]: Not enough players!");
+                RoomMenuLog.GetComponent<TextMeshProUGUI>().SetText(text + $"\n[Photon]: Not enough players!");
             }
         }
         else
