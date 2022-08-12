@@ -24,8 +24,16 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Settings");
     }
 
-    public void HowToRedirect(){
-        Application.OpenURL("https://github.com/NotAddison/GPN_ASG2#how-to-play");
+    public void Tutorial(){
+        SceneManager.LoadScene("Tutorial");
+    }
+
+    public void Tutorial2(){
+        SceneManager.LoadScene("Tutorial2");
+    }
+
+    public void Tutorial3(){
+        SceneManager.LoadScene("Tutorial3");
     }
 
     public void Credits(){
