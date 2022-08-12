@@ -11,6 +11,9 @@ public class SelectionManager : MonoBehaviour
     GameObject currentSelection;
     GameObject prevSelection;
 
+    GameObject currentHover;
+    GameObject prevHover;
+
     private void Awake()
     {
         _input = new SelectionActions();
@@ -31,6 +34,26 @@ public class SelectionManager : MonoBehaviour
     void Start()
     {
         _inputAction.Select.performed += _ => Select();
+    }
+
+    void Update() {
+        // Hover();
+    }
+
+    void Hover() {
+        prevHover = currentHover;
+        Vector2 mousePos = _inputAction.Pos.ReadValue<Vector2>();
+        mousePos = _camera.ScreenToWorldPoint(mousePos);
+        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+        bool hitFound = hit.collider != null;
+        bool isHoverable(GameObject selection) => selection.GetComponents<Component>().Any(component => component is IHoverable);
+
+        if(!hitFound) return;
+        currentHover = hit.collider.gameObject;
+
+        if (!isHoverable(currentHover)) return;
+        ((IHoverable)currentHover.GetComponents<Component>().Single(component => component is IHoverable)).OnHover(prevHover);
     }
 
     void Select()

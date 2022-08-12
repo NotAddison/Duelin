@@ -32,4 +32,6 @@ public class Shielder : Tank, IActiveAbility
 
         return canAttack;
     }
+
+    public string ActiveAbilityDescription() => "Paralyze a unit for 2 turns";
 }

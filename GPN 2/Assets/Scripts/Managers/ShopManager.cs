@@ -16,8 +16,8 @@ public class ShopManager : MonoBehaviour
         AllUnits = new List<GameObject>(Resources.LoadAll<GameObject>("Prefabs/Units"));
         AllCards = new List<GameObject>(Resources.LoadAll<GameObject>("Prefabs/Cards"));
 
-        for(int i = 0; i < 5; i++) generateUnit();
-        for(int i = 0; i < 3; i++) generateCard();
+        for(int i = 0; i < 5; i++, generateUnit());
+        for(int i = 0; i < 3; i++, generateCard());
     }
 
     private void generateUnit() => UnitsForSale.Add(AllUnits[random.Next(AllUnits.Count)]);

@@ -9,7 +9,8 @@ public interface IActiveAbility
     public static Tilemap ACTIVE_MAP = REPO.GetTilemap(TilemapRepository.ACTIVE_MAP); 
     public static Tile ACTIVE_TILE = REPO.GetTile(TilemapRepository.ACTIVE_TILE);
     public static readonly string MOUSE_POS = "POS";
-    public bool isTargetable() => true;
+    public string ActiveAbilityDescription();
+    public virtual bool isTargetable() => true;
     public bool isActive(Vector3Int targetPos);
     public void HandleActive(GameObject targetEntity, Vector3Int targetPos);
 }

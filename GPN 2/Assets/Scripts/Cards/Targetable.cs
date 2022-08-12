@@ -9,9 +9,6 @@ public class Targetable : Card
     private Tilemap targetTilemap;
     private Tile targetHighlight;
     
-    
-    
-
     new private void Start()
     {
         base.Start();

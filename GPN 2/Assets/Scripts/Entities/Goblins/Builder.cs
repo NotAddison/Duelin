@@ -43,4 +43,6 @@ public class Builder : BaseGoblin, IActiveAbility
         Vector3Int gridPos = GAME_MAP.WorldToCell(targetPos);
         WALL_MAP.SetTile(new Vector3Int(gridPos.x, gridPos.y, 2), WALL);
     }
+
+    public string ActiveAbilityDescription() => "Build 1 wall each turn";
 }

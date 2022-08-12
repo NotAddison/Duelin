@@ -39,4 +39,6 @@ public class Barrel : Tank, IActiveAbility
 
         return canAttack;
     }
+
+    public string ActiveAbilityDescription() => "-1 movement to 1 unit";
 }

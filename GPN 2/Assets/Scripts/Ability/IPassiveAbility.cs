@@ -4,6 +4,7 @@ public interface IPassiveAbility
 {
     public static Tilemap GAME_MAP = TilemapRepository.getInstance().GetTilemap(TilemapRepository.GAME_MAP);
     public static readonly string MOUSE_POS = "POS";
+    public string PassiveAbilityDescription();
     public void HandlePassive();
 }
 

@@ -1867,7 +1867,7 @@ TextureImporter:
         width: 136
         height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1888,7 +1888,7 @@ TextureImporter:
         width: 136
         height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1896,6 +1896,258 @@ TextureImporter:
       bones: []
       spriteID: 861a3bb64b3334f42aa571e45564c345
       internalID: 520498627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: unit_stats
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 59
+        width: 66
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86691700a1b8ac044b8db4798597524d
+      internalID: 621989214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: unit_ability
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 44
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3bf0a29581d8bb4590db51991536665
+      internalID: -163712353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 1
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11269d60cee3a0b4087c23292879c8b5
+      internalID: -1748907813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 1
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a322dc96db4f19140bd28a297ba0949a
+      internalID: -1901064800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 1
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80df9186024528d4dae5ea8675563c91
+      internalID: 2130310294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 1
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c206fc4b34b4294aa9a2c572717879a
+      internalID: -453415833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 1
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c1800ba763d412488deef74c87183c0
+      internalID: 196983350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 6
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30caa85652177f84fb96c18eb4d94855
+      internalID: -1430552278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 7
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 1
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2e32b0dca5baed4285c1d8af4b62077
+      internalID: 1161026056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 8
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 1
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65badc8b648ce3e479d319769111c5cb
+      internalID: -1186727302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 1
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68490c4603a121d41b514ef08973d33c
+      internalID: -571571597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 0
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 1
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bf283aa54df6634780218c74b99e13a
+      internalID: 2106199887
       vertices: []
       indices: 
       edges: []
@@ -1911,87 +2163,99 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      friendly_healthbar_1: -2008757515
-      gold_2: 1773917450
+      0: 2106199887
       win_toast: 520498627
       center_panel: -2132541990
       gold_6: 1958818205
       gold_21: -713624775
-      friendly_healthbar_14: 1237880873
       friendly_healthbar_8: -199148038
-      gold_1: -1298019152
-      enemy_healthbar_7: -1323701392
       friendly_healthbar_7: -88532450
-      lose_toast: 985752837
-      enemy_healthbar_8: 633239096
-      enemy_healthbar_6: 509877090
+      6: -1430552278
+      5: 196983350
       right_panel: 130098722
-      shop_panel: -1176674099
-      gold_5: -991538556
-      cool_down_bar_5: 711543352
-      gold_24: 421652455
-      friendly_healthbar_2: 1509765867
       turn_toast: 1946910019
-      enemy_healthbar_9: 1283816696
-      cool_down_bar_2: -572146204
+      gold_24: 421652455
       cool_down_bar_4: -459305981
       gold_13: 143329195
-      friendly_healthbar_13: 1028508075
       friendly_healthbar_12: 1398279150
-      gold_bar_25: 1208665442
-      unit_card: -2076782267
-      unit_card_selected: -472594550
-      gold_9: -1586521071
       empty_bar: -1926637400
-      gold_20: -2041807866
-      friendly_healthbar_6: -31717461
-      friendly_healthbar_9: -18604749
-      gold_0: 2105299723
-      settings: -879596315
-      enemy_healthbar_1: 31008297
       gold_16: 1705148259
-      gold_10: 799587055
-      gold_7: 1018394265
-      enemy_healthbar_14: -1914652417
+      friendly_healthbar_6: -31717461
+      gold_0: 2105299723
+      ability_card: 108248020
+      count_gold: 1021026331
       gold_23: 37451490
-      friendly_healthbar_3: 230340702
       gold_22: 95377835
       cool_down_bar_1: 90372336
       gold_15: 1775143154
-      ability_card: 108248020
-      enemy_healthbar_3: -265749006
       gold_17: -1201038843
-      gold_12: -1130044467
-      gold_19: 74106666
       friendly_healthbar_10: -2000537275
-      count_gold: 1021026331
       friendly_healthbar_11: -544046312
       friendly_healthbar_5: 1094091137
-      cool_down_bar_3: 271744959
       gold_bar_20: 1258516442
-      gold_18: 1180290220
-      gold_3: -1437224816
-      friendly_healthbar_4: -1854794921
-      friendly_healthbar_15: 1764202443
       unit_card_collapsed: -1717571340
-      gold_11: -1071065240
-      enemy_healthbar_10: 1009423984
+      gold_18: 1180290220
+      9: -571571597
+      friendly_healthbar_4: -1854794921
+      unit_ability: -163712353
       gold_25_complete: 1793500069
+      4: -453415833
       buy_button: 328681393
       enemy_healthbar_15: -216602017
-      enemy_healthbar_11: 2131623071
-      gold_14: -1927085369
       card: 945981171
-      enemy_healthbar_13: -1991305672
-      enemy_healthbar_5: -1371276820
+      gold_14: -1927085369
       enemy_healthbar_12: -519268582
-      enemy_healthbar_4: -1325817498
+      enemy_healthbar_5: -1371276820
       gold_4: -1218212120
       unit_card_collapsed_selected: -1391482911
-      gold_8: 52808043
-      shop_button: -1130324304
       count_mine: 1823502859
       end_turn_True: -2126569656
+      friendly_healthbar_1: -2008757515
+      gold_2: 1773917450
+      3: 2130310294
+      friendly_healthbar_14: 1237880873
+      gold_1: -1298019152
+      enemy_healthbar_7: -1323701392
+      lose_toast: 985752837
+      enemy_healthbar_8: 633239096
+      enemy_healthbar_6: 509877090
+      shop_panel: -1176674099
+      gold_5: -991538556
+      cool_down_bar_5: 711543352
+      friendly_healthbar_2: 1509765867
+      enemy_healthbar_9: 1283816696
+      cool_down_bar_2: -572146204
+      gold_bar_25: 1208665442
+      friendly_healthbar_13: 1028508075
+      unit_card: -2076782267
+      unit_card_selected: -472594550
+      gold_9: -1586521071
+      gold_20: -2041807866
+      friendly_healthbar_9: -18604749
+      enemy_healthbar_1: 31008297
+      settings: -879596315
+      gold_7: 1018394265
+      gold_10: 799587055
+      unit_stats: 621989214
+      enemy_healthbar_14: -1914652417
+      friendly_healthbar_3: 230340702
+      8: -1186727302
+      enemy_healthbar_3: -265749006
+      gold_12: -1130044467
+      gold_19: 74106666
+      2: -1901064800
+      cool_down_bar_3: 271744959
+      gold_3: -1437224816
+      friendly_healthbar_15: 1764202443
+      gold_11: -1071065240
+      enemy_healthbar_10: 1009423984
+      enemy_healthbar_11: 2131623071
+      gold_8: 52808043
+      shop_button: -1130324304
+      enemy_healthbar_13: -1991305672
+      1: -1748907813
+      enemy_healthbar_4: -1325817498
+      7: 1161026056
       end_turn_False: 840640753
       end_turn_True_2: 1904181749
       gold_bar_15: 319662385

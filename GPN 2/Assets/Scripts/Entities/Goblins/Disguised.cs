@@ -33,4 +33,6 @@ public class Disguised : BaseGoblin, IActiveAbility
     {
 
     }
+
+    public string ActiveAbilityDescription() => "Adopt the abilities of another unit for this turn";
 }
