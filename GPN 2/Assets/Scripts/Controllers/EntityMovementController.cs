@@ -53,8 +53,8 @@ public class EntityMovementController : EntityController
     public void MoveEntity(Vector3 destination){
         if (entity.transform.position == destination) return;
         entity.transform.parent.position = destination;
-        if (SettingsMenu.getInstance() == null) FindObjectOfType<AudioManager>().Play("Move", 1f);
-        else FindObjectOfType<AudioManager>().Play("Move", SettingsMenu.getInstance().GetSFXVol());
+        if (!PlayerPrefs.HasKey("SFXVol")) FindObjectOfType<AudioManager>().Play("Move", 1f);
+        else FindObjectOfType<AudioManager>().Play("Move", PlayerPrefs.GetFloat("SFXVol"));
         
         if(entity is IPassiveAbility) ((IPassiveAbility) entity).UsePassive();
         DesyncCheck(destination);
